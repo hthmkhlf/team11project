@@ -2,7 +2,7 @@ Team Members:
 
 - Haithem Khelif
 - Josh Schijns
-- Member Name
+- Katie Tieu
 - Member Name
 - Member Name
 
