@@ -6,5 +6,4 @@ Team Members:
 - Member Name
 - Member Name
 
-Test from a Windows machine.
-Josh Testing
+Please delete the other repo and clone this one :-)
