@@ -48,10 +48,12 @@ public class EndlessRunner{
               case "j":
                   player_y_value = 2;
                   player_x_value = player_x_value + 1;
+                  System.out.println("You jumped over the obstacle!");
                   break;
               case "s":
                   player_y_value = 0;
                   player_x_value = player_x_value + 1;
+                  System.out.println("You slid under the obstacle!");
                   break;
               default:
                   player_y_value = 1;
@@ -67,7 +69,7 @@ public class EndlessRunner{
                   System.out.println("You hit the obstacle");
               }
             }
-
+            // if user avoids the obstacle by jumping or sliding the player values will increase so they will fully pass the obstacle.
             if ((player_input.equals("s")) || (player_input.equals("j"))) {
               player_x_value= player_x_value +1;
             }
@@ -85,19 +87,5 @@ public class EndlessRunner{
                 obstacle_y_value2 = 2;
               }
             }
-
-            // //player jumps over an obstacle
-            // else if ((player_x_value == obstacle_x_value) && (player_input.equals("j"))) {
-            //     System.out.println("You jumped over the obstacle!");
-            // }
-            //
-            // //player slides under an obstacle
-            // else if ((player_x_value == obstacle_x_value) && (player_input.equals("s"))){
-            //   System.out.println("You slid under the obstacle!");
-            // }
-
-        }
-
-
     }
 }
