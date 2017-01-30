@@ -87,5 +87,9 @@ public class EndlessRunner{
                 obstacle_y_value2 = 2;
               }
             }
+
+        }
+
+
     }
 }
