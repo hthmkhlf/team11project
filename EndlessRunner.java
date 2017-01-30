@@ -88,8 +88,6 @@ public class EndlessRunner{
               }
             }
 
-<<<<<<< HEAD
-=======
             //player jumps over an obstacle
             else if ((player_x_value == obstacle_x_value) && (player_input.equals("j"))) {
                 System.out.println("You jumped over the obstacle!");
@@ -99,8 +97,6 @@ public class EndlessRunner{
             else if ((player_x_value == obstacle_x_value) && (player_input.equals("s"))){
               System.out.println("You slid under the obstacle!");
             }
-
->>>>>>> parent of e0faae8... Again some stuff done in class
         }
 
 
