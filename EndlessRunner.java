@@ -48,12 +48,12 @@ public class EndlessRunner{
               case "j":
                   player_y_value = 2;
                   player_x_value = player_x_value + 1;
-                  System.out.println("You jumped over the obstacle!");
+                  System.out.println("You jumped!");
                   break;
               case "s":
                   player_y_value = 0;
                   player_x_value = player_x_value + 1;
-                  System.out.println("You slid under the obstacle!");
+                  System.out.println("You slid!");
                   break;
               default:
                   player_y_value = 1;
