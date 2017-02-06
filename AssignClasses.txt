@@ -1,4 +1,4 @@
-Game() By Haithe,
+Game() By Haithem
 User:
 Obstacle:
 Configuration:
