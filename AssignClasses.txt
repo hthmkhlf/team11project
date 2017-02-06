@@ -1,0 +1,38 @@
+Game()
+User:
+Obstacle:
+Configuration:
+setup()	 
+play()
+collision() 
+
+User()
+Name:
+Initial X:
+Initial Y:
+Movement()
+getName()
+TrackUser()
+
+
+Obstacle()
+Xcord:
+Ycord:
+GenerateObstacle()
+TrackObstacle()
+
+Interface()
+User X:
+User Y:
+Obstacle Y:
+Obstacle X:
+Redraw()
+
+GameStats()
+Time:
+Difficulty:
+Score:
+HighScore:
+CheckHighScore()
+UpdateDifficulty()
+TrackTime()
