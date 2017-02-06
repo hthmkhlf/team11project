@@ -1,4 +1,4 @@
-Game()
+Game() By Haithe,
 User:
 Obstacle:
 Configuration:
@@ -6,7 +6,7 @@ setup()
 play()
 collision() 
 
-User()
+User() By Max
 Name:
 Initial X:
 Initial Y:
@@ -15,20 +15,20 @@ getName()
 TrackUser()
 
 
-Obstacle()
+Obstacle() By Katie
 Xcord:
 Ycord:
 GenerateObstacle()
 TrackObstacle()
 
-Interface()
+Interface() By Josh
 User X:
 User Y:
 Obstacle Y:
 Obstacle X:
 Redraw()
 
-GameStats()
+GameStats() By Emily
 Time:
 Difficulty:
 Score:
