@@ -1,0 +1,38 @@
+Game() By Haithem
+User:
+Obstacle:
+Configuration:
+setup()	 
+play()
+collision() 
+
+User() By Max
+Name:
+Initial X:
+Initial Y:
+Movement()
+getName()
+TrackUser()
+
+
+Obstacle() By Katie
+Xcord:
+Ycord:
+GenerateObstacle()
+TrackObstacle()
+
+Interface() By Josh
+User X:
+User Y:
+Obstacle Y:
+Obstacle X:
+Redraw()
+
+GameStats() By Emily
+Time:
+Difficulty:
+Score:
+HighScore:
+CheckHighScore()
+UpdateDifficulty()
+TrackTime()

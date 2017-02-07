@@ -87,15 +87,6 @@ public class EndlessRunner{
                 obstacle_y_value2 = 2;
               }
             }
-            //player jumps over an obstacle
-            else if ((player_x_value == obstacle_x_value) && (player_input.equals("j"))) {
-                System.out.println("You jumped over the obstacle!");
-            }
-
-            //player slides under an obstacle
-            else if ((player_x_value == obstacle_x_value) && (player_input.equals("s"))){
-              System.out.println("You slid under the obstacle!");
-            }
         }
 
 
