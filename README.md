@@ -12,7 +12,7 @@
 <div2>
     <h2>Useful Links</h2>
     <a href = "https://drive.google.com/file/d/0B-7YCfsgJak_X1NHQWMyWm1oWVE/view?usp=sharing" >The UML Diagram <a/>
-    <a href = "http://rogerdudler.github.io/git-guide/" >git - the simple guide <a/>
+    <a2 href = "http://rogerdudler.github.io/git-guide/" >git - the simple guide <a2/>
 </div2>
 </p>
 </body>
