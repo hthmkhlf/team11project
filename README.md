@@ -10,8 +10,8 @@
       <li>Dou, Zhi Chao</li>
 </div>
 <div2>
+    <h2>Useful Links</h2>
     <ul>
-      <h2>Useful Links</h2>
       <li><a href = "https://drive.google.com/file/d/0B-7YCfsgJak_X1NHQWMyWm1oWVE/view?usp=sharing" >The UML Diagram
       </a></li>
       <li><a href = "http://rogerdudler.github.io/git-guide/" >git - the simple guide </a></li>
