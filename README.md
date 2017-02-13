@@ -15,10 +15,10 @@
       <li><a href = "https://drive.google.com/file/d/0B-7YCfsgJak_X1NHQWMyWm1oWVE/view?usp=sharing" >Our UML Diagram
       </a></li>
       <li><a href = "http://rogerdudler.github.io/git-guide/" >git - the simple guide </a></li>
+    </ul>
 </div2>
 <div3>
-  <p1> If you want to make some changes on someone else's file juste create a <a href = "https://help.github.com/articles/creating-a-pull-request/" >pull request</a> then when we meet or are working in class or in tutorials we can merge everything together.
-  </p1>
+  <p> If you want to make some changes on someone else's file juste create a <a href = "https://help.github.com/articles/creating-a-pull-request/" >pull request</a> then when we meet or are working in class or in tutorials we can merge everything together.</p>
 </div3>
 </body>
 </html>
