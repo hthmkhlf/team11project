@@ -18,7 +18,7 @@
     </ul>
 </div2>
 <div3>
-  <p> If you want to make some changes on someone else's file juste create a <a href = "https://help.github.com/articles/creating-a-pull-request/" >pull request</a> then when we meet or are working in class or in tutorials we can merge everything together.</p>
+  <p> If you want to make some changes on someone else's file just create a <a href = "https://help.github.com/articles/creating-a-pull-request/" >pull request</a> then when we meet or are working in class or in tutorials we can merge everything together.</p>
 </div3>
 </body>
 </html>
