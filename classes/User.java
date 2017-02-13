@@ -6,9 +6,9 @@ public class User{
 	 private String player_name = "";
 	 Scanner keyboard = new Scanner(System.in);
 
-	 public String movement(String user_input){
-    // String player_input = keyboard.next();
-    switch (user_input.toLowerCase()) {
+	 public String movement(){
+    String player_input = keyboard.next();
+    switch (player_input.toLowerCase()) {
 
 		  case "j":
 			  player_y_value = 2;
@@ -28,7 +28,7 @@ public class User{
 				System.out.println("You moved!");
 			  break;
 	  }
-		return user_input;
+		return player_input;
   }
 
 	 public String getName(){
