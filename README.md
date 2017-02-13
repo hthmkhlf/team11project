@@ -1,9 +1,4 @@
 <html>
-<style>
-  .position_text {
-    position: relative;;
-  }
-</style>
 <body>
 <div class="position_text">
     <p>Team Members
