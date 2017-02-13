@@ -1,7 +1,7 @@
 /**
-* Author: Haithem Khelif
-* Team : 11
-* Last Update : 12/02/2017
+* @author: Haithem Khelif
+* Team: 11
+* @since: 13/02/2017 1:02 AM
 *
 * This class "Game.java" is the main class in order to
 * have the game running all the other classe should be
