@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class EndlessRunner{
     public static void main(String[] args){
-        int Y_MIN = 0;
-        int Y_MAX = 2;
-        int X_MIN = 0;
+        // int Y_MIN = 0;
+        // int Y_MAX = 2;
+        // int X_MIN = 0;
         boolean obstacle_hit = false;
         int player_x_value = 0;
         int player_y_value = 1;
