@@ -3,9 +3,9 @@ import java.util.Random;
 
 public class EndlessRunner{
     public static void main(String[] args){
-        int Y_MIN = 0;
-        int Y_MAX = 2;
-        int X_MIN = 0;
+        // int Y_MIN = 0;
+        // int Y_MAX = 2;
+        // int X_MIN = 0;
         boolean obstacle_hit = false;
         int player_x_value = 0;
         int player_y_value = 1;
@@ -86,15 +86,6 @@ public class EndlessRunner{
               else if (obstacle_y_value1 == 1){
                 obstacle_y_value2 = 2;
               }
-            }
-            //player jumps over an obstacle
-            else if ((player_x_value == obstacle_x_value) && (player_input.equals("j"))) {
-                System.out.println("You jumped over the obstacle!");
-            }
-
-            //player slides under an obstacle
-            else if ((player_x_value == obstacle_x_value) && (player_input.equals("s"))){
-              System.out.println("You slid under the obstacle!");
             }
         }
 
