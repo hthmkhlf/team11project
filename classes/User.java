@@ -1,14 +1,14 @@
 import java.util.Scanner;
 
 public class User{
-	 int player_x_value = 0;
-	 int player_y_value = 1;
-	 String player_name = "";
+	 private int player_x_value = 0;
+	 private int player_y_value = 1;
+	 private String player_name = "";
 	 Scanner keyboard = new Scanner(System.in);
 
-	 public String movement(int player_x_value,int player_y_value,String getPlayer_input){
-    String player_input = keyboard.next();
-    switch (player_input.toLowerCase()) {
+	 public String movement(String user_input){
+    // String player_input = keyboard.next();
+    switch (user_input.toLowerCase()) {
 
 		  case "j":
 			  player_y_value = 2;
@@ -25,18 +25,24 @@ public class User{
 		  default:
 			  player_y_value = 1;
 			  player_x_value = player_x_value + 1;
+				System.out.println("You moved!");
 			  break;
 	  }
-		return player_input;
+		return user_input;
   }
 
-	 public String etName(String getPlayer_name){
+	 public String getName(){
 	  System.out.println("Welcome to the game. Please enter your name");
-
-			String player_name = keyboard.next();
-
-			System.out.println(player_name);
+		String player_name = keyboard.next();
 		return player_name;
+	 }
+
+	 public int getPlayer_x_value() {
+	 	return player_x_value;
+	 }
+
+	 public int getPlayer_y_value() {
+	 	return player_y_value;
 	 }
 
 }
