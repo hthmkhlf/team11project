@@ -1,13 +1,20 @@
+/**
+ * @author  Katie Tieu
+ * This class is to be used in conjunction with Game.java.
+ * The methods in this class will be used to generate obstacles which the player character must avoid.
+ */
+
 public class Obstacle {
   int obstacle_x_value;
   int obstacle_y_value1;
   int obstacle_y_value2;
 
-  //Randomize initial object location
-  //Objects have a height of 2; if an object spawns at y values of 1 and 2
-  //the user has to duck, spawned at 0 and 1 the user has to jump.
-  //The bottom coordinate of the obstacleis determined by the randomly generated
-  //number, top coordinate is then determined by the if statement
+  /**
+   * This method randomly generates the coordinates of the first obstacle in the game
+   * All obstacles have a height of 2.
+   * The bottom coordinate of the obstacle is determined by the randomly generated number.
+   * The top coordinate is determined by the if statement.
+   */
   void generateFirstObstacle() {
     obstacle_x_value = new Random().nextInt(2);
     obstacle_x_value = player_x_value + 1;
@@ -20,8 +27,10 @@ public class Obstacle {
     }
   }
 
-  //Checks if the player has successfully passed the obstacle
-  //If so, a new obstacle will be generated
+  /**
+   * This method generates all consequent obstacles after the first one.
+   * If the player has successfully passed the last obstacle, a new one will be generated.
+   */
   void generateConsequentObstacles() {
     if (player_x_value > obstacle_x_value){
       obstacle_x_value = new Random().nextInt(2);
@@ -33,10 +42,6 @@ public class Obstacle {
         obstacle_y_value2 = 2;
       }
     }
-  }
-
-  void trackObstacleLocation() {
-    //to be implemented later
   }
 
 }
