@@ -3,7 +3,8 @@ import java.util.Random;
 import java.util.ArrayList;
 
 /**
- * @author    Team 11, CPSC 233
+ * @author Team 11, CPSC 233
+ * @since 14/02/2017
  * This class is to be used by the GuessingGameTest.java file.
  * The methods in this class are used to run a game in which
  * a random number is generated for the user to guess.
@@ -11,14 +12,28 @@ import java.util.ArrayList;
 
 public class GuessingGame {
   private int numToGuess;
+  private static final int MAX_DEFAULT = 10;
+  private static final int MIN_DEFAULT = 0;
   private int maxGuess = 10;
-  private int minGuess;
+  private int minGuess = 0;
   private ArrayList <String> guesses = new ArrayList<>();
 
+//Fixed last week problems
   public GuessingGame(int minVal, int maxVal) {
     setMinGuess(minVal);
     setMaxGuess(maxVal);
   }
+//This one is not really working.
+  public GuessingGame() {
+    this(MIN_DEFAULT, MAX_DEFAULT);
+  }
+
+  public GuessingGame(int maxVal) {
+    this(MIN_DEFAULT, maxVal);
+  }
+
+
+
 
 /**
  * The main loop from which the game is run.
