@@ -6,9 +6,11 @@ import java.awt.FlowLayout;
 import java.awt.Graphics;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyListener;
+import java.awt.event.KeyEvent;
 
 
-public class ButtonDemo extends JApplet implements ActionListener{
+public class ButtonDemo extends JApplet implements ActionListener,KeyListener{
     public void init(){
         Container contentPane = getContentPane();
         contentPane.setBackground(Color.WHITE);
@@ -21,6 +23,9 @@ public class ButtonDemo extends JApplet implements ActionListener{
         JButton cloudyButton = new JButton("Cloudy");
         contentPane.add(cloudyButton);
         cloudyButton.addActionListener(this);
+
+        contentPane.addKeyListener(this);
+        contentPane.requestFocusInWindow();
     }
 
     public void actionPerformed(ActionEvent e){
@@ -32,5 +37,18 @@ public class ButtonDemo extends JApplet implements ActionListener{
         }else{
             System.out.println("Error in button interface");
         }
+    }
+
+
+    public void keyTyped(KeyEvent j){
+      System.out.println("Key Typed \'j\'");
+    }
+
+    public void keyPressed(KeyEvent j){
+      System.out.println("Key pressed \'j\'");
+    }
+
+    public void keyReleased(KeyEvent j){
+      System.out.println("Key released \'j\'");
     }
 }
