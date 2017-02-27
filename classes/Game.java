@@ -23,7 +23,12 @@ public class Game {
   private HighScore userHighScore = new HighScore();
   private HighScoreMain checkHighScore = new HighScoreMain();
 // starts Timer
+
   userScore.start();
+  
+public void StartTimer(){
+  userScore.start();
+}
   // public HighScoreMain userHighScore = new HighScoreMain();
 
   public void Play() {
@@ -41,5 +46,10 @@ public class Game {
   userScore.gameHasEnded();
   checkHighScore.runHighScore();
 
+    int userScore = userScore.gameHasEnded();
+    highscoreCheck.setUserNewScore(int userScore);
+    highscoreCheck.runHighScore(int userNewScore);
+
+  }
 
 }
