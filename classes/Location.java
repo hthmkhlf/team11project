@@ -33,8 +33,10 @@ public class Location{
     * @param changeX is the amount the X coord is to change
     */
     public void setX(int changeX){
-        if ((xCoordinate + changeX) >= xCoordinate){
+        if (((xCoordinate + changeX) >= xCoordinate) && (xCoordinate < 9)){
             xCoordinate = xCoordinate + changeX;
+        }else if(xCoordinate >= 9){
+            xCoordinate = 0;
         }
     }
 
@@ -58,6 +60,5 @@ public class Location{
         }
         return collision;
     }
-
 
 }
