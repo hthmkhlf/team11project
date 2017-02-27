@@ -1,4 +1,6 @@
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 /**
  * @author  Katie Tieu
@@ -10,20 +12,22 @@ public class Obstacle {
   private int obstacle_x_value = -1;
   private int obstacle_y_value = 0;
   private int distanceFromPlayer = 0;
+  Timer timer = new Timer();
 
   /**
    * This method checks if the player has successfully passed the last obstacle and if so
    * generates the x-coordinate for a new obstacle.
-   * The distance from the player is random, but it will always be 1-3 spaces in front of them.
+   * The distance from the player is random, but it will always be 2-3 spaces in front of them.
    *
    * @param player_x_value the user's x-coordinate which is used to check if the player has
    * passed the last obstacle and determine the location of the next obstacle
    */
-  public void generateTopObstacleX(int player_x_value) {
+  public int getTopX(int player_x_value) {
     if (player_x_value > obstacle_x_value) {
-      distanceFromPlayer = new Random().nextInt(3) + 1;
+      distanceFromPlayer = new Random().nextInt(2) + 2;
       obstacle_x_value = player_x_value + distanceFromPlayer;
     }
+    return obstacle_x_value;
   }
 
   /**
@@ -34,10 +38,11 @@ public class Obstacle {
    * @param player_x_value the user's x-coordinate which is used to check if the player has
    * passed the last obstacle
    */
-  public void generateTopObstacleY(int player_x_value) {
+  public int getTopY(int player_x_value) {
     if (player_x_value > obstacle_x_value) {
       obstacle_y_value = new Random().nextInt(2);
     }
+    return obstacle_y_value;
   }
 
   /**
@@ -46,8 +51,9 @@ public class Obstacle {
    *
    * @param other the other (top) obstacle from which the x-coordinate is taken.
    */
-  public void generateBottomObstacleX(Obstacle other) {
+  public int getBottomX(Obstacle other) {
     obstacle_x_value = other.obstacle_x_value;
+    return obstacle_x_value;
   }
 
   /**
@@ -58,9 +64,19 @@ public class Obstacle {
    * @param other the other (top) obstacle from which the y-coordinate is taken
    * and added to.
    */
-  public void generateBottomObstacleY(Obstacle other) {
+  public int getBottomY(Obstacle other) {
     obstacle_y_value = other.obstacle_y_value + 1;
+    return obstacle_x_value;
   }
 
+  TimerTask count = new TimerTask() {
+    public void run() {
+      obstacle_x_value--;
+    }
+  };
+
+  public void start() {
+    timer.scheduleAtFixedRate(count, 0, 3000);
+  }
 
 }
