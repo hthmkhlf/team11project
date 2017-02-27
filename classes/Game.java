@@ -12,47 +12,34 @@
 import java.util.Scanner;
 import java.util.Random;
 public class Game {
-
 /*
 * Create class instances and objects.
 */
-  // public User userUser = new User();
-  public Grid userGrid = new Grid();
-  public Interface userInterface = new Interface();
-  public FrameTimerMain userFrameTimer = new FrameTimerMain();
-  public Location userLocation = new Location(0,1);
-  public Obstacle userObstacle = new Obstacle();
-  public HighScoreMain userHighScore = new HighScoreMain();
+  private User user = new User();
+  private Grid grid = new Grid();
+  // public FrameTimerMain userFrameTimer = new FrameTimerMain();
+  private Obstacle userObstacle = new Obstacle();
+  private UserScore userScore = new UserScore();
+  private HighScore userHighScore = new HighScore();
+  private HighScoreMain checkHighScore = new HighScoreMain();
+// starts Timer
+  userScore.start();
+  // public HighScoreMain userHighScore = new HighScoreMain();
 
-
-/* This Class will gather all the data needed from the other classes
-* Will not return anything
-*/
-    private void Setup() {
-      boolean obstacle_hit = false;
-      int obstacle_x_value;
-      int obstacle_y_value;
-      int distanceFromPlayer;
-      int xCoordinate;
-      int yCoordinate;
+  public void Play() {
+    boolean obstacle_hit = false;
+    while (!obstacle_hit) {
+      grid.drawGrid(user.userMovement.getXCoord(),user.userMovement.getYCoord(),1,2,1,1);
+      user.movement();
+      grid.adjustGrid();
+      if ((user.userMovement.isCollision(1,2)) ||( user.userMovement.isCollision(1,1))) {
+        obstacle_hit = true;
+        System.out.println("You hit the obstacle Game Over");
+      }
     }
+  }
+  userScore.gameHasEnded();
+  checkHighScore.runHighScore();
 
-/**
-* This method gets data from the Obstacle class and the User class.
-* Then checks if there is a collision between the player and the obstacle.
-* Returns boolean
-*/
-    // private boolean Collision(int player_x_value,int player_y_value) {
-    //   if (player_x_value == obstacle_x_value){
-    //     if ((player_y_value == obstacle_y_value1) || (player_y_value == obstacle_y_value2)) {
-    //         obstacle_hit = true;
-    //         System.out.println("You hit the obstacle");
-    //     }
-    //   }
-    //   // if user avoids the obstacle by jumping or sliding the player values will increase so they will fully pass the obstacle.
-    //   if ((player_input.equals("s")) || (player_input.equals("j"))) {
-    //     player_x_value= player_x_value +1;
-    //   }
-    // return obstacle_hit;
-    // }
+
 }
