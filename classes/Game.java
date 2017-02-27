@@ -20,7 +20,6 @@ public class Game {
   // public FrameTimerMain userFrameTimer = new FrameTimerMain();
   private Obstacle userObstacle = new Obstacle();
   private UserScore userScore = new UserScore();
-  private HighScore userHighScore = new HighScore();
   private HighScoreMain checkHighScore = new HighScoreMain();
 // starts Timer
 
