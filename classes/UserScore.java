@@ -12,7 +12,7 @@ public class UserScore{
     }
     };
 
-  public String gameHasEnded(){
+  public int gameHasEnded(){
         gameInProgress = false;
         score.cancel();
         System.out.println("UserScore " + userScore);
