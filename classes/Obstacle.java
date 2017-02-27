@@ -22,12 +22,11 @@ public class Obstacle {
    * @param player_x_value the user's x-coordinate which is used to check if the player has
    * passed the last obstacle and determine the location of the next obstacle
    */
-  public int getTopX(int player_x_value) {
+  public void generateTopX(int player_x_value) {
     if (player_x_value > obstacle_x_value) {
       distanceFromPlayer = new Random().nextInt(2) + 2;
       obstacle_x_value = player_x_value + distanceFromPlayer;
     }
-    return obstacle_x_value;
   }
 
   /**
@@ -38,11 +37,10 @@ public class Obstacle {
    * @param player_x_value the user's x-coordinate which is used to check if the player has
    * passed the last obstacle
    */
-  public int getTopY(int player_x_value) {
+  public void generateTopY(int player_x_value) {
     if (player_x_value > obstacle_x_value) {
       obstacle_y_value = new Random().nextInt(2);
     }
-    return obstacle_y_value;
   }
 
   /**
@@ -51,9 +49,8 @@ public class Obstacle {
    *
    * @param other the other (top) obstacle from which the x-coordinate is taken.
    */
-  public int getBottomX(Obstacle other) {
+  public void generateBottomX(Obstacle other) {
     obstacle_x_value = other.obstacle_x_value;
-    return obstacle_x_value;
   }
 
   /**
@@ -64,9 +61,16 @@ public class Obstacle {
    * @param other the other (top) obstacle from which the y-coordinate is taken
    * and added to.
    */
-  public int getBottomY(Obstacle other) {
+  public void generateBottomY(Obstacle other) {
     obstacle_y_value = other.obstacle_y_value + 1;
+  }
+
+  public int getXValue() {
     return obstacle_x_value;
+  }
+
+  public int getYValue() {
+    return obstacle_y_value;
   }
 
   TimerTask count = new TimerTask() {
