@@ -13,6 +13,8 @@ public class Obstacle {
   private int obstacle_y_value = 0;
   private int distanceFromPlayer = 0;
   Timer timer = new Timer();
+  
+  Location obstacleLocation = new Location(getXValue(), getYValue());
 
   /**
    * This method checks if the player has successfully passed the last obstacle and if so
