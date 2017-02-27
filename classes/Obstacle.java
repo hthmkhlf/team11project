@@ -2,9 +2,8 @@ import java.util.Random;
 
 /**
  * @author  Katie Tieu
- * This class is meant to be used by the Game class.
- * The methods in this class will be used to generate obstacles
- * which the player character must avoid.
+ * This class is to be used by the Game class.
+ * The methods in this class will be used to generate obstacles which the player character must avoid.
  */
 
 public class Obstacle {
@@ -13,37 +12,55 @@ public class Obstacle {
   private int distanceFromPlayer = 0;
 
   /**
-   * This method generates the x-coordinate for a new obstacle.
-   * The distance from the player is random, but it will always be
-   * between 1-3 spaces in front of them.
+   * This method checks if the player has successfully passed the last obstacle and if so
+   * generates the x-coordinate for a new obstacle.
+   * The distance from the player is random, but it will always be 1-3 spaces in front of them.
+   *
+   * @param player_x_value the user's x-coordinate which is used to check if the player has
+   * passed the last obstacle and determine the location of the next obstacle
    */
-  private void generateObstacleXValue(int player_x_value) {
-    distanceFromPlayer = new Random().nextInt(3) + 1;
-    obstacle_x_value = player_x_value + distanceFromPlayer;
+  public void generateTopObstacleX(int player_x_value) {
+    if (player_x_value > obstacle_x_value) {
+      distanceFromPlayer = new Random().nextInt(3) + 1;
+      obstacle_x_value = player_x_value + distanceFromPlayer;
+    }
   }
 
   /**
-   * This method generates the y-coordinate for a new obstacle.
-   * This coordinate will either be 0 or 1
+   * This method checks if the player has successfully passed the last obstacle and if so
+   * generates the y-coordinate for a new obstacle.
+   * This coordinate will either be 0 or 1.
+   *
+   * @param player_x_value the user's x-coordinate which is used to check if the player has
+   * passed the last obstacle
    */
-  private void generateObstacleYValue() {
-    obstacle_y_value = new Random().nextInt(2);
+  public void generateTopObstacleY(int player_x_value) {
+    if (player_x_value > obstacle_x_value) {
+      obstacle_y_value = new Random().nextInt(2);
+    }
   }
 
   /**
-   * This method allows the new x-coordinate to be passed to
-   * the main Game class.
+   * This method generates the x-coordinate for a second obstacle.
+   * This x-coordinate will always be the same as that of the first obstacle.
+   *
+   * @param other the other (top) obstacle from which the x-coordinate is taken.
    */
-  public int getObstacleX() {
-    return obstacle_x_value;
+  public void generateBottomObstacleX(Obstacle other) {
+    obstacle_x_value = other.obstacle_x_value;
   }
 
   /**
-   * This method allows the new y-coordinate to be passed to
-   * the main Game class.
+   * This method generates the y-coordinate for a second obstacle.
+   * This y-coordinate will always be one higher than that of the first obstacle
+   * so as to stack them on top of each other.
+   *
+   * @param other the other (top) obstacle from which the y-coordinate is taken
+   * and added to.
    */
-  public int getObstacleY() {
-    return obstacle_y_value;
+  public void generateBottomObstacleY(Obstacle other) {
+    obstacle_y_value = other.obstacle_y_value + 1;
   }
+
 
 }
