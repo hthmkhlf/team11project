@@ -21,17 +21,12 @@ public class Game {
   private Obstacle userObstacle = new Obstacle();
   private UserScore userScore = new UserScore();
   private HighScoreMain checkHighScore = new HighScoreMain();
-// starts Timer
-
-  userScore.start();
-  
-public void StartTimer(){
-  userScore.start();
 }
   // public HighScoreMain userHighScore = new HighScoreMain();
 
   public void Play() {
     boolean obstacle_hit = false;
+    userScore.start();
     while (!obstacle_hit) {
       grid.drawGrid(user.userMovement.getXCoord(),user.userMovement.getYCoord(),1,2,1,1);
       user.movement();
@@ -42,9 +37,6 @@ public void StartTimer(){
       }
     }
   }
-  userScore.gameHasEnded();
-  checkHighScore.runHighScore();
-
     int userScore = userScore.gameHasEnded();
     highscoreCheck.setUserNewScore(int userScore);
     highscoreCheck.runHighScore(int userNewScore);
