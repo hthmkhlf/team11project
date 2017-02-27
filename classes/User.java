@@ -31,6 +31,12 @@ public class User{
 	}
 
 	public Location getLocation(){
-		return userMovement; 
+		return userMovement;
+
+	public int getLocationX(){
+		return userMovement.getXCoord();
+	}
+	public int getLocationY(){
+		return userMovement.getYCoord();
 	}
 }
