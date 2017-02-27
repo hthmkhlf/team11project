@@ -1,9 +1,14 @@
 
 
 public class HighScoreMain{
-  public static void main(String[] args){
+  private int userNewScore = 0;
+
+  int setUserNewScore( int newScore){
+    userNewScore = newScore;
+  }
+
+  public void runHighScore(userNewScore){
     HighScore highScore = new HighScore();
-//     int userNewScore = UserScore.gamehasended();
     int currentHighScore = highScore.previousHighScore();
     boolean isHigher = highScore.compareScores(currentHighScore, userNewScore);
     if (isHigher){
