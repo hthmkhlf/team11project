@@ -1,4 +1,10 @@
-class Location{
+/**
+* @author Josh Schijns
+* This class is used for coordinates for the player and obstacles,
+* the coordinates can be changed or retrieved.
+*/
+
+public class Location{
     private int xCoordinate = 0;
     private int yCoordinate = 0;
     private static final int MAX_Y = 3;
