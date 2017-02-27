@@ -7,7 +7,7 @@ public class HighScoreMain{
     userNewScore = newScore;
   }
 
-  public void runHighScore(userNewScore){
+  public void runHighScore(int userNewScore){
     HighScore highScore = new HighScore();
     int currentHighScore = highScore.previousHighScore();
     boolean isHigher = highScore.compareScores(currentHighScore, userNewScore);
