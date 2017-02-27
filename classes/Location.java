@@ -7,7 +7,7 @@
 public class Location{
     private int xCoordinate = 0;
     private int yCoordinate = 0;
-    private static final int MAX_Y = 3;
+    private static final int MAX_Y = 2;
     private static final int MIN_Y = 0;
 
     public Location(int newX, int newY){
@@ -17,21 +17,24 @@ public class Location{
 
     /**
     * This method sets the Y coordinate
-    * @param newY is the new Y location passed through as an integer
+    * @param changeY is the amount the Y coord will change
     */
-    public void setY(int newY){
+    public void setY(int changeY){
+        int newY = yCoordinate + changeY;
         if ((newY >= MIN_Y) && (newY <= MAX_Y)){
-            yCoordinate = newY;
+            yCoordinate = yCoordinate + changeY;
+        }else{
+            yCoordinate = yCoordinate;
         }
     }
 
     /**
     * This method sets the X coordinate
-    * @param newX is the new X location passed through as an integer
+    * @param changeX is the amount the X coord is to change
     */
-    public void setX(int newX){
-        if (newX >= xCoordinate){
-            xCoordinate = newX;
+    public void setX(int changeX){
+        if ((xCoordinate + changeX) >= xCoordinate){
+            xCoordinate = xCoordinate + changeX;
         }
     }
 
@@ -43,6 +46,11 @@ public class Location{
         return yCoordinate;
     }
 
+    /**
+    *This method determines if there is a collision or not
+    * @param xCoordOther is the x coordinate of the other object
+    * @param yCoordOther is the y coordinate of the other object
+    */
     public boolean isCollision(int xCoordOther, int yCoordOther){
         boolean collision = false;
         if ((xCoordOther == xCoordinate) && (yCoordOther == yCoordinate)){
