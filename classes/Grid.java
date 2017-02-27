@@ -24,10 +24,11 @@ public class Grid{
     * @param playerX is the X coordinate of the player
     * @param playerY is the Y coordinate of the player
     */
-    public void drawGrid(int playerX,int playerY){
+    public void drawGrid(int playerX,int playerY, int obsOneX, int obsOneY,
+      int obsTwoX, int obsTwoY){
         grid [playerY][playerX] = PLAYER;
-        //grid [][] = OBSTACLE;
-        //grid [][] = OBSTACLE;
+        grid [obsOneY][obsOneX] = OBSTACLE;
+        grid [obsTwoY][obsTwoX] = OBSTACLE;
         for (int row = 0; row <3; row++){
             System.out.print("|");
             for (int column = 0; column < 10; column++){
