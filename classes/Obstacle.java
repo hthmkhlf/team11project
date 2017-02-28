@@ -7,12 +7,19 @@ import java.util.Random;
  */
 
 public class Obstacle {
-  private int obstacle_x_value = -1;
+  private int obstacle_x_value = 0;
   private int obstacle_y_value = 0;
   private int distanceFromPlayer = 0;
+  private Location obstacleLocation = new Location(obstacle_x_value, obstacle_y_value);
 
-  private Location obstacle1Location = new Location(obstacle_x_value, obstacle_y_value);
-  private Location obstacle2Location = new Location(obstacle_x_value, obstacle_y_value);
+  public Obstacle(int x, int y) {
+    obstacle_x_value = x;
+    obstacle_y_value = y;
+  }
+
+  public Obstacle() {
+    this(3, 1);
+  }
 
   /**
    * This method checks if the player has successfully passed the last obstacle and if so
@@ -69,10 +76,16 @@ public class Obstacle {
     obstacle2Location.setY(obstacle_y_value);
   }
 
-  public int getLocationX(Location location){
-    return location.getXCoord();
+  /**
+   * @return the x-coordinate of the obstacle.
+   */
+  public int getLocationX(){
+    return obstacleLocation.getXCoord();
   }
-  public int getLocationY(Location location){
-    return location.getYCoord();
+  /**
+   * @return the y-coordinate of the obstacle.
+   */
+  public int getLocationY(){
+    return obstacleLocation.getYCoord();
   }
 }
