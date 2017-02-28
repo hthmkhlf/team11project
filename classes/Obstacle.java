@@ -33,7 +33,7 @@ public class Obstacle {
     if (player_x_value > obstacle_x_value) {
       distanceFromPlayer = new Random().nextInt(2) + 2;
       obstacle_x_value = player_x_value + distanceFromPlayer;
-      obstacle1Location.setX(obstacle_x_value);
+      obstacleLocation.setX(obstacle_x_value);
     }
   }
 
@@ -48,7 +48,7 @@ public class Obstacle {
   public void generateTopY(int player_x_value) {
     if (player_x_value > obstacle_x_value) {
       obstacle_y_value = new Random().nextInt(2);
-      obstacle1Location.setY(obstacle_y_value);
+      obstacleLocation.setY(obstacle_y_value);
     }
   }
 
@@ -60,7 +60,7 @@ public class Obstacle {
    */
   public void generateBottomX(Obstacle other) {
     obstacle_x_value = other.obstacle_x_value;
-    obstacle2Location.setX(obstacle_x_value);
+    obstacleLocation.setX(obstacle_x_value);
   }
 
   /**
@@ -73,7 +73,7 @@ public class Obstacle {
    */
   public void generateBottomY(Obstacle other) {
     obstacle_y_value = other.obstacle_y_value + 1;
-    obstacle2Location.setY(obstacle_y_value);
+    obstacleLocation.setY(obstacle_y_value);
   }
 
   /**
