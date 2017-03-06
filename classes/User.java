@@ -7,7 +7,6 @@ import java.util.Scanner;
 public class User{
 	private Location userMovement = new Location(0,1);
 	private Scanner keyboard = new Scanner(System.in);
-
 	public void movement(){
 			System.out.print("Movement: ");
 			//calls the location class
@@ -31,14 +30,16 @@ public class User{
 				}
 	}
 
+	public boolean getCollision(int obsX,int obsY) {
+		boolean collided = userMovement.isCollision(obsX,obsY);
+		return collided;
+
+	}
+
 	public int getLocationX(){
 		return userMovement.getXCoord();
 	}
-
-
 	public int getLocationY(){
 		return userMovement.getYCoord();
 	}
-
-	
 }

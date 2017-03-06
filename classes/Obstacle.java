@@ -7,19 +7,12 @@ import java.util.Random;
  */
 
 public class Obstacle {
-  private int obstacle_x_value = 0;
-  private int obstacle_y_value = 0;
+  private int obstacle_x_value = 4;
+  private int obstacle_y_value = 1;
   private int distanceFromPlayer = 0;
-  private Location obstacleLocation = new Location(obstacle_x_value, obstacle_y_value);
 
-  public Obstacle(int x, int y) {
-    obstacle_x_value = x;
-    obstacle_y_value = y;
-  }
-
-  public Obstacle() {
-    this(3, 1);
-  }
+  private Location obstacle1Location = new Location(obstacle_x_value, obstacle_y_value);
+  private Location obstacle2Location = new Location(obstacle_x_value, obstacle_y_value);
 
   /**
    * This method checks if the player has successfully passed the last obstacle and if so
@@ -33,7 +26,7 @@ public class Obstacle {
     if (player_x_value > obstacle_x_value) {
       distanceFromPlayer = new Random().nextInt(2) + 2;
       obstacle_x_value = player_x_value + distanceFromPlayer;
-      obstacleLocation.setX(obstacle_x_value);
+      obstacle1Location.setX(obstacle_x_value);
     }
   }
 
@@ -48,7 +41,7 @@ public class Obstacle {
   public void generateTopY(int player_x_value) {
     if (player_x_value > obstacle_x_value) {
       obstacle_y_value = new Random().nextInt(2);
-      obstacleLocation.setY(obstacle_y_value);
+      obstacle1Location.setY(obstacle_y_value);
     }
   }
 
@@ -60,7 +53,7 @@ public class Obstacle {
    */
   public void generateBottomX(Obstacle other) {
     obstacle_x_value = other.obstacle_x_value;
-    obstacleLocation.setX(obstacle_x_value);
+    obstacle2Location.setX(obstacle_x_value);
   }
 
   /**
@@ -73,19 +66,13 @@ public class Obstacle {
    */
   public void generateBottomY(Obstacle other) {
     obstacle_y_value = other.obstacle_y_value + 1;
-    obstacleLocation.setY(obstacle_y_value);
+    obstacle2Location.setY(obstacle_y_value);
   }
 
-  /**
-   * @return the x-coordinate of the obstacle.
-   */
   public int getLocationX(){
-    return obstacleLocation.getXCoord();
+    return obstacle1Location.getXCoord();
   }
-  /**
-   * @return the y-coordinate of the obstacle.
-   */
   public int getLocationY(){
-    return obstacleLocation.getYCoord();
+    return obstacle1Location.getYCoord();
   }
 }

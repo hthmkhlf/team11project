@@ -1,7 +1,7 @@
 /**
-* @author: Haithem Khelif
+* @author Haithem Khelif
 * Team: 11
-* @since: 26/02/2017 10:?? PM
+* @since 26/02/2017 12:00 PM
 *
 * This class "Game.java" is the main class in order to
 * have the game running all the other classe should be
@@ -18,29 +18,28 @@ public class Game {
   private User user = new User();
   private Grid grid = new Grid();
   // public FrameTimerMain userFrameTimer = new FrameTimerMain();
-  private Obstacle userObstacle = new Obstacle();
-  private UserScore userScore = new UserScore();
-  private HighScoreMain checkHighScore = new HighScoreMain();
-}
-  // public HighScoreMain userHighScore = new HighScoreMain();
+  private Obstacle obstacle = new Obstacle();
+  
+  private UserScore userScoreKeeping = new UserScore();
+  private HighScoreMain highscoreCheck = new HighScoreMain();
 
-  public void Play() {
+  public void play() {
     boolean obstacle_hit = false;
-    userScore.start();
+    //This is the main loop once the player hits an obstacle the game os over.
     while (!obstacle_hit) {
-      grid.drawGrid(user.userMovement.getXCoord(),user.userMovement.getYCoord(),1,2,1,1);
+      grid.drawGrid(user.getLocationX(),user.getLocationY(),obstacle.getLocationX()
+        ,obstacle.getLocationY(),obstacle.getLocationX(),obstacle.getLocationY());
       user.movement();
       grid.adjustGrid();
-      if ((user.userMovement.isCollision(1,2)) ||( user.userMovement.isCollision(1,1))) {
+      if ((user.getCollision(obstacle.getLocationX(),obstacle.getLocationY())) ||
+        ( user.getCollision(obstacle.getLocationX(),obstacle.getLocationY()))) {
         obstacle_hit = true;
         System.out.println("You hit the obstacle Game Over");
       }
     }
+    //In progress
+    // int userScore = userScoreKeeping.gameHasEnded();
+    // highscoreCheck.setUserNewScore(userScore);
+    // highscoreCheck.runHighScore(userScore);
   }
-    int userScore = userScore.gameHasEnded();
-    highscoreCheck.setUserNewScore(int userScore);
-    highscoreCheck.runHighScore(int userNewScore);
-
-  }
-
 }
