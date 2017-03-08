@@ -18,7 +18,8 @@ public class Game2 {
 private User user = new User();
 private Grid grid = new Grid();
   // public FrameTimerMain userFrameTimer = new FrameTimerMain();
-  private Obstacle userObstacle = new Obstacle();
+  private Obstacle topObstacle = new Obstacle();
+  private Obstacle bottomObstacle = new Obstacle();
   HighScore highscoreCheck = new HighScore();
 
   public void gameOver(){
@@ -31,12 +32,13 @@ private Grid grid = new Grid();
     boolean obstacle_hit = false;
     highscoreCheck.start();
     while (!obstacle_hit) {
-  grid.drawGrid(user.getLocationX(),user.getLocationY(),obstacle.getLocationX()
-    ,obstacle.getLocationY(),obstacle.getLocationX(),obstacle.getLocationY());
+  grid.drawGrid(user.getLocationX(),user.getLocationY(), topObstacle.getLocationX()
+    ,topObstacle.getLocationY(),bottomObstacle.getLocationX(),bottomObstacle.getLocationY());
   user.movement();
+  
   grid.adjustGrid();
-  if ((user.getCollision(obstacle.getLocationX(),obstacle.getLocationY())) ||
-    ( user.getCollision(obstacle.getLocationX(),obstacle.getLocationY()))) {
+  if ((user.getCollision(topObstacle.getLocationX(),topObstacle.getLocationY())) ||
+    ( user.getCollision(bottomObstacle.getLocationX(),bottomObstacle.getLocationY()))) {
     obstacle_hit = true;
     System.out.println("You hit the obstacle Game Over");
       }
