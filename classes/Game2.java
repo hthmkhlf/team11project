@@ -18,8 +18,8 @@ public class Game2 {
 private User user = new User();
 private Grid grid = new Grid();
   // public FrameTimerMain userFrameTimer = new FrameTimerMain();
-  private Obstacle topObstacle = new Obstacle();
-  private Obstacle bottomObstacle = new Obstacle();
+  private Obstacle topObstacle = new Obstacle(3,1);
+  private Obstacle bottomObstacle = new Obstacle(3,2);
   HighScore highscoreCheck = new HighScore();
 
   public void gameOver(){
@@ -32,15 +32,20 @@ private Grid grid = new Grid();
     boolean obstacle_hit = false;
     highscoreCheck.start();
     while (!obstacle_hit) {
-  grid.drawGrid(user.getLocationX(),user.getLocationY(), topObstacle.getLocationX()
-    ,topObstacle.getLocationY(),bottomObstacle.getLocationX(),bottomObstacle.getLocationY());
-  user.movement();
-  
-  grid.adjustGrid();
-  if ((user.getCollision(topObstacle.getLocationX(),topObstacle.getLocationY())) ||
-    ( user.getCollision(bottomObstacle.getLocationX(),bottomObstacle.getLocationY()))) {
-    obstacle_hit = true;
-    System.out.println("You hit the obstacle Game Over");
+      grid.drawGrid(user.getLocationX(),user.getLocationY(), topObstacle.getLocationX()
+      ,topObstacle.getLocationY(),bottomObstacle.getLocationX(),bottomObstacle.getLocationY());
+      user.movement();
+      // if (user.getLocationX() >= topObstacle.getLocationX()) {
+      //   topObstacle.generateTopX(user.getLocationX());
+      //   topObstacle.generateTopY();
+      //   bottomObstacle.generateBottomX(topObstacle.getObstacle());
+      //   bottomObstacle.generateBottomY(topObstacle.getObstacle());
+      // }
+      grid.adjustGrid();
+      if ((user.getCollision(topObstacle.getLocationX(),topObstacle.getLocationY())) ||
+      (user.getCollision(bottomObstacle.getLocationX(),bottomObstacle.getLocationY()))) {
+        obstacle_hit = true;
+        System.out.println("You hit the obstacle Game Over");
       }
     }
     this.gameOver();
