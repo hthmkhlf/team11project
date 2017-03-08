@@ -31,12 +31,14 @@ private Grid grid = new Grid();
     boolean obstacle_hit = false;
     highscoreCheck.start();
     while (!obstacle_hit) {
-      grid.drawGrid(user.userMovement.getXCoord(),user.userMovement.getYCoord(),1,2,1,1);
-      user.movement();
-      grid.adjustGrid();
-      if ((user.userMovement.isCollision(1,2)) ||( user.userMovement.isCollision(1,1))) {
-        obstacle_hit = true;
-        System.out.println("You hit the obstacle Game Over");
+  grid.drawGrid(user.getLocationX(),user.getLocationY(),obstacle.getLocationX()
+    ,obstacle.getLocationY(),obstacle.getLocationX(),obstacle.getLocationY());
+  user.movement();
+  grid.adjustGrid();
+  if ((user.getCollision(obstacle.getLocationX(),obstacle.getLocationY())) ||
+    ( user.getCollision(obstacle.getLocationX(),obstacle.getLocationY()))) {
+    obstacle_hit = true;
+    System.out.println("You hit the obstacle Game Over");
       }
     }
     this.gameOver();
