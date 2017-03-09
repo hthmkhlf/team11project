@@ -17,6 +17,7 @@ hs_err_pid*
 *.xml
 *.iml
 
+<<<<<<< Updated upstream
 .metadata
 bin/
 tmp/
@@ -72,3 +73,28 @@ local.properties
 .cache-main
 .scala_dependencies
 .worksheet
+=======
+.metadata/.lock
+
+.metadata/.log
+
+*.gen
+
+*.zip
+
+*.version
+
+*.dat
+
+.metadata/.plugins/org.eclipse.jdt.core/externalFilesCache
+
+.metadata/.plugins/org.eclipse.jdt.core/nonChainingJarsCache
+
+*.ini
+
+.metadata/.mylyn/.taskListIndex/segments_1
+
+*.index
+
+*.resources
+>>>>>>> Stashed changes
