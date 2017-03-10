@@ -6,6 +6,53 @@ public class SavingsAccountTest {
         
     private static int accountCounter = 0;
 
+	@Test
+    public void test_defaultConstructor(){
+        SavingsAccount b = new SavingsAccount();
+        accountCounter++;
+        assertEquals("Unexpected balance", 0.0,b.getBalance(),0.00001);
+        assertEquals("Unexpected account number", accountCounter, b.getAccountNumber());
+         
+    }
+    
+	@Test
+    public void test_Constructor_positiveBalance() {
+        SavingsAccount b = new SavingsAccount();
+        b.deposit(12.34);
+        accountCounter++;
+        assertEquals("Unexpected balance",12.34,b.getBalance(),0.00001);
+        assertEquals("Unexpected account number", accountCounter, b.getAccountNumber());
+    }
+    
+	@Test
+    public void test_Constructor_Balance0() {
+        SavingsAccount b = new SavingsAccount();
+        accountCounter++;
+        assertEquals("Unexpected balance",0.0,b.getBalance(),0.00001);
+		assertEquals("Unexpected account number", accountCounter, b.getAccountNumber());
+    }
+
+    
+	@Test
+    public void test_DefaultConstructor_MultipleAccounts() {
+        SavingsAccount b1 = new SavingsAccount();
+        SavingsAccount b2 = new SavingsAccount();
+        SavingsAccount b3 = new SavingsAccount();
+        SavingsAccount b4 = new SavingsAccount();
+        SavingsAccount b5 = new SavingsAccount();
+        assertEquals("Unexpected balance for account 1",0.0,b1.getBalance(),0.00001);
+		assertEquals("Unexpected account number for 1",accountCounter + 1, b1.getAccountNumber());
+		assertEquals("Unexpected balance for account 2",0.0,b2.getBalance(),0.00001);
+		assertEquals("Unexpected account number for 2",accountCounter + 2, b2.getAccountNumber());
+		assertEquals("Unexpected balance for account 3",0.0,b3.getBalance(),0.00001);
+		assertEquals("Unexpected account number for 3",accountCounter + 3, b3.getAccountNumber());
+		assertEquals("Unexpected balance for account 4",0.0,b4.getBalance(),0.00001);
+		assertEquals("Unexpected account number for 4",accountCounter + 4, b4.getAccountNumber());
+		assertEquals("Unexpected balance for account 5",0.0,b5.getBalance(),0.00001);
+		assertEquals("Unexpected account number for 5",accountCounter + 5, b5.getAccountNumber());
+        accountCounter += 5;
+    }
+    
     
 	@Test
     public void test_toString() {
