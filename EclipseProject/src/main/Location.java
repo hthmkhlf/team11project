@@ -1,3 +1,4 @@
+package main;
 /**
 * @author Josh Schijns
 * This class is used for coordinates for the player and obstacles,
@@ -32,7 +33,7 @@ public class Location{
     * This method sets the X coordinate
     * @param newX set the X within the window
     */
-    private void setX(int newX){
+    void setX(int newX){
         if ((newX >= 0) && (newX <= MAX_X)){
             xCoordinate =newX;
         }

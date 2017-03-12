@@ -7,6 +7,8 @@ import javax.swing.JFrame;
  * This is the main class.
  */
 public class Main {
+    /* Create the instance variables needed to run the game */
+    public static GameWindow GameWindow;
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
@@ -17,6 +19,10 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setAlwaysOnTop(true);
+        
+        GameWindow = new GameWindow();
+        frame.setVisible(true);
+        frame.setContentPane(GameWindow);
     }
 
 }

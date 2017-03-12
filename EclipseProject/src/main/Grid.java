@@ -1,3 +1,4 @@
+package main;
 /**
 * I plan to add more, will use the location class to grab the location
 * of each thing, obstacle and player to add into the grid

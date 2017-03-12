@@ -1,3 +1,5 @@
+package main;
+
 //ignore this line this is just a test from eclipse
 /**
 * @author Haithem Khelif
