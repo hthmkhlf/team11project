@@ -7,36 +7,34 @@
 public class Location{
     private int xCoordinate = 0;
     private int yCoordinate = 0;
-    private static final int MAX_Y = 2;
+    private int height = 0;
+    private int width = 0;
+    private static final int MAX_Y = 2; // Need to change this to match the window created
     private static final int MIN_Y = 0;
+    private static final int MAX_X = 400; // Need to change this to match window created as well
 
     public Location(int newX, int newY){
-        xCoordinate = newX;
-        yCoordinate = newY;
+       setX(newX);
+       setY(newY);
     }
 
     /**
     * This method sets the Y coordinate
-    * @param changeY is the amount the Y coord will change
+    * @param newY sets Y within the window
     */
-    public void setY(int changeY){
-        int newY = yCoordinate + changeY;
+    private void setY(int newY){
         if ((newY >= MIN_Y) && (newY <= MAX_Y)){
-            yCoordinate = yCoordinate + changeY;
-        }else{
-            yCoordinate = yCoordinate;
+            yCoordinate = newY;
         }
     }
 
     /**
     * This method sets the X coordinate
-    * @param changeX is the amount the X coord is to change
+    * @param newX set the X within the window
     */
-    public void setX(int changeX){
-        if (((xCoordinate + changeX) >= xCoordinate) && (xCoordinate < 9)){
-            xCoordinate = xCoordinate + changeX;
-        }else if(xCoordinate >= 9){
-            xCoordinate = 0;
+    private void setX(int newX){
+        if ((newX >= 0) && (newX <= MAX_X)){
+            xCoordinate =newX;
         }
     }
 
@@ -46,6 +44,26 @@ public class Location{
 
     public int getYCoord(){
         return yCoordinate;
+    }
+    
+    public int getHeight(){
+    	return height;
+    }
+    
+    public int getWidth(){
+    	return width;
+    }
+    
+    public void setWidth(int width){
+        if (width >= 0){
+            this.width = width;
+        }
+    }
+    
+    public void setHeight(int height){
+        if (height >= 0){
+            this.height = height;
+        }
     }
 
     /**
