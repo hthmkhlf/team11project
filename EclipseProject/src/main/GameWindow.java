@@ -1,11 +1,14 @@
-package main; 
+// package main;
 /**
 *@author Josh Schijns
 */
 import java.awt.*;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
 import java.awt.event.*;
 
+import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 
 public class GameWindow extends JPanel implements KeyListener{
@@ -28,6 +31,13 @@ public class GameWindow extends JPanel implements KeyListener{
 
     public void paint(Graphics graphics){
         super.paint(graphics);
+        // read image
+        try {
+            image = ImageIO.read(new File("background.png"));
+        }   catch (IOException e ) {
+
+        }
+        graphics.drawImage(image, 0, 0,this.getWidth(),this.getHeight(), null);
         graphics.drawRect(10,10,100,100);
         //repaint(); // use once we have a timer set up, will call this paint again
     }
