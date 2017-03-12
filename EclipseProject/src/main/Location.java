@@ -23,7 +23,7 @@ public class Location{
     * This method sets the Y coordinate
     * @param newY sets Y within the window
     */
-    private void setY(int newY){
+    public void setY(int newY){
         if ((newY >= MIN_Y) && (newY <= MAX_Y)){
             yCoordinate = newY;
         }
@@ -33,7 +33,7 @@ public class Location{
     * This method sets the X coordinate
     * @param newX set the X within the window
     */
-    void setX(int newX){
+    public void setX(int newX){
         if ((newX >= 0) && (newX <= MAX_X)){
             xCoordinate =newX;
         }
