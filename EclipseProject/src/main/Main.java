@@ -1,4 +1,4 @@
-// package main;
+//package main;
 
 import javax.swing.JFrame;
 
@@ -9,7 +9,7 @@ import javax.swing.JFrame;
 public class Main {
     /* Create the instance variables needed to run the game */
 //    public static GameWindow GameWindow;
-//    public static GameWindow gameWindow;
+    public static GameWindow gameWindow;
 
     public static void main(String[] args) {
         // TODO Auto-generated method stub
@@ -21,10 +21,10 @@ public class Main {
         frame.setResizable(false);
         frame.setAlwaysOnTop(true);
 
-//        gameWindow = new GameWindow();
+        gameWindow = new GameWindow();
 
         frame.setVisible(true);
-        frame.setContentPane(new GameWindow());
+        frame.setContentPane(gameWindow);
     }
 
 }
