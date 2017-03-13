@@ -1,5 +1,3 @@
-package main;
-
 import java.util.Random;
 
 /**
@@ -8,15 +6,19 @@ import java.util.Random;
  * The methods in this class will be used to generate obstacles which the player character must avoid.
  */
 
-public class Obstacle {
-  private int obstacle_x_value = 0;
-  private int obstacle_y_value = 0;
+public class Obstacle extends Location {
   private int distanceFromPlayer = 0;
-  private Location obstacleLocation = new Location(obstacle_x_value, obstacle_y_value);
+
+  public Obstacle() {
+    super(0,0);
+  }
 
   public Obstacle(int x, int y) {
-    obstacle_x_value = x;
-    obstacle_y_value = y;
+    super(x,y);
+  }
+
+  public Obstacle(Obstacle other) {
+    super(other.getXCoord(), other.getYCoord());
   }
 
   /**
@@ -28,8 +30,7 @@ public class Obstacle {
    */
   public void generateTopX(int player_x_value) {
     distanceFromPlayer = new Random().nextInt(2) + 1;
-    obstacle_x_value = player_x_value + distanceFromPlayer;
-    obstacleLocation.setX(obstacle_x_value);
+    setX(player_x_value + distanceFromPlayer);
   }
 
   /**
@@ -40,8 +41,7 @@ public class Obstacle {
    * passed the last obstacle
    */
   public void generateTopY() {
-    obstacle_y_value = new Random().nextInt(2);
-    obstacleLocation.setY(obstacle_y_value);
+    setY(new Random().nextInt(2));
   }
 
   /**
@@ -51,8 +51,8 @@ public class Obstacle {
    * @param other the other (top) obstacle from which the x-coordinate is taken.
    */
   public void generateBottomX(Obstacle other) {
-    obstacle_x_value = other.obstacle_x_value;
-    obstacleLocation.setX(obstacle_x_value);
+    other = new Obstacle(other);
+    setX(other.getXCoord());
   }
 
   /**
@@ -64,24 +64,8 @@ public class Obstacle {
    * and added to.
    */
   public void generateBottomY(Obstacle other) {
-    obstacle_y_value = other.obstacle_y_value + 1;
-    obstacleLocation.setY(obstacle_y_value);
+    other = new Obstacle(other);
+    setY(other.getYCoord() + 1);
   }
 
-  public Obstacle getObstacle() {
-    return new Obstacle(obstacle_x_value, obstacle_y_value);
-  }
-
-  /**
-   * @return the x-coordinate of the obstacle.
-   */
-  public int getLocationX(){
-    return obstacleLocation.getXCoord();
-  }
-  /**
-   * @return the y-coordinate of the obstacle.
-   */
-  public int getLocationY(){
-    return obstacleLocation.getYCoord();
-  }
 }
