@@ -10,7 +10,7 @@ public class Location{
     private int yCoordinate = 0;
     private int height = 0;
     private int width = 0;
-    private static final int MAX_Y = 2; // Need to change this to match the window created
+    private static final int MAX_Y = 400; // Need to change this to match the window created
     private static final int MIN_Y = 0;
     private static final int MAX_X = 400; // Need to change this to match window created as well
 

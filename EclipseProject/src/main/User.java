@@ -1,47 +1,42 @@
 package main;
 
+
+import java.awt.Graphics; //new
+import java.io.File; // new
+import java.io.IOException; // new
+import javax.imageio.ImageIO; //new
+import java.awt.*;
 /**
  * @author Dou, Zhi Chao
- *
+ *  
 */
-import java.util.Scanner;
 
-public class User{
-	private Location userMovement = new Location(0,1);
-	private Scanner keyboard = new Scanner(System.in);
-	public void movement(){
-			System.out.print("Movement: ");
-			//calls the location class
-			// userMovement.Location(0,1);
-  		String movement = keyboard.nextLine();
-  		String movementUser = movement.toLowerCase();
-
-				if (movementUser.equals("w")){
-					//moves the user position up
-					userMovement.setY(-1);
-					userMovement.setX(1);
-					System.out.println("You jumped!");
-				}else if (movementUser.equals("s")){
-					//moves the user position down
-					userMovement.setY(1);
-					userMovement.setX(1);
-					System.out.println("You slide!");
-				}else {
-					userMovement.setX(1);
-					System.out.println("You are running");
-				}
+// Some changes were made to this class since it now has inheritance
+// No longer need a bunch of the previous methods due to extending Location
+// TODO create a moveDown method, other stuff to further the user class
+public class User extends Location{
+	private Image image;
+	
+	public User(){
+		super(50,220);
+		setHeight(100);
+		setWidth(100);
 	}
 
-	public boolean getCollision(int obsX,int obsY) {
-		boolean collided = userMovement.isCollision(obsX,obsY);
-		return collided;
-
+	
+	public void moveUp(){
+		setY((getYCoord()-5)); // we will eventually establish a loop so pressing jump smoothly adjusts Xcoord
+	}
+	
+	public void drawPlayer(Graphics graphics){
+		try {
+			image = ImageIO.read(new File("src\\images\\player1.png"));
+		}catch (IOException e ) {
+				e.printStackTrace();
+		}
+		graphics.drawImage(image, getXCoord(),getYCoord(),getHeight(),getWidth(),null);
+		
 	}
 
-	public int getLocationX(){
-		return userMovement.getXCoord();
-	}
-	public int getLocationY(){
-		return userMovement.getYCoord();
-	}
+	
 }

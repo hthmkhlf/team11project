@@ -7,6 +7,7 @@ import java.awt.*;
 import java.io.File;
 import java.io.IOException;
 import java.awt.event.*;
+import javax.swing.Timer;
 
 import javax.imageio.ImageIO;
 import javax.swing.JPanel;
@@ -19,8 +20,9 @@ public class GameWindow extends JPanel implements KeyListener{
 
     // image for png's, had BufferedImage here, will use again later down the road
     private Image image;
-    private Image player;
+//    private Image player;
     private Graphics2D graphics;
+    private User player = new User();
 
     public GameWindow(){
         super();
@@ -28,6 +30,15 @@ public class GameWindow extends JPanel implements KeyListener{
         setFocusable(true);
         requestFocus();
         addKeyListener(this);
+        // This creates a timer for repainting, so in essence will paint everything every 200ms
+        Timer timer = new Timer(200,
+                new ActionListener(){
+                    public void actionPerformed(ActionEvent e){
+                        repaint();
+                    }
+                });
+          timer.setInitialDelay(1000);
+          timer.start();
     }
 
     public void paint(Graphics graphics){
@@ -36,13 +47,12 @@ public class GameWindow extends JPanel implements KeyListener{
         try {
         	// TODO change the path for the file, figure out how to shorten it in eclipse, make sure to put the double \ due to it being an escape code
             image = ImageIO.read(new File("src\\images\\background.png"));
-            player = ImageIO.read(new File("src\\images\\player1.png"));
         }   catch (IOException e ) {
-        	e.printStackTrace();
+        	e.printStackTrace(); // this will print errors to the console
         }
         graphics.drawImage(image, 0, 0,this.getWidth(),this.getHeight(), null);
-        graphics.drawImage(player, 120, 304,150,150, null);
-        //repaint(); // use once we have a timer set up, will call this paint again
+        player.drawPlayer(graphics);
+      
     }
 
 
@@ -53,6 +63,7 @@ public class GameWindow extends JPanel implements KeyListener{
 
     	if (key.getKeyCode() == KeyEvent.VK_UP ) {
     		System.out.println("You Jumped !");
+    		player.moveUp();
     	}else if (key.getKeyCode() == KeyEvent.VK_DOWN) {
     		System.out.println("You Slided !");
     	}
