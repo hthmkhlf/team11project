@@ -4,117 +4,89 @@ import org.junit.Test;
 
 public class ObstacleTest{
 
-  // Testing generateTopObstacleX
+  // Testing generateTopX
   @Test
   public void test1(){
     Obstacle o = new Obstacle();
-    assertEquals("Expected initial x to be -1", -1, o.getXValue());
+    assertEquals("Expected initial x to be 0", 0, o.getXCoord());
   }
 
   @Test
   public void test2(){
     Obstacle o = new Obstacle();
-    o.generateTopX(0);
-    String xAsString = Integer.toString(o.getXValue());
-    assertThat("Set player x in front of obstacle", xAsString, anyOf(is("2"), is("3")));
+    o.generateTopX(1);
+    String xAsString = Integer.toString(o.getXCoord());
+    assertThat("Set player x at 1", xAsString, anyOf(is("2"), is("3")));
   }
 
   @Test
   public void test3(){
     Obstacle o = new Obstacle();
-    o.generateTopX(-2);
-    assertEquals("Set player x behind obstacle", -1, o.getXValue());
+    o.generateTopX(-1);
+    String xAsString = Integer.toString(o.getXCoord());
+    assertThat("Set player x at -1", xAsString, anyOf(is("0"), is("1")));
   }
 
   @Test
   public void test4(){
     Obstacle o = new Obstacle();
-    o.generateTopX(-1);
-    assertEquals("Set player on obstacle", -1, o.getXValue());
+    o.generateTopX(30);
+    String xAsString = Integer.toString(o.getXCoord());
+    assertThat("Set player x at 30", xAsString, anyOf(is("31"), is("32")));
   }
 
-  // Testing generateTopObstacleY
+  // Testing generateTopY
   @Test
   public void test5(){
     Obstacle o = new Obstacle();
-    assertEquals("Expected initial to be 0", 0, o.getYValue());
+    assertEquals("Expected initial to be 0", 0, o.getYCoord());
   }
 
   @Test
   public void test6(){
     Obstacle o = new Obstacle();
-    o.generateTopY(0);
-    String yAsInt = Integer.toString(o.getYValue());
-    assertThat("Set player x in front of obstacle", yAsInt, anyOf(is("0"), is("1")));
+    o.generateTopY();
+    String yAsInt = Integer.toString(o.getYCoord());
+    assertThat("Expected y-coordinate be 0 or 1", yAsInt, anyOf(is("0"), is("1")));
   }
 
+  // Testing generateBottomX
   @Test
   public void test7(){
-    Obstacle o = new Obstacle();
-    o.generateTopY(-2);
-    assertEquals("Set player x behind obstacle", 0, o.getYValue());
+    Obstacle o1 = new Obstacle();
+    Obstacle o2 = new Obstacle();
+    o1.generateTopX(1);
+    o2.generateBottomX(o1);
+    assertEquals("Set player x at 1", o1.getXCoord(), o2.getXCoord());
   }
 
   @Test
   public void test8(){
-    Obstacle o = new Obstacle();
-    o.generateTopY(-1);
-    assertEquals("Set player x on obstacle", 0, o.getYValue());
-  }
-
-  // Testing generateBottomObstacleX
-  @Test
-  public void test9(){
-    Obstacle o1 = new Obstacle();
-    Obstacle o2 = new Obstacle();
-    o1.generateTopX(0);
-    o2.generateBottomX(o1);
-    assertEquals("Set player x in front of obstacle", o1.getXValue(), o2.getXValue());
-  }
-
-  @Test
-  public void test10(){
-    Obstacle o1 = new Obstacle();
-    Obstacle o2 = new Obstacle();
-    o1.generateTopX(-2);
-    o2.generateBottomX(o1);
-    assertEquals("Set player x behind obstacle", o1.getXValue(), o2.getXValue());
-  }
-
-  @Test
-  public void test11(){
     Obstacle o1 = new Obstacle();
     Obstacle o2 = new Obstacle();
     o1.generateTopX(-1);
     o2.generateBottomX(o1);
-    assertEquals("Set player x on obstacle", o1.getXValue(), o2.getXValue());
-  }
-
-  //Testing generateBottomObstacleY
-  @Test
-  public void test12(){
-    Obstacle o1 = new Obstacle();
-    Obstacle o2 = new Obstacle();
-    o1.generateTopY(0);
-    o2.generateBottomY(o1);
-    assertEquals("Set player x in front of obstacle", (o1.getYValue() + 1), o2.getYValue());
+    assertEquals("Set player x at -1", o1.getXCoord(), o2.getXCoord());
   }
 
   @Test
-  public void test13(){
+  public void test9(){
     Obstacle o1 = new Obstacle();
     Obstacle o2 = new Obstacle();
-    o1.generateTopY(-2);
-    o2.generateBottomY(o1);
-    assertEquals("Set player x behind obstacle", 1, o2.getYValue());
+    o1.generateTopX(656);
+    o2.generateBottomX(o1);
+    assertEquals("Set player x at 656", o1.getXCoord(), o2.getXCoord());
   }
 
+  // Testing generateBottomY
   @Test
-  public void test14(){
+  public void test10(){
     Obstacle o1 = new Obstacle();
     Obstacle o2 = new Obstacle();
-    o1.generateTopY(-1);
+    o1.generateTopY();
     o2.generateBottomY(o1);
-    assertEquals("Set player x on obstacle", (o1.getYValue() + 1), o2.getYValue());
+    String yAsString = Integer.toString(o2.getYCoord());
+    assertThat("Expected y-coordinate to be 1 or 2", yAsString, anyOf(is("1"), is("2")));
   }
+
 }
