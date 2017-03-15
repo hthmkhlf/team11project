@@ -14,7 +14,7 @@ import java.awt.*;
 // Some changes were made to this class since it now has inheritance
 // No longer need a bunch of the previous methods due to extending Location
 // TODO create a moveDown method, other stuff to further the user class
-public class User extends Location{
+public class User extends MapObject{
 	private Image image;
 	
 	public User(){

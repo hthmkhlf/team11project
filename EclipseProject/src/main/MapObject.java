@@ -5,7 +5,7 @@ package main;
 * the coordinates can be changed or retrieved.
 */
 
-public class Location{
+public class MapObject{
     private int xCoordinate = 0;
     private int yCoordinate = 0;
     private int height = 0;
@@ -14,7 +14,7 @@ public class Location{
     private static final int MIN_Y = 0;
     private static final int MAX_X = 400; // Need to change this to match window created as well
 
-    public Location(int newX, int newY){
+    public MapObject(int newX, int newY){
        setX(newX);
        setY(newY);
     }

@@ -6,7 +6,7 @@ import java.util.Random;
  * The methods in this class will be used to generate obstacles which the player character must avoid.
  */
 
-public class Obstacle extends Location {
+public class Obstacle extends MapObject {
   private int distanceFromPlayer = 0;
 
   public Obstacle() {
