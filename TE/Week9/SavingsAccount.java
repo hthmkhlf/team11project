@@ -19,9 +19,10 @@ class SavingsAccount extends BankAccount {
   }
 
   public SavingsAccount(SavingsAccount aSavingsAccount){
-    //this(aSavingsAccount.getBalance());
     super(aSavingsAccount);
     interestRate = aSavingsAccount.interestRate;
+    minimumBalance = aSavingsAccount.minimumBalance;
+
 
   }
 
@@ -29,9 +30,10 @@ class SavingsAccount extends BankAccount {
     super(aBalance);
   }
 
-  public SavingsAccount(double aBalance, double newInterestRate){
+  public SavingsAccount(double aBalance, double newInterestRate, double minimumBalance){
     this(aBalance);
     interestRate = newInterestRate;
+    this.minimumBalance = minimumBalance;
   }
 
   /**
@@ -49,9 +51,9 @@ class SavingsAccount extends BankAccount {
   * Simple interest formula: principal x rate
   */
 
-  public void addInterest() {
+  public double getFeesAndInterest() {
     double userMoney = getBalance()*interestRate;
-    deposit(userMoney);
+    return userMoney;
   }
 
   public void withdraw(double amount){
@@ -60,4 +62,11 @@ class SavingsAccount extends BankAccount {
       super.withdraw(amount);
     }
   }
+
+  public void transfer(double amount, BankAccount toAccount){
+      if ((getBalance()-amount) >= minimumBalance){
+          super.transfer(amount, toAccount);
+      }
+  }
+
 }
