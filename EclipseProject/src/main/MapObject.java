@@ -1,23 +1,40 @@
 package main;
 /**
-* @author Josh Schijns
-* This class is used for coordinates for the player and obstacles,
-* the coordinates can be changed or retrieved.
-*/
+ * @author Josh Schijns 
+ * This is the parent class to all map objects, will handle its width, height, xCoord and yCoord.
+ * Will document more later
+ */
 
-public class MapObject{
-    private int xCoordinate = 0;
+import java.awt.Graphics2D;
+
+// Should look into making mapObject and all of its children its own package.
+// TODO package classes
+
+public abstract class MapObject {
+	
+	private int xCoordinate = 0;
     private int yCoordinate = 0;
     private int height = 0;
     private int width = 0;
-    private static final int MAX_Y = 400; // Need to change this to match the window created
+    private static final int MAX_Y = 550;
     private static final int MIN_Y = 0;
-    private static final int MAX_X = 400; // Need to change this to match window created as well
+//    private static final int MAX_X = 1650; // Not currently used
 
-    public MapObject(int newX, int newY){
+    public MapObject(){
+    	setX(0);
+    	setY(0);
+    }
+    public MapObject(int newX, int newY, int height, int width){
        setX(newX);
        setY(newY);
+       setHeight(height);
+       setWidth(width);
     }
+    
+    // Abstract methods. draw update and movement are methods all MapObjects must contain and are specific to each subclass
+    protected abstract void draw(Graphics2D graphics);
+    protected abstract void update();
+    protected abstract void movement();
 
     /**
     * This method sets the Y coordinate
@@ -34,9 +51,8 @@ public class MapObject{
     * @param newX set the X within the window
     */
     public void setX(int newX){
-        if ((newX >= 0) && (newX <= MAX_X)){
-            xCoordinate =newX;
-        }
+    	xCoordinate =newX;
+        
     }
 
     public int getXCoord(){
@@ -81,3 +97,4 @@ public class MapObject{
     }
 
 }
+
