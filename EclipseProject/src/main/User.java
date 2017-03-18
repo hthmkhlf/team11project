@@ -1,42 +1,71 @@
 package main;
-
-
-import java.awt.Graphics; //new
-import java.io.File; // new
-import java.io.IOException; // new
-import javax.imageio.ImageIO; //new
+import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
 import java.awt.*;
-/**
- * @author Dou, Zhi Chao
- *  
-*/
 
-// Some changes were made to this class since it now has inheritance
-// No longer need a bunch of the previous methods due to extending Location
-// TODO create a moveDown method, other stuff to further the user class
-public class User extends MapObject{
+public class Player extends MapObject {
 	private Image image;
+	// I use these two booleans for when the player is jumping
+	private boolean jumping = false;
+	private boolean falling = false; // will use this for animations possibly, but not sure
 	
-	public User(){
-		super(50,220);
-		setHeight(100);
-		setWidth(100);
+	// -20 is good for a small jump, -30 for a big jump, add in a key released function for later
+	// These variables are used for the players jump algorithm 
+	private double jumpSpeed = -25;
+	private double fallSpeed = 1.5;
+	private double distance;
+	private int timeChange = 0;
+	private final int GROUND = 349;
+	
+	public Player(){
+		this(50,350,100,100);
 	}
-
 	
-	public void moveUp(){
-		setY((getYCoord()-5)); // we will eventually establish a loop so pressing jump smoothly adjusts Xcoord
-	}
-	
-	public void drawPlayer(Graphics graphics){
+	public Player(int newX, int newY, int height, int width){
+		super(newX, newY, height, width);
 		try {
-			image = ImageIO.read(new File("src\\images\\player1.png"));
+			image = ImageIO.read(new File("src/images/player1.png"));
 		}catch (IOException e ) {
 				e.printStackTrace();
 		}
-		graphics.drawImage(image, getXCoord(),getYCoord(),getHeight(),getWidth(),null);
 		
 	}
-
 	
+	public void draw(Graphics2D graphics){
+		graphics.drawImage(image, getXCoord(),getYCoord(),getHeight(),getWidth(),null);
+	}
+	
+	
+	public void toggleJump(){
+		if(!jumping){
+			jumping = true;
+		}
+	}
+	public void update(){
+		movement();
+	}
+	private void animation(){
+		// Not sure if animation should be in here or create another class possibly?
+	}
+	
+	
+	protected void movement(){
+		if(jumping){
+			distance = jumpSpeed + fallSpeed * timeChange;
+			timeChange++;
+			setY((int)(getYCoord() + distance));
+			if (distance > 0){
+				falling = true;
+			}
+			distance = 0;
+			if (getYCoord() > GROUND ){
+				jumping = false;
+				timeChange = 0;
+				falling = false;
+				setY(GROUND + 1);
+			}
+		}
+	}
 }
