@@ -3,6 +3,10 @@ import javax.swing.JPanel;
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
+/**
+* @author Josh Schijns
+* Handles the panel in which everything is drawn onto.
+*/
 
 @SuppressWarnings("serial")
 public class GameWindow extends JPanel implements Runnable, KeyListener{
