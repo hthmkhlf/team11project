@@ -2,7 +2,6 @@ package main;
 import javax.swing.JPanel;
 
 // was thinking we should create different packages instead of just main
-//import entity.*;
 
 import java.awt.*;
 import java.awt.image.*;
@@ -22,10 +21,8 @@ public class GameWindow extends JPanel implements Runnable, KeyListener{
 	// images
 	private Graphics2D graphics;
 	private BufferedImage image;
-	private Player player = new Player();
-	private Obstacle obstacle = new Obstacle();
-	private Background background = new Background(); // maybe set up a manager to do this
-	private Ground ground = new Ground();
+
+	private Manager manager = new Manager();
 	
 	private int FPS = 30;
 	private double averageFPS;
@@ -99,23 +96,15 @@ public class GameWindow extends JPanel implements Runnable, KeyListener{
 	
 	private void gameUpdate(){
 		//updating everthing
-		player.update();
-		background.update();
-		ground.update();
-		// obstacle commented out until implemented.
-//		obstacle.update();
+		manager.update();
 	}
 	
 	private void gameRender(){
 		//draw everything to offscreen so it is loaded
 		super.paint(graphics);
-		// maybe create a manager class and we just call that to draw
-		background.draw(graphics);
-		ground.draw(graphics);
+		manager.draw(graphics);
 		graphics.drawString("FPS: "+ averageFPS, 10, 10);
-		// obstacle commented out until implemented.
-//		obstacle.draw(graphics);
-		player.draw(graphics);
+
 		
 	}
 	
@@ -128,9 +117,7 @@ public class GameWindow extends JPanel implements Runnable, KeyListener{
 	
 	public void keyTyped(KeyEvent key){}
 	public void keyPressed(KeyEvent key){
-		if(key.getKeyCode() == KeyEvent.VK_UP){
-			player.toggleJump();
-		}
+		manager.keyPressed(key.getKeyCode());
 	}
 	public void keyReleased(KeyEvent key){}
 }
