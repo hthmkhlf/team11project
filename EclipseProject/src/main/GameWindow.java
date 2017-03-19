@@ -1,12 +1,17 @@
 package main;
 import javax.swing.JPanel;
+
+// was thinking we should create different packages instead of just main
+import entity.*;
+
 import java.awt.*;
 import java.awt.image.*;
 import java.awt.event.*;
 /**
-* @author Josh Schijns
-* Handles the panel in which everything is drawn onto.
-*/
+ * 
+ * @author Josh Schijns
+ * Handles the panel in which everything is drawn onto and manages key listeners
+ */
 
 @SuppressWarnings("serial")
 public class GameWindow extends JPanel implements Runnable, KeyListener{
@@ -18,7 +23,9 @@ public class GameWindow extends JPanel implements Runnable, KeyListener{
 	private Graphics2D graphics;
 	private BufferedImage image;
 	private Player player = new Player();
+	private Obstacle obstacle = new Obstacle();
 	private Background background = new Background(); // maybe set up a manager to do this
+	private Ground ground = new Ground();
 	
 	private int FPS = 30;
 	private double averageFPS;
@@ -94,14 +101,20 @@ public class GameWindow extends JPanel implements Runnable, KeyListener{
 		//updating everthing
 		player.update();
 		background.update();
+		ground.update();
+		// obstacle commented out until implemented.
+//		obstacle.update();
 	}
 	
 	private void gameRender(){
 		//draw everything to offscreen so it is loaded
 		super.paint(graphics);
-		
+		// maybe create a manager class and we just call that to draw
 		background.draw(graphics);
+		ground.draw(graphics);
 		graphics.drawString("FPS: "+ averageFPS, 10, 10);
+		// obstacle commented out until implemented.
+//		obstacle.draw(graphics);
 		player.draw(graphics);
 		
 	}
