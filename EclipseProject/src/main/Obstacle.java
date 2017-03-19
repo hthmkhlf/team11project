@@ -1,4 +1,15 @@
+package main;
+import java.awt.Graphics2D;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+import java.awt.*;
+
 import java.util.Random;
+import java.util.Timer;
+//???????????????????????????????????????
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
 
 /**
  * @author  Katie Tieu
@@ -7,57 +18,72 @@ import java.util.Random;
  */
 
 public class Obstacle extends MapObject {
-  private int distanceFromPlayer = 0;
+  private Image image;
 
   public Obstacle() {
-    super(0,0);
+    this(1600, 0, 150, 75);
   }
 
-  public Obstacle(int x, int y) {
-    super(x,y);
+  public Obstacle(int x, int y, int height, int width) {
+    super(x, y, height, width);
+    try {
+      image = ImageIO.read(new File("src/images/obstacle2.png"));
+    } catch(IOException e) {
+      e.printStackTrace();  // This will print errors to the console
+    }
+
+//???????????????????????????????????????
+    Timer timer = new Timer(200, new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+          movement();
+          draw();
+        }
+      });
   }
+
 
   public Obstacle(Obstacle other) {
-    super(other.getXCoord(), other.getYCoord());
+    super(other.getXCoord(), other.getYCoord(), 75, 75);
   }
 
-  /**
-   * This method checks generates the x-coordinate for a new obstacle.
-   * The distance from the player is random, but it will always be 1-2 spaces in front of them.
-   * @param player_x_value the user's x-coordinate which is used to determine the location of the next obstacle
-   */
-  public void generateTopX(int player_x_value) {
-    distanceFromPlayer = new Random().nextInt(2) + 1;
-    setX(player_x_value + distanceFromPlayer);
+//???????????????????????????????????????
+  public void draw(Graphics2D graphics) {
+    graphics.drawImage(image, getXCoord(), getYCoord(), getHeight(), getWidth(), null);
+  }
+
+//???????????????????????????????????????
+  public void update() {
+    movement();
+  }
+
+//???????????????????????????????????????
+  protected void movement() {
+    setX(getXCoord() - 1);
   }
 
   /**
    * This method generates the y-coordinate for a new obstacle.
-   * This coordinate will either be 0 or 1.
+   * This coordinate will either be 0 or 175.
    */
   public void generateTopY() {
-    setY(new Random().nextInt(2));
-  }
-
-  /**
-   * This method generates the x-coordinate for a second obstacle.
-   * This x-coordinate will always be the same as that of the first obstacle.
-   * @param other the other (top) obstacle from which the x-coordinate is taken.
-   */
-  public void generateBottomX(Obstacle other) {
-    other = new Obstacle(other);
-    setX(other.getXCoord());
+    int chance = new Random().nextInt(2);
+    if (chance == 0) {
+      setY(0);
+    }
+    else if (chance == 1) {
+      setY(175);
+    }
   }
 
   /**
    * This method generates the y-coordinate for a second obstacle.
-   * This y-coordinate will always be one higher than that of the first obstacle (1 or 2)
+   * This y-coordinate will always be one higher than that of the first obstacle (175 or 350)
    * so they will be stacked on top of each other.
    * @param other the other (top) obstacle from which the y-coordinate is taken and added to.
    */
-  public void generateBottomY(Obstacle other) {
-    other = new Obstacle(other);
-    setY(other.getYCoord() + 1);
-  }
+  // public void generateBottomY(Obstacle other) {
+  //   other = new Obstacle(other);
+  //   setY(other.getYCoord() + 175);
+  // }
 
 }
