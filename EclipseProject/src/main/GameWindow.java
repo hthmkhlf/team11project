@@ -2,7 +2,7 @@ package main;
 import javax.swing.JPanel;
 
 // was thinking we should create different packages instead of just main
-import entity.*;
+//import entity.*;
 
 import java.awt.*;
 import java.awt.image.*;
