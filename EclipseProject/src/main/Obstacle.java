@@ -1,4 +1,4 @@
-package main;
+// package main;
 import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
@@ -13,7 +13,6 @@ import java.util.Random;
  * as well as to move and draw the obstacles.
  * Note that only the y-coordinate is randomly generated in this class; the x-coordinate will be generated
  * at a fixed value using the setX method from the parent class.
-
  */
 
 public class Obstacle extends MapObject {
@@ -33,7 +32,7 @@ public class Obstacle extends MapObject {
   }
 
   public Obstacle(Obstacle other) {
-    super(other.getXCoord(), other.getYCoord(), 350, 175);
+    super(other.getXCoord(), other.getYCoord(), other.getHeight(), other.getWidth());
   }
 
   @Override
