@@ -22,7 +22,7 @@ public class Background extends MapObject {
 		
 	
 	@Override
-	protected void draw(Graphics2D graphics) {
+	public void draw(Graphics2D graphics) {
         graphics.drawImage(image, getXCoord(), getYCoord(),getWidth(),getHeight(), null);
         graphics.drawImage(image, getXCoord() + getWidth(), getYCoord(),getWidth(),getHeight(), null);
         if (getXCoord() < -(getWidth())){
