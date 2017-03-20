@@ -11,6 +11,9 @@ import java.util.Random;
  * This class is a child class to MapObject.
  * The methods in this class will be used to generate obstacles which the player character must avoid,
  * as well as to move and draw the obstacles.
+ * Note that only the y-coordinate is randomly generated in this class; the x-coordinate will be generated
+ * at a fixed value using the setX method from the parent class.
+
  */
 
 public class Obstacle extends MapObject {
@@ -50,7 +53,7 @@ public class Obstacle extends MapObject {
 
   /**
    * This method generates the y-coordinate for a new obstacle.
-   * This coordinate will either be 0 or 175.
+   * This coordinate will either be 0 or 200.
    */
   public void generateY() {
     int chance = new Random().nextInt(2);
@@ -58,7 +61,7 @@ public class Obstacle extends MapObject {
       setY(0);
     }
     else if (chance == 1) {
-      setY(175);
+      setY(200);
     }
   }
 
