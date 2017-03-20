@@ -1,5 +1,3 @@
-package main;
-
 import java.io.*;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -8,7 +6,30 @@ public class HighScore{
   private int userNewScore = 0;
   private boolean gameInProgress = true;
   private int userScore = 0;
+  public int currentHighScore = 0;
   private Timer score = new Timer();
+
+  public void highScoreBoard() {
+  String fileName = "HighScoreBoard.txt";
+  String line = null;
+
+  try{
+    FileReader fileReader = new FileReader(fileName);
+    BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+    while((line = bufferedReader.readLine()) != null){
+      System.out.println(line);
+    }
+    bufferedReader.close();
+  }
+  catch(FileNotFoundException ex){
+    System.out.println("Unable to open file");
+  }
+  catch(IOException ex){
+    System.out.println("Error reading file");
+  }
+}
+
 
 //user score
 //runs a timertask to use as score keeping
@@ -54,7 +75,7 @@ public class HighScore{
       System.out.println("Error reading file");
     }
 
-    int currentHighScore = Integer.parseInt(scoreInFile);
+    currentHighScore = Integer.parseInt(scoreInFile);
     return currentHighScore;
   }
 
@@ -62,10 +83,10 @@ public class HighScore{
 *takes the currentHighScore from the game calss and compares it to the one written
 *in from the file
 */
-  public boolean compareScores(int currentHighScore, int userNewScore){
+  public boolean compareScores(){
     boolean isHigher = false;
-    System.out.println("Your score is " + userNewScore);
-    if (userNewScore>currentHighScore){
+    System.out.println("Your score is " + this.userNewScore);
+    if (this.userNewScore > this.currentHighScore){
       isHigher = true;
     }else{
       isHigher = false;
@@ -103,8 +124,8 @@ changes score in file to the new score if applicable
 //compares the two.
   public void runHighScore( int userNewScore){
     HighScore highScore = new HighScore();
-    int currentHighScore = highScore.previousHighScore();
-    boolean isHigher = highScore.compareScores(currentHighScore, userNewScore);
+    currentHighScore = highScore.previousHighScore();
+    boolean isHigher = highScore.compareScores();
     if (isHigher){
       System.out.println("You got the new high score!");
       highScore.writeInNewScore(userNewScore);
