@@ -6,7 +6,7 @@ import javax.imageio.ImageIO;
 import java.awt.*;
 
 public class Player extends MapObject {
-	private Image image;
+	private BufferedImage[] image = new BufferedImage[8];
 	// I use these two booleans for when the player is jumping
 	private boolean jumping = false;
 	private boolean falling = false; // will use this for animations possibly, but not sure
@@ -18,6 +18,7 @@ public class Player extends MapObject {
 	private double distance;
 	private int timeChange = 0;
 	private final int GROUND = 349;
+	private int frameNum = 0;
 	
 	public Player(){
 		this(50,350,100,100);
@@ -25,30 +26,42 @@ public class Player extends MapObject {
 	
 	public Player(int newX, int newY, int height, int width){
 		super(newX, newY, height, width);
-		try {
-			image = ImageIO.read(new File("src/images/player1.png"));
-		}catch (IOException e ) {
-				e.printStackTrace();
-		}
-		
+		for(int frame = 0; frame < 8; frame++)
+			try {
+				image[frame] = ImageIO.read(new File("src/images/player" +(frame+1) + ".png"));
+			}catch (IOException e ) {
+					e.printStackTrace();
+			}		
 	}
 	
 	public void draw(Graphics2D graphics){
-		graphics.drawImage(image, getXCoord(),getYCoord(),getHeight(),getWidth(),null);
+		if (!jumping){	
+			int num = frameNum / 5;
+			graphics.drawImage(image[num], getXCoord(),getYCoord(),getWidth(),getHeight(),null);
+			frameNum++;
+			if (frameNum == 40){
+				frameNum = 0;
+			}
+		}else{
+			graphics.drawImage(image[frameNum], getXCoord(),getYCoord(),getWidth(),getHeight(),null);
+			frameNum++;
+			if (frameNum==8){
+				frameNum = 0;
+			}
+		}
 	}
 	
 	
 	public void toggleJump(){
 		if(!jumping){
 			jumping = true;
+			frameNum = 0;
 		}
 	}
 	public void update(){
 		movement();
 	}
-	private void animation(){
-		// Not sure if animation should be in here or create another class possibly?
-	}
+
 	
 	
 	protected void movement(){
