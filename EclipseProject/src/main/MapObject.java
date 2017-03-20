@@ -18,11 +18,17 @@ public abstract class MapObject {
     private int width = 0;
     private static final int MAX_Y = 550;
     private static final int MIN_Y = 0;
+    protected int scrollRate = 10;
 //    private static final int MAX_X = 1650; // Not currently used
 
     public MapObject(){
     	setX(0);
     	setY(0);
+    }
+    
+    public MapObject(int newX, int newY){
+    	setX(newX);
+    	setY(newY);
     }
     public MapObject(int newX, int newY, int height, int width){
        setX(newX);
@@ -32,9 +38,13 @@ public abstract class MapObject {
     }
     
     // Abstract methods. draw update and movement are methods all MapObjects must contain and are specific to each subclass
-    protected abstract void draw(Graphics2D graphics);
-    protected abstract void update();
+    public abstract void draw(Graphics2D graphics);
+    public abstract void update();
     protected abstract void movement();
+    
+    protected int getScroll(){
+    	return scrollRate;
+    }
 
     /**
     * This method sets the Y coordinate
