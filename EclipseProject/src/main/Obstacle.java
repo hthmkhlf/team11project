@@ -19,7 +19,7 @@ public class Obstacle extends MapObject {
   private Image image;
 
   public Obstacle() {
-    this(1600, 0, 350, 175);
+    this(1600, 0, 300, 150);
   }
 
   public Obstacle(int x, int y, int height, int width) {
@@ -52,7 +52,7 @@ public class Obstacle extends MapObject {
 
   /**
    * This method generates the y-coordinate for a new obstacle.
-   * This coordinate will either be 0 or 200.
+   * This coordinate will either be 0 or 100.
    */
   public void generateY() {
     int chance = new Random().nextInt(2);
@@ -60,7 +60,7 @@ public class Obstacle extends MapObject {
       setY(0);
     }
     else if (chance == 1) {
-      setY(200);
+      setY(100);
     }
   }
 
