@@ -5,15 +5,18 @@ import java.util.TimerTask;
 /**
 *@author Emily Flanagan
 *@since 2017-03-20
+* This is a child class of Game class
 */
 
 public class HighScore{
   private boolean gameInProgress = true;
   private int userScore = 0;
-  public int currentHighScore = 0;
+  private int currentHighScore = 0;
   private Timer score = new Timer();
 
 /**
+* Reads all high scores in from the file HighScoreBoard.txt
+*Prints each score on the line with the name of who got it
 */
   public void highScoreBoard() {
     String fileName = "HighScoreBoard.txt";
@@ -52,10 +55,11 @@ public class HighScore{
     score.scheduleAtFixedRate(count, 0, 3000);
   }
 
-//high score validation
+  public int getUserScore() {
+    return userScore;
+  }
 /**
 * Finds the previous high score from the file HighScores.txt
-* Used by Game class
 */
   public int previousHighScore() {
     String fileName = "HighScores.txt";
