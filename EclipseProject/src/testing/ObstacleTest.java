@@ -20,13 +20,13 @@ public class ObstacleTest{
   @Test
   public void test3(){
     Obstacle o = new Obstacle();
-    assertEquals("Expected height to be 350", 350, o.getHeight());
+    assertEquals("Expected height to be 300", 300, o.getHeight());
   }
 
   @Test
   public void test4(){
     Obstacle o = new Obstacle();
-    assertEquals("Expected width to be 175", 175, o.getWidth());
+    assertEquals("Expected width to be 150", 150, o.getWidth());
   }
 
   // Testing constructor which takes four arguments
@@ -104,7 +104,7 @@ public class ObstacleTest{
     Obstacle o1 = new Obstacle();
     Obstacle o2 = new Obstacle(o1);
     o2.setHeight(15);
-    assertEquals("Expected o1 height to be 350", 350, o1.getHeight());
+    assertEquals("Expected o1 height to be 300", 300, o1.getHeight());
   }
 
   @Test
@@ -112,7 +112,7 @@ public class ObstacleTest{
     Obstacle o1 = new Obstacle();
     Obstacle o2 = new Obstacle(o1);
     o2.setWidth(45);
-    assertEquals("Expected o1 width to be 175", 175, o1.getWidth());
+    assertEquals("Expected o1 width to be 150", 150, o1.getWidth());
   }
 
   // Testing generateY
@@ -121,6 +121,6 @@ public class ObstacleTest{
     Obstacle o = new Obstacle();
     o.generateY();
     String yAsString = Integer.toString(o.getYCoord());
-    assertThat("Expected y-coordinate be 0 or 200", yAsString, anyOf(is("0"), is("200")));
+    assertThat("Expected y-coordinate be 0 or 100", yAsString, anyOf(is("0"), is("100")));
   }
 }
