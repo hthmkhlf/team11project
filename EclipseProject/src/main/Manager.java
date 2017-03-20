@@ -1,4 +1,5 @@
 package main;
+import entity.*;
 
 import java.awt.event.KeyEvent;
 
@@ -9,12 +10,14 @@ public class Manager {
 	private Obstacle obstacle; 
 	private Background background;
 	private Ground ground;
+	private HighScoreGUI score;
 	
 	public Manager(){
 		player = new Player();
 		obstacle = new Obstacle();
 		background = new Background();
 		ground = new Ground();
+		score = new HighScoreGUI();
 		
 	}
 	public void update(){
@@ -22,6 +25,7 @@ public class Manager {
 		background.update();
 		ground.update();
 		obstacle.update();
+		score.update();
 	}
 	
 	public void draw(java.awt.Graphics2D graphics){
@@ -29,6 +33,8 @@ public class Manager {
 		ground.draw(graphics);		
 		obstacle.draw(graphics);
 		player.draw(graphics);
+		score.draw(graphics);
+		
 		
 	}
 	
