@@ -1,16 +1,17 @@
-package main;
+package map;
 
 import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 import java.awt.*;
 import javax.imageio.ImageIO;
+import java.awt.image.BufferedImage;
 /**
 * @author Josh Schijns
 * This class controls the ground, drawing and updating movement.
 */
 public class Ground extends MapObject {
-	private Image image;
+	private BufferedImage image;
 	
 	public Ground(){
 		super(0,0,525,1650);

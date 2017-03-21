@@ -1,10 +1,11 @@
-package main;
+package map;
 import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.*;
+import java.awt.image.BufferedImage;
 
 public class Player extends MapObject {
 	private BufferedImage[] image = new BufferedImage[8];

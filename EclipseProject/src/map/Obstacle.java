@@ -1,10 +1,11 @@
-package main;
+package map;
 import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.awt.*;
 import java.util.Random;
+import java.awt.image.BufferedImage;
 
 /**
  * @author  Katie Tieu
@@ -16,7 +17,7 @@ import java.util.Random;
  */
 
 public class Obstacle extends MapObject {
-  private Image image;
+  private BufferedImage image;
 
   public Obstacle() {
     this(1600, 0, 300, 150);
