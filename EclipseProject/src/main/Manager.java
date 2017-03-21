@@ -43,4 +43,5 @@ public class Manager {
 			player.toggleJump();
 		}
 	}
+	
 }
