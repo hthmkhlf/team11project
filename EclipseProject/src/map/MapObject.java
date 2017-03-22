@@ -8,7 +8,7 @@ import java.awt.Graphics2D;
 
 public abstract class MapObject {
 	
-	private int xCoordinate = 0;
+    private int xCoordinate = 0;
     private int yCoordinate = 0;
     private int height = 0;
     private int width = 0;
@@ -46,6 +46,14 @@ public abstract class MapObject {
     }
 
     /**
+    * This method sets the X coordinate
+    * @param newX set the X to a new location, no restriction due to objects moving on and off screen
+    */
+    public void setX(int newX){
+    	xCoordinate =newX;
+    }	
+	
+    /**
     * This method sets the Y coordinate
     * @param newY sets Y within the window
     */
@@ -56,11 +64,23 @@ public abstract class MapObject {
     }
 
     /**
-    * This method sets the X coordinate
-    * @param newX set the X to a new location, no restriction due to objects moving on and off screen
-    */
-    public void setX(int newX){
-    	xCoordinate =newX;
+     * Setter for height
+     * @param height has to be greater than 0
+     */
+    public void setHeight(int height){
+        if (height >= 0){
+            this.height = height;
+        }
+    }
+	
+    /**
+     * Setter for width
+     * @param width has to be greater than 0
+     */
+    public void setWidth(int width){
+        if (width >= 0){
+            this.width = width;
+        }
     }
 
     /**
@@ -94,25 +114,6 @@ public abstract class MapObject {
     public int getWidth(){
     	return width;
     }
-    
-    /**
-     * Setter for width
-     * @param width has to be greater than 0
-     */
-    public void setWidth(int width){
-        if (width >= 0){
-            this.width = width;
-        }
-    }
-    
-    /**
-     * Setter for height
-     * @param height has to be greater than 0
-     */
-    public void setHeight(int height){
-        if (height >= 0){
-            this.height = height;
-        }
-    }
+
 }
 
