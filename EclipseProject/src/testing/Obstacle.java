@@ -20,50 +20,19 @@ public class Obstacle extends MapObject {
   private BufferedImage image;
   private int obstacleSize;
 
-  //public Obstacle() {
-  //  this(1600, 0, 300, 150);
-  //}
+  public Obstacle() {
+    this(1600, 0, 300, 150);
+  }
 
-  //public Obstacle(int x, int y, int height, int width) {
-   // super(x, y, height, width);
-    //try {
-     // image = ImageIO.read(new File("src/images/obstacle2.png"));
-    //} catch(IOException e) {
-     // e.printStackTrace();  // This will print errors to the console
-    //}
-  //}
-  	public Obstacle(){
-		this(1700);
-	}
-	
-	/**
-	 * Creates an obstacle off screen, and loads one of the three images
-	 * @param newX is the xCoordinate that it sets it to.
-	 */
-	public Obstacle(int newX){
-		this.setX(newX);
-		obstacleSize = (new Random().nextInt(3)) + 1;
-		// it randomly generates a number 
-		// that is associated with an image and sets the height of the image
-		// based on that with a switch statement
-		switch (obstacleSize){
-			case 1: setHeight(75);
-					this.setY(390);
-					break;
-			case 2: setHeight(150);
-					this.setY(315);
-					break;
-			case 3: setHeight(245);
-					this.setY(220);
-					break;
-		}
-		setWidth(75);
-		try {
-            image = ImageIO.read(new File("src/images/obstacle"+ obstacleSize +".png"));
-        }catch (IOException e ) {
-        	e.printStackTrace();
-        }
-	}
+  public Obstacle(int x, int y, int height, int width) {
+    super(x, y, height, width);
+    try {
+      image = ImageIO.read(new File("src/images/obstacle2.png"));
+    } catch(IOException e) {
+      e.printStackTrace();  // This will print errors to the console
+    }
+  }
+
 
   public Obstacle(Obstacle other) {
     super(other.getXCoord(), other.getYCoord(), other.getHeight(), other.getWidth());
