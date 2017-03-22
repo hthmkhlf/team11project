@@ -99,7 +99,7 @@ public class HighScore{
   }
 
 /**
-* Called by Game class when collision occurs (game over);
+* Called by the GameStatus class when collision occurs (game over);
 * Calls compareScores. Prints the high score to screen and
 * records it in file for next game occurance.
 */
