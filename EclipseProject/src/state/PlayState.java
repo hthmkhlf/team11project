@@ -5,7 +5,7 @@ import java.awt.Graphics2D;
 import map.*;
 /**
  * 
- * @author Josh Schijns
+ * @author Josh Schijns Haithem Khelif
  * This is the state of the game when the user is playing the actual Game
  *
  */
