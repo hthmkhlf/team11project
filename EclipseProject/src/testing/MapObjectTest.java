@@ -56,7 +56,7 @@ public class MapObjectTest {
   public void test8(){
     MapObject location = new MapObject(100,100,100,100);
     location.setHeight(400);
-    assertEquals("Expected height to be 400", 400, location.getWidth());
+    assertEquals("Expected height to be 400", 400, location.getHeight());
   }
 
   @Test
@@ -69,6 +69,6 @@ public class MapObjectTest {
   @Test
   public void test10(){
     MapObject location = new MapObject(0,0);
-    assertEquals("Setting other to (1,1), expecting false", false, location.isCollision(1,1));
+    assertEquals("Should get the scroll rate of 10", 10, location.getScroll());
   }
 }
