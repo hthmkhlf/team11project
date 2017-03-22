@@ -1,47 +1,62 @@
 package main;
-import entity.*;
 
 import java.awt.event.KeyEvent;
+import state.*;
 
 
-
+/**
+ * @author Josh Schijns
+ * This class manages the state of the game, for now there is only one state.
+ */
 public class Manager {
-	private Player player;
-	private Obstacle obstacle; 
-	private Background background;
-	private Ground ground;
-	private HighScoreGUI score;
-	
+	private PlayState play;
+//	private MenuState menu;
+	private int currentState;
+	private final int MENU = 0;
+	private final int PLAY = 1;
+
 	public Manager(){
-		player = new Player();
-		obstacle = new Obstacle();
-		background = new Background();
-		ground = new Ground();
-		score = new HighScoreGUI();
-		
+		currentState =PLAY;
+		loadState(currentState);
 	}
+	
+	public void loadState(int state){
+		if(state == MENU){
+//			menu = new MenuState();
+		}
+		if(state == PLAY){
+			play = new PlayState();
+		}
+	}
+	
+	
 	public void update(){
-		player.update();
-		background.update();
-		ground.update();
-		obstacle.update();
-		score.update();
+		if(currentState == MENU){
+//			menu.update();
+		}
+		if(currentState == PLAY){
+			play.update();
+		}
 	}
 	
 	public void draw(java.awt.Graphics2D graphics){
-		background.draw(graphics);
-		ground.draw(graphics);		
-		obstacle.draw(graphics);
-		player.draw(graphics);
-		score.draw(graphics);
-		
+		if(currentState == MENU){
+//			menu.draw(graphics);
+		}
+		if(currentState == PLAY){
+			play.draw(graphics);
+		}
 		
 	}
 	
 	public void keyPressed(int key){
-		if(key == KeyEvent.VK_UP){
-			player.toggleJump();
+		if(currentState == MENU){
+//			menu.keyPressed(key);
+		}
+		if(currentState == PLAY){
+			play.keyPressed(key);
 		}
 	}
+	
 	
 }
