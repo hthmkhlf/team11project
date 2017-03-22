@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 /**
 *@author Emily Flanagan
-*@since 2017-03-20
+*@since 2017-03-22
 * This is a child class of Game class
 */
 
@@ -17,32 +17,7 @@ public class HighScore{
   private Timer score = new Timer();
 
 /**
-* Reads all high scores in from the file HighScoreBoard.txt
-*Prints each score on the line with the name of who got it
-*/
-  public void highScoreBoard() {
-    String fileName = "HighScoreBoard.txt";
-    String line = null;
-
-    try{
-      FileReader fileReader = new FileReader(fileName);
-      BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-      while((line = bufferedReader.readLine()) != null){
-        System.out.println(line);
-      }
-      bufferedReader.close();
-    }
-    catch(FileNotFoundException ex){
-      System.out.println("Unable to open file");
-    }
-    catch(IOException ex){
-      System.out.println("Error reading file");
-    }
-  }
-
-/**
-* defines the event for Timer; adds 1 point to user score every second
+* Defines the event for Timer; adds 1 point to user score every second
 */
   TimerTask count = new TimerTask() {
     public void run(){
