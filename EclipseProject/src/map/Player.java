@@ -1,31 +1,44 @@
 package map;
 import java.awt.Graphics2D;
-import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
+
+/**
+ * Controls the Player and allows movement of it.
+ * @author Dou, Zhi Chao and Josh Schijns.
+ * 
+ */
 public class Player extends MapObject {
 	private BufferedImage[] image = new BufferedImage[8];
-	// I use these two booleans for when the player is jumping
+	// Used for when the player is jumping.
 	private boolean jumping = false;
-	private boolean falling = false; // will use this for animations possibly, but not sure
 	
-	// -20 is good for a small jump, -30 for a big jump, add in a key released function for later
-	// These variables are used for the players jump algorithm 
-	private double jumpSpeed = -25;
+	// These variables are used for the players jump algorithm and animations with it. 
+	private final double MAX_SPEED = -35;
+	private final double MIN_SPEED = -15;
+	private double jumpSpeed = -15;
 	private double fallSpeed = 1.5;
 	private double distance;
 	private int timeChange = 0;
 	private final int GROUND = 349;
 	private int frameNum = 0;
+	private boolean speed = false;
+	
+	
 	
 	public Player(){
 		this(50,350,100,100);
 	}
-	
+	/**
+	 * Constructor for Player, loads all the images for the player
+	 * @param newX is the x-coord it will start at
+	 * @param newY is the y-coord it will start at
+	 * @param height is the height of the player
+	 * @param width is the width of the player
+	 */
 	public Player(int newX, int newY, int height, int width){
 		super(newX, newY, height, width);
 		for(int frame = 0; frame < 8; frame++)
@@ -53,32 +66,51 @@ public class Player extends MapObject {
 		}
 	}
 	
-	
+	/**
+	 * Resets the jump speed to its minimal value after the player lands.
+	 * Also prevents the player from jumping another time while already jumping
+	 */
 	public void toggleJump(){
 		if(!jumping){
 			jumping = true;
 			frameNum = 0;
+			jumpSpeed = MIN_SPEED;
 		}
 	}
+	
+	
 	public void update(){
 		movement();
+	}	
+	
+	/**
+	 * toggles the speed boolean which allows the player to go faster or not
+	 * @param speeding if it is true will allow the player to continue to gain speed.
+	 */
+	public void setSpeed(boolean speeding){
+		if(speeding){
+			speed = true;
+		}else{
+			speed = false;
+		}
 	}
-
 	
-	
+	/**
+	 * Controls the movement of the player
+	 */
 	protected void movement(){
+		if((speed) && (jumpSpeed >  MAX_SPEED)){
+			jumpSpeed--;
+		}
+		// Allows the player to change its y coordinate over time to create a smooth jump
 		if(jumping){
 			distance = jumpSpeed + fallSpeed * timeChange;
 			timeChange++;
 			setY((int)(getYCoord() + distance));
-			if (distance > 0){
-				falling = true;
-			}
 			distance = 0;
 			if (getYCoord() > GROUND ){
 				jumping = false;
 				timeChange = 0;
-				falling = false;
 				setY(GROUND + 1);
 			}
 		}

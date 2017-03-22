@@ -4,17 +4,23 @@ import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.awt.image.BufferedImage;
 
+/**
+ * Sets up the background for the game and scrolls at a slower rate
+ * @author Josh Schijns
+ *
+ */
 public class Background extends MapObject {
 	private BufferedImage image;
 	private double rate = 2;
 	
+	/**
+	 * Default constructor, calls MapObject to set it's values and loads the image
+	 */
 	public Background(){
 		super(0,0,550,1700);
 		try {
-        	// TODO change the path for the file, figure out how to shorten it in eclipse, make sure to put the double \ due to it being an escape code
             image = ImageIO.read(new File("src/images/layer1.png"));
         }catch (IOException e ) {
         	e.printStackTrace(); // this will print errors to the console
@@ -38,7 +44,7 @@ public class Background extends MapObject {
 	}
 
 	@Override
-	public void movement() {
+	protected void movement() {
 		setX((int)(getXCoord() - rate));
 	}
 

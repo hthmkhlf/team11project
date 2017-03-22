@@ -2,11 +2,9 @@ package map;
 /**
  * @author Josh Schijns 
  * This is the parent class to all map objects, will handle its width, height, xCoord and yCoord.
- * Will document more later
+ * Has three abstract methods, draw(), update(); and movement();
  */
-
 import java.awt.Graphics2D;
-
 
 public abstract class MapObject {
 	
@@ -17,7 +15,6 @@ public abstract class MapObject {
     private static final int MAX_Y = 550;
     private static final int MIN_Y = 0;
     protected int scrollRate = 10;
-//    private static final int MAX_X = 1650; // Not currently used
 
     public MapObject(){
     	setX(0);
@@ -40,6 +37,10 @@ public abstract class MapObject {
     public abstract void update();
     protected abstract void movement();
     
+    /**
+     * Scroll rate is the rate at which the map moves each frame
+     * @return scrollRate
+     */
     protected int getScroll(){
     	return scrollRate;
     }
@@ -56,53 +57,62 @@ public abstract class MapObject {
 
     /**
     * This method sets the X coordinate
-    * @param newX set the X within the window
+    * @param newX set the X to a new location, no restriction due to objects moving on and off screen
     */
     public void setX(int newX){
     	xCoordinate =newX;
-        
     }
 
+    /**
+     * Getter for xCoordinate
+     * @return xCoordinate
+     */
     public int getXCoord(){
         return xCoordinate;
     }
 
+    /**
+     * Getter for yCoordinate
+     * @return yCoordinate
+     */
     public int getYCoord(){
         return yCoordinate;
     }
     
+    /**
+     * Getter for height
+     * @return height
+     */
     public int getHeight(){
     	return height;
     }
     
+    /**
+     * Getter for width
+     * @return width
+     */
     public int getWidth(){
     	return width;
     }
     
+    /**
+     * Setter for width
+     * @param width has to be greater than 0
+     */
     public void setWidth(int width){
         if (width >= 0){
             this.width = width;
         }
     }
     
+    /**
+     * Setter for height
+     * @param height has to be greater than 0
+     */
     public void setHeight(int height){
         if (height >= 0){
             this.height = height;
         }
     }
-
-    /**
-    *This method determines if there is a collision or not
-    * @param xCoordOther is the x coordinate of the other object
-    * @param yCoordOther is the y coordinate of the other object
-    */
-    public boolean isCollision(int xCoordOther, int yCoordOther){
-        boolean collision = false;
-        if ((xCoordOther == xCoordinate) && (yCoordOther == yCoordinate)){
-            collision = true;
-        }
-        return collision;
-    }
-
 }
 
