@@ -11,7 +11,7 @@ import java.util.TimerTask;
 */
 
 public class HighScore{
-  private boolean gameInProgress = true;
+//  private boolean gameInProgress = true;
   private int userScore = 0;
   private int currentHighScore = 0;
   private Timer score = new Timer();
@@ -29,7 +29,7 @@ public class HighScore{
 * Starts the timer
 */
   public void start() {
-    score.scheduleAtFixedRate(count, 0, 3000);
+    score.scheduleAtFixedRate(count, 0, 500);
   }
 
   public int getUserScore() {
@@ -99,23 +99,23 @@ public class HighScore{
   }
 
 /**
-* Called by the GameStatus class when collision occurs (game over);
+* Called by Game class when collision occurs (game over);
 * Calls compareScores. Prints the high score to screen and
 * records it in file for next game occurance.
 */
-  public void gameHasEnded(){
-    gameInProgress = false;
-    score.cancel();
-    currentHighScore = highScore.previousHighScore();
-    boolean isHigher = highScore.compareScores();
-    if (isHigher){
-      System.out.println("You got the new high score!");
-      highScore.writeInNewScore();
-    }
-    else{
-      System.out.println("You did not get a new high score.");
-      System.out.println("The score to beat is " + currentHighScore);
-    }
-  }
+//  public void gameHasEnded(){
+//    gameInProgress = false;
+//    score.cancel();
+//    currentHighScore = highScore.previousHighScore();
+//    boolean isHigher = highScore.compareScores();
+//    if (isHigher){
+//      System.out.println("You got the new high score!");
+//      highScore.writeInNewScore();
+//    }
+//    else{
+//      System.out.println("You did not get a new high score.");
+//      System.out.println("The score to beat is " + currentHighScore);
+//    }
+//  }
 
 }
