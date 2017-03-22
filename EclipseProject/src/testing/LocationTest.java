@@ -1,15 +1,15 @@
 import static org.junit.Assert.*;
 import org.junit.Test;
 
-public class LocationTest {
+public class MapObjectTest {
 
-  // Testing setter and getter for X coordinate
+  // Testing default
   @Test
   public void test1(){
-    MapObject location = new MapObject(0,0);
+    MapObject location = new MapObject();
     assertEquals("Expected initial X Coordinate to be 0",0,location.getXCoord());
   }
-
+  // Testing setter and getter for X coordinate
   @Test
   public void test2(){
     MapObject location = new MapObject(1,1);
@@ -27,7 +27,7 @@ public class LocationTest {
   public void test4(){
     MapObject location = new MapObject(2,2);
     location.setX(5);
-    assertEquals("Expected x coordinate to be 7",7,location.getXCoord());
+    assertEquals("Expected x coordinate to be 5",5,location.getXCoord());
   }
 
   // Testing setter and getter for Y coordinate
@@ -39,29 +39,31 @@ public class LocationTest {
 
   @Test
   public void test6(){
-    MapObject location = new MapObject(1,2);
-    location.setY(1);
-    assertEquals("Setting y location to above limit, expecting to stay at 2", 2, location.getYCoord());
+    MapObject location = new MapObject(1,200);
+    location.setY(2000);
+    assertEquals("Setting y location to above limit, expecting to stay at 200", 200, location.getYCoord());
   }
 
   @Test
   public void test7(){
     MapObject location = new MapObject(1,1);
     location.setY(-1);
-    assertEquals("Expected to be 0", 0, location.getYCoord());
+    assertEquals("Expected to be 1", 1, location.getYCoord());
   }
 
-  // Testing isCollision
+  // Testing Contructor with 4 arguments
   @Test
   public void test8(){
-    MapObject location = new MapObject(2,2);
-    assertEquals("Setting other to (2,2), expecting to be true", true, location.isCollision(2,2));
+    MapObject location = new MapObject(100,100,100,100);
+    location.setHeight(400);
+    assertEquals("Expected height to be 400", 400, location.getWidth());
   }
 
   @Test
   public void test9(){
-    MapObject location = new MapObject(3,0);
-    assertEquals("Setting other to (3,1), expecting false", false, location.isCollision(3,1));
+    MapObject location = new MapObject(3,0,100,200);
+    location.setWidth(-200);
+    assertEquals("Expected width to be 200", 200, location.getWidth());
   }
 
   @Test
