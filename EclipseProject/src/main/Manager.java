@@ -5,7 +5,7 @@ import state.*;
 
 
 /**
- * @author Josh Schijns
+ * @author Josh Schijns Haithem Khelif
  * This class manages the state of the game, for now there is only one state.
  */
 public class Manager {
