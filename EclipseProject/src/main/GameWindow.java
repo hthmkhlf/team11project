@@ -8,7 +8,7 @@ import java.awt.image.*;
 import java.awt.event.*;
 /**
  * 
- * @author Josh Schijns
+ * @author Josh Schijns and Haithem Khelif
  * Handles the panel in which everything is drawn onto and manages key listeners
  */
 
