@@ -9,10 +9,7 @@ import javax.swing.JFrame;
 public class Main {
     public static void main(String[] args) {
     /* Create the instance variables needed to run the game */
-//    public static GameWindow GameWindow;
     GameWindow gameWindow = new GameWindow();
-    Menu menu = new Menu();
-    GameStatus status = new GameStatus();
 
         // TODO Auto-generated method stub
         // Setting the frame environment
@@ -22,13 +19,10 @@ public class Main {
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
         frame.setAlwaysOnTop(true);
+       
         frame.setVisible(true);
-        
-        if (status.getStatus() == 1) {
-        	frame.setContentPane(menu);
-        }else if (status.getStatus() == 2) {
-        	frame.setContentPane(gameWindow);
-        }
+    	frame.setContentPane(gameWindow);
+
      
 	}
 }

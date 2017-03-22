@@ -32,11 +32,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class Menu extends JPanel implements ActionListener{
-	// dimensions for the window
-	public static int WINDOW_WIDTH = 1650;
-	public static int WINDOW_HEIGHT = 550;
-	
-	// BackGround image
+		// BackGround image
 	private Image image;
 	
 	//Create Buttons
@@ -45,8 +41,6 @@ public class Menu extends JPanel implements ActionListener{
 	JButton credits = new JButton();
 	
 	//Initiate Game Status
-    private GameStatus status = new GameStatus();
-    private Manager manager = new Manager();
 
 	public Menu(){
 		super();
@@ -108,9 +102,5 @@ public class Menu extends JPanel implements ActionListener{
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-		if (e.getSource() == startButton) {
-			status.setStatus(2);
-			manager.update();
 		}
-	}
 }
