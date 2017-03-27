@@ -15,31 +15,6 @@ public class HighScore{
   private Timer score = new Timer();
 
 /**
-* Reads all high scores in from the file HighScoreBoard.txt
-*Prints each score on the line with the name of who got it
-*/
-  public void highScoreBoard() {
-    String fileName = "HighScoreBoard.txt";
-    String line = null;
-
-    try{
-      FileReader fileReader = new FileReader(fileName);
-      BufferedReader bufferedReader = new BufferedReader(fileReader);
-
-      while((line = bufferedReader.readLine()) != null){
-        System.out.println(line);
-      }
-      bufferedReader.close();
-    }
-    catch(FileNotFoundException ex){
-      System.out.println("Unable to open file");
-    }
-    catch(IOException ex){
-      System.out.println("Error reading file");
-    }
-  }
-
-/**
 * defines the event for Timer; adds 1 point to user score every second
 */
   TimerTask count = new TimerTask() {
@@ -140,6 +115,10 @@ public class HighScore{
       System.out.println("The score to beat is " + currentHighScore);
     }
   }
+  /**
+  * Reads all high scores in from the file HighScoreBoard.txt
+  *Prints each score on the line with the name of who got it
+  */
 
   public void updateHighScoreBoard(String playerName, int userScore) {
     ArrayList<String> scores = new ArrayList<>();
@@ -177,6 +156,9 @@ public void printBoardToScreen(ArrayList scores){
     FileWriter fWriter = new FileWriter(fileName);
     BufferedWriter bWriter = new BufferedWriter(fWriter);
     int size = scores.size();
+    if (size>10){
+      size = 10;
+    }
     for (int i=0; i<size; i++) {
       String writeIn = scores.get(i).toString();
       bWriter.write(writeIn);
