@@ -1,23 +1,46 @@
-package main;
-
 import java.io.*;
 import java.util.Timer;
 import java.util.TimerTask;
 
 /**
 *@author Emily Flanagan
-*@since 2017-03-22
+*@since 2017-03-20
 * This is a child class of Game class
 */
 
 public class HighScore{
-//  private boolean gameInProgress = true;
+  private boolean gameInProgress = true;
   private int userScore = 0;
   private int currentHighScore = 0;
   private Timer score = new Timer();
 
 /**
-* Defines the event for Timer; adds 1 point to user score every second
+* Reads all high scores in from the file HighScoreBoard.txt
+*Prints each score on the line with the name of who got it
+*/
+  public void highScoreBoard() {
+    String fileName = "HighScoreBoard.txt";
+    String line = null;
+
+    try{
+      FileReader fileReader = new FileReader(fileName);
+      BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+      while((line = bufferedReader.readLine()) != null){
+        System.out.println(line);
+      }
+      bufferedReader.close();
+    }
+    catch(FileNotFoundException ex){
+      System.out.println("Unable to open file");
+    }
+    catch(IOException ex){
+      System.out.println("Error reading file");
+    }
+  }
+
+/**
+* defines the event for Timer; adds 1 point to user score every second
 */
   TimerTask count = new TimerTask() {
     public void run(){
@@ -29,7 +52,7 @@ public class HighScore{
 * Starts the timer
 */
   public void start() {
-    score.scheduleAtFixedRate(count, 0, 500);
+    score.scheduleAtFixedRate(count, 0, 3000);
   }
 
   public int getUserScore() {
@@ -103,19 +126,69 @@ public class HighScore{
 * Calls compareScores. Prints the high score to screen and
 * records it in file for next game occurance.
 */
-//  public void gameHasEnded(){
-//    gameInProgress = false;
-//    score.cancel();
-//    currentHighScore = highScore.previousHighScore();
-//    boolean isHigher = highScore.compareScores();
-//    if (isHigher){
-//      System.out.println("You got the new high score!");
-//      highScore.writeInNewScore();
-//    }
-//    else{
-//      System.out.println("You did not get a new high score.");
-//      System.out.println("The score to beat is " + currentHighScore);
-//    }
-//  }
+  public void gameHasEnded(){
+    gameInProgress = false;
+    score.cancel();
+    currentHighScore = highScore.previousHighScore();
+    boolean isHigher = highScore.compareScores();
+    if (isHigher){
+      System.out.println("You got the new high score!");
+      highScore.writeInNewScore();
+    }
+    else{
+      System.out.println("You did not get a new high score.");
+      System.out.println("The score to beat is " + currentHighScore);
+    }
+  }
+
+  public void updateHighScoreBoard(String playerName, int userScore) {
+    ArrayList<String> scores = new ArrayList<>();
+    String fileName = "HighScoreBoard.txt";
+    String line = null;
+
+    try{
+      FileReader fileReader = new FileReader(fileName);
+      BufferedReader bufferedReader = new BufferedReader(fileReader);
+
+      while((line = bufferedReader.readLine()) != null){
+        System.out.println(line);
+        scores.add(line);
+      }
+      bufferedReader.close();
+    }
+    catch(FileNotFoundException ex){
+      System.out.println("Unable to open file");
+    }
+    catch(IOException ex){
+      System.out.println("Error reading file");
+    }
+
+    String name = "     " + playerName;
+    String newScore = int.toString(userScore) + name;
+    scores.add(newScore);
+    Collections.sort(scores);
+    Collections.reverse(scores);
+    printBoardToScreen();
+}
+
+public void printBoardToScreen(ArrayList scores){
+  String fileName = "HighScoreBoard.txt";
+  try{
+    FileWriter fWriter = new FileWriter(fileName);
+    BufferedWriter bWriter = new BufferedWriter(fWriter);
+    int size = scores.size();
+    for (int i=0; i<size; i++) {
+      String writeIn = scores.get(i).toString();
+      bWriter.write(writeIn);
+      bWriter.newLine();
+    }
+    bWriter.close();
+    fWriter.close();
+  }
+  catch(IOException ex){
+    ex.printStackTrace();
+    }
+}
+
 
 }
