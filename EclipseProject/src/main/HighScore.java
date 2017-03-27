@@ -1,6 +1,5 @@
 import java.io.*;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 /**
 *@author Emily Flanagan
@@ -104,11 +103,11 @@ public class HighScore{
   public void gameHasEnded(){
     gameInProgress = false;
     score.cancel();
-    currentHighScore = highScore.previousHighScore();
-    boolean isHigher = highScore.compareScores();
+    currentHighScore = this.previousHighScore();
+    boolean isHigher = this.compareScores();
     if (isHigher){
       System.out.println("You got the new high score!");
-      highScore.writeInNewScore();
+      this.writeInNewScore();
     }
     else{
       System.out.println("You did not get a new high score.");
@@ -143,11 +142,11 @@ public class HighScore{
     }
 
     String name = "     " + playerName;
-    String newScore = int.toString(userScore) + name;
+    String newScore = Integer.toString(userScore) + name;
     scores.add(newScore);
     Collections.sort(scores);
     Collections.reverse(scores);
-    printBoardToScreen();
+    printBoardToScreen(scores);
 }
 
 public void printBoardToScreen(ArrayList scores){
