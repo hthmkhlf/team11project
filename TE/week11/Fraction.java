@@ -63,6 +63,7 @@ public class Fraction {
      * @param value the new value for the numerator.
      */
     public void setNumerator(int value) {
+
         numerator = value;
         simplify();
     }
@@ -89,16 +90,33 @@ public class Fraction {
         return numerator + "/" +denominator;
     }
 
-    public static void main(String[] args){
-      while(true){
-        Scanner keyboard = new Scanner(System.in);
-        System.out.print("numerator: ");
-        int num = keyboard.nextInt();
-        System.out.print("denominator: ");
-        int den = keyboard.nextInt();
-        Fraction frac = new Fraction(num,den);
-        System.out.println("You created: " + frac.toString()+"\n");
-      }
+    public void init() {
+        try {
+            Scanner keyboard = new Scanner(System.in);
+            System.out.print("Enter denominator: ");
+            int den = keyboard.nextInt();
+            setDenominator(den);
+            System.out.print("Enter numerator: ");
+            int num = keyboard.nextInt();
+            setNumerator(num);
+            System.out.println("You created: " + toString()+"\n");
+        }catch(InputMismatchException e) {
+            System.out.println("Please enter whole numbers only");
+            init();
+        }catch(IllegalArgumentException e) {
+            System.out.println("Denominator of 0 is not valid");
+            init();
+        }
     }
+
+    public void getInput() {
+
+    }
+
+    public static void main(String[] args){
+        Fraction f = new Fraction();
+        f.init();
+    }
+
 
 }
