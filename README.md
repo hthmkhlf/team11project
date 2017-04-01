@@ -15,6 +15,7 @@
       <li><a href = "https://drive.google.com/file/d/0B-7YCfsgJak_X1NHQWMyWm1oWVE/view?usp=sharing" >Our UML Diagram
       </a></li>
       <li><a href = "http://rogerdudler.github.io/git-guide/" >git - the simple guide </a></li>
+       <li><a href = "https://docs.google.com/spreadsheets/d/1qvakiPCu_MMqP5uAESXwa_ICUiv4Z0qdigGe5DIoIKQ/edit#gid=0" >To-Do List </a></li>
     </ul>
 </div2>
 <div3>
