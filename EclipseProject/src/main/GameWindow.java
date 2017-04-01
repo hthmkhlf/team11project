@@ -1,19 +1,16 @@
 package main;
 import javax.swing.JPanel;
-
-// was thinking we should create different packages instead of just main
-
 import java.awt.*;
 import java.awt.image.*;
-import java.awt.event.*;
 /**
  * 
- * @author Josh Schijns and Haithem Khelif
+ * @author Josh Schijns
  * Handles the panel in which everything is drawn onto and manages key listeners
+ * The window will be redrawn at a rate of 30 frames per second.
  */
 
 @SuppressWarnings("serial")
-public class GameWindow extends JPanel implements Runnable, KeyListener{
+public class GameWindow extends JPanel{
 	// dimensions for the window
 	public static int WINDOW_WIDTH = 1650;
 	public static int WINDOW_HEIGHT = 550;
@@ -21,91 +18,35 @@ public class GameWindow extends JPanel implements Runnable, KeyListener{
 	// images
 	private Graphics2D graphics;
 	private BufferedImage image;
+	private Driver driver = new Driver(this);
 
-	private Manager manager = new Manager();
-	
-	private int FPS = 30;
-	private double averageFPS;
-	
-	
-	
-	private Thread thread;
-	private boolean running;
-	
+	/**
+	 * Default Constructor, it sets the window size for the panel and sets focus to it.
+	 */
 	public GameWindow(){
 		super();
 		setPreferredSize(new Dimension(WINDOW_WIDTH, WINDOW_HEIGHT));
 		setFocusable(true);
 		requestFocus();
+		addKeyListener(driver);
 	}
 	
 	public void addNotify(){
 		super.addNotify();
-		if(thread == null){
-			thread = new Thread(this);
-			thread.start();
-		}
-		addKeyListener(this);
-	}
-	
-	public void run(){
-		running = true;
-		
-		image = new BufferedImage(WINDOW_WIDTH, WINDOW_HEIGHT, BufferedImage.TYPE_INT_RGB);
-		graphics = (Graphics2D) image.getGraphics();
-		//used for establishing time
-		long startTime;
-		long elapsedTime;
-		long waitTime;
-		long totalTime = 0;
-		int frameCount = 0;
-		int maxFrameCount = 30;
-		long targetTime = 1000 / FPS;
-		
-		
-		while(running){
-			startTime = System.nanoTime();
-			
-			gameUpdate();
-			gameRender();
-			gameDraw();
-			// This is used to calculate the time that has elapsed since starting the timer,
-			// the wait time is used to put the thread to sleep so it lasts the targetTime.
-			// The total time keeps track of how long it takes to run through 30 frames and establishes an
-			// average rate. 
-			elapsedTime = (System.nanoTime() - startTime) / 1000000;
-			waitTime = targetTime - elapsedTime;
-			if(waitTime < 0){
-				waitTime = 0;
-			}
-			try{
-				Thread.sleep(waitTime);
-			}catch(Exception e){
-				e.printStackTrace();
-			}
-			totalTime += System.nanoTime() - startTime;
-			frameCount++;
-			if(frameCount == maxFrameCount){
-				averageFPS = 1000.0 / ((totalTime / frameCount) / 1000000);
-				frameCount = 0;
-				totalTime = 0;
-			}
-			
+		if(driver.getThread() == null){
+			driver.setThread();
 		}
 	}
+	/**
+	 * This method is what is run by the thread. The loop within it is used to establish
+	 * a frames per second. If the amount of time that occurs is faster than we want, it
+	 * will put the thread to sleep to keep a constant rate.
+	 */
 	
-	private void gameUpdate(){
-		//updating everthing
-		manager.update();
-	}
-	
-	private void gameRender(){
-		//draw everything to offscreen so it is loaded
+	// draw everything offscreen so it is loaded
+	private void gameRender(Manager manager){
 		super.paint(graphics);
 		manager.draw(graphics);
-		graphics.drawString("FPS: "+ averageFPS, 10, 10);
-
-		
 	}
 	
 	private void gameDraw(){
@@ -115,9 +56,10 @@ public class GameWindow extends JPanel implements Runnable, KeyListener{
 		graphics2.dispose();
 	}
 	
-	public void keyTyped(KeyEvent key){}
-	public void keyPressed(KeyEvent key){
-		manager.keyPressed(key.getKeyCode());
+	public void starting(Manager manager){
+		image = new BufferedImage(WINDOW_WIDTH, WINDOW_HEIGHT, BufferedImage.TYPE_INT_RGB);
+		graphics = (Graphics2D) image.getGraphics();
+		gameRender(manager);
+		gameDraw();
 	}
-	public void keyReleased(KeyEvent key){}
 }
