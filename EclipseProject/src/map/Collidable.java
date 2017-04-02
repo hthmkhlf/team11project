@@ -1,6 +1,7 @@
 package map;
 
 /**
+ * @author Katie Tieu
  * This is a child class to MapObject and parent class to Obstacle, Boost, and Coin.
  * This class contains the abstract method actionCollision()
  * which controls what happens when the player collides with an object
