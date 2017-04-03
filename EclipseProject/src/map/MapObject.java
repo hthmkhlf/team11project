@@ -34,8 +34,8 @@ public abstract class MapObject {
     
     // Abstract methods. draw update and movement are methods all MapObjects must contain and are specific to each subclass
     public abstract void draw(Graphics2D graphics);
-    public abstract void update();
-    protected abstract void movement();
+    public abstract void movement();
+    public abstract boolean collisionCheck(Player player);
     
     /**
      * Scroll rate is the rate at which the map moves each frame

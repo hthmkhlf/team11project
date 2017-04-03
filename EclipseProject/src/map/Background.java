@@ -38,14 +38,15 @@ public class Background extends MapObject {
 	}
 
 	@Override
-	public void update() {
-		movement();
-
+	public void movement() {
+		setX((int)(getXCoord() - rate));
 	}
 
+
 	@Override
-	protected void movement() {
-		setX((int)(getXCoord() - rate));
+	public boolean collisionCheck(Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }

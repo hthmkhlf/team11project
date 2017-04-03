@@ -2,6 +2,7 @@ package map;
 
 import main.HighScore;
 
+import java.awt.Color;
 import java.awt.Graphics2D;
 /**
  * Creates the GUI for the Score of the current Player
@@ -9,27 +10,30 @@ import java.awt.Graphics2D;
  *
  */
 public class HighScoreGUI extends MapObject {
-	private HighScore highScore = new HighScore();
+	private HighScore highScore;
 	private int score = 0;
 	
 	public HighScoreGUI(){
-		super(1500,10);
+		super(1550,50);
+		highScore = new HighScore();
 		highScore.start();		
 	}
 	
 	@Override
 	public void draw(Graphics2D graphics) {
-		String display = "Score: " + score;
+		String display = ("Score: " + score);
+		graphics.setColor(Color.BLACK);
 		graphics.drawString(display, getXCoord(), getYCoord());
 	}
 
 	@Override
-	public void update() {
-		movement();
+	public void movement() {
+		score = highScore.getUserScore();
 	}
 
 	@Override
-	protected void movement() {
-		score = highScore.getUserScore();
+	public boolean collisionCheck(Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

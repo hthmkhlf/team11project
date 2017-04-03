@@ -77,11 +77,7 @@ public class Player extends MapObject {
 			jumpSpeed = MIN_SPEED;
 		}
 	}
-	
-	
-	public void update(){
-		movement();
-	}	
+		
 	
 	/**
 	 * toggles the speed boolean which allows the player to go faster or not
@@ -98,7 +94,7 @@ public class Player extends MapObject {
 	/**
 	 * Controls the movement of the player
 	 */
-	protected void movement(){
+	public void movement(){
 		if((speed) && (jumpSpeed >  MAX_SPEED)){
 			jumpSpeed--;
 		}
@@ -114,5 +110,10 @@ public class Player extends MapObject {
 				setY(GROUND + 1);
 			}
 		}
+	}
+	@Override
+	public boolean collisionCheck(Player player) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }

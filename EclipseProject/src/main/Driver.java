@@ -5,7 +5,7 @@ import java.awt.event.KeyListener;
 
 public class Driver implements Runnable, KeyListener {
 	
-	private Thread thread;
+	private Thread thread; 
 	private boolean running;
 	private int FPS = 30;
 	private double averageFPS; //used to check if running smoothly
@@ -72,6 +72,7 @@ public class Driver implements Runnable, KeyListener {
 	
 	public void gameUpdate(){
 		manager.update();
+		System.out.println(averageFPS);
 	}
 	
 	/**
