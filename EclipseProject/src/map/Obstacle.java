@@ -74,13 +74,9 @@ public class Obstacle extends MapObject {
   	graphics.drawImage(image, getXCoord(),getYCoord(),getWidth(),getHeight(),null);
   }
 
-  @Override
-  public void update() {
-    movement();
-  }
 
   @Override
-  protected void movement() {
+  public void movement() {
     setX((int)(getXCoord() - getScroll()));
   }
 
