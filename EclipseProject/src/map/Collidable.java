@@ -22,40 +22,24 @@ public abstract class Collidable extends MapObject{
   public abstract void collisionAction(Player player);
 
 
-// more or less copied + pasted from PlayState
   /**
-   * This method checks whether the player has collided with an object
-   * and calls actionCollision() accordingly.
-   * Colliding with an obstacle causes the player to lose and the game to end.
-   * Colliding with a coin increases the player's score.
-   * Colliding with a boost gives a one-time boost to the player's jump.
-   * @param obstacle the obstacle which is checked
-   * @param boost the boost which is checked
-   * @param coin the coin which is checked
-   * @param the player whose coordinates are used
+   * This method checks whether the player has collided with an object and calls collisionAction() accordingly.
+   * @param player the player whose location is being checked
    */
-  public void collisionCheck(Obstacle obstacle, Boost boost, Coin coin, Player player){
-    int playerLeft = 70;
-    int playerRight = 125;
+  public void collisionCheck(Player player) {
+    int playerLeft = player.getXCoord();
+    int playerRight = player.getXCoord() + player.getWidth();
     int playerTop = player.getYCoord();
-    int playerBottom = player.getYCoord() + 80;
-    if (((playerLeft >= obstacle.getXCoord()) && (playerLeft <= obstacle.getXCoord()+obstacle.getWidth()))
-      || ((playerRight >= obstacle.getXCoord())&&(playerRight <= (obstacle.getXCoord()+obstacle.getWidth())))){
-      if (((playerTop >= obstacle.getYCoord())&&(playerTop <= (obstacle.getYCoord()+obstacle.getHeight())))
-        || ((playerBottom >= obstacle.getYCoord())&&(playerBottom <= (obstacle.getYCoord()+obstacle.getHeight())))){
-				obstacle.collisionAction(player);
-      }
-    }else if (((playerLeft >= boost.getXCoord()) && (playerLeft <= boost.getXCoord()+boost.getWidth()))
-      || ((playerRight >= boost.getXCoord())&&(playerRight <= (boost.getXCoord()+boost.getWidth())))){
-      if (((playerTop >= boost.getYCoord())&&(playerTop <= (boost.getYCoord()+boost.getHeight())))
-        || ((playerBottom >= boost.getYCoord())&&(playerBottom <= (boost.getYCoord()+boost.getHeight())))){
-        boost.collisionAction(player);
-      }
-    }else if (((playerLeft >= coin.getXCoord()) && (playerLeft <= coin.getXCoord()+coin.getWidth()))
-      || ((playerRight >= coin.getXCoord())&&(playerRight <= (coin.getXCoord()+coin.getWidth())))){
-      if (((playerTop >= coin.getYCoord())&&(playerTop <= (coin.getYCoord()+coin.getHeight())))
-        || ((playerBottom >= coin.getYCoord())&&(playerBottom <= (coin.getYCoord()+coin.getHeight())))){
-        coin.actionCollision(player);
+    int playerBottom = player.getYCoord() + player.getHeight();
+    int collidableObjectLeft = this.getXCoord();
+    int collidableObjectRight = this.getXCoord() + this.getWidth();
+    int collidableObjectTop = this.getYCoord();
+    int collidableObjectBottom = this.getYCoord() + this.getHeight();
+    if (((playerLeft >= collidableObjectLeft) && (playerLeft <= collidableObjectRight))
+    || ((playerRight >= collidableObjectLeft) && (playerRight <= collidableObjectRight))) {
+      if (((playerTop >= collidableObjectTop) && (playerTop <= collidableObjectBottom))
+      || ((playerBottom >= collidableObjectTop) && (playerBottom <= collidableObjectBottom))) {
+        this.collisionAction(player);
       }
     }
   }
