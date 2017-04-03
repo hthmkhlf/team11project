@@ -8,7 +8,7 @@ package map;
 public abstract class Collidable extends MapObject{
 
   public Collidable(){
-    super(0, 0, 50, 50);   //Change these values later
+    this(0, 0, 50, 50);   //Change these values later
   }
 
   public Collidable(int newX, int newY, int height, int width){
@@ -20,12 +20,16 @@ public abstract class Collidable extends MapObject{
    * Specific to each subclass.
    */
   public abstract void collisionAction();
+  public abstract void collisionAction(Player player);
 
 
 // more or less copied + pasted from PlayState
   /**
    * This method checks whether the player has collided with an object
    * and calls actionCollision() accordingly.
+   * Colliding with an obstacle causes the player to lose and the game to end.
+   * Colliding with a coin increases the player's score.
+   * Colliding with a boost gives a one-time boost to the player's jump.
    * @param obstacle the obstacle which is checked
    * @param boost the boost which is checked
    * @param coin the coin which is checked
@@ -46,7 +50,7 @@ public abstract class Collidable extends MapObject{
       || ((playerRight >= boost.getXCoord())&&(playerRight <= (boost.getXCoord()+boost.getWidth())))){
       if (((playerTop >= boost.getYCoord())&&(playerTop <= (boost.getYCoord()+boost.getHeight())))
         || ((playerBottom >= boost.getYCoord())&&(playerBottom <= (boost.getYCoord()+boost.getHeight())))){
-        boost.collisionAction();
+        boost.collisionAction(player);
       }
     }else if (((playerLeft >= coin.getXCoord()) && (playerLeft <= coin.getXCoord()+coin.getWidth()))
       || ((playerRight >= coin.getXCoord())&&(playerRight <= (coin.getXCoord()+coin.getWidth())))){
