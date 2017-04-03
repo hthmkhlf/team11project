@@ -57,14 +57,6 @@ public class Manager {
 			play.keyPressed(key);
 		}
 	}
-	public void keyReleased(int key){
-		if(currentState == MENU){
-//			menu.keyReleased(key);
-		}
-		if(currentState == PLAY){
-			play.keyReleased(key);
-		}
-	}
 	
 	public void keyReleased(int key){
 		if(currentState == MENU){
