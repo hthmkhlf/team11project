@@ -19,7 +19,6 @@ public abstract class Collidable extends MapObject{
    * Abstract method which controls what happens when a player collides with an object.
    * Specific to each subclass.
    */
-  public abstract void collisionAction();
   public abstract void collisionAction(Player player);
 
 
@@ -44,7 +43,7 @@ public abstract class Collidable extends MapObject{
       || ((playerRight >= obstacle.getXCoord())&&(playerRight <= (obstacle.getXCoord()+obstacle.getWidth())))){
       if (((playerTop >= obstacle.getYCoord())&&(playerTop <= (obstacle.getYCoord()+obstacle.getHeight())))
         || ((playerBottom >= obstacle.getYCoord())&&(playerBottom <= (obstacle.getYCoord()+obstacle.getHeight())))){
-				obstacle.collisionAction();
+				obstacle.collisionAction(player);
       }
     }else if (((playerLeft >= boost.getXCoord()) && (playerLeft <= boost.getXCoord()+boost.getWidth()))
       || ((playerRight >= boost.getXCoord())&&(playerRight <= (boost.getXCoord()+boost.getWidth())))){
@@ -56,7 +55,7 @@ public abstract class Collidable extends MapObject{
       || ((playerRight >= coin.getXCoord())&&(playerRight <= (coin.getXCoord()+coin.getWidth())))){
       if (((playerTop >= coin.getYCoord())&&(playerTop <= (coin.getYCoord()+coin.getHeight())))
         || ((playerBottom >= coin.getYCoord())&&(playerBottom <= (coin.getYCoord()+coin.getHeight())))){
-        coin.actionCollision();
+        coin.actionCollision(player);
       }
     }
   }
