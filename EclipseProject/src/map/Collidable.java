@@ -26,22 +26,25 @@ public abstract class Collidable extends MapObject{
    * This method checks whether the player has collided with an object and calls collisionAction() accordingly.
    * @param player the player whose location is being checked
    */
-  public void collisionCheck(Player player) {
-    int playerLeft = player.getXCoord();
-    int playerRight = player.getXCoord() + player.getWidth();
+  public boolean collisionCheck(Player player) {
+    boolean collision = false;
+    int playerLeft = 70; //I use this values instead of getting X because we dont care if his tail or beak run into stuff
+    int playerRight = 125;
     int playerTop = player.getYCoord();
     int playerBottom = player.getYCoord() + player.getHeight();
     int collidableObjectLeft = this.getXCoord();
     int collidableObjectRight = this.getXCoord() + this.getWidth();
     int collidableObjectTop = this.getYCoord();
     int collidableObjectBottom = this.getYCoord() + this.getHeight();
+    
     if (((playerLeft >= collidableObjectLeft) && (playerLeft <= collidableObjectRight))
     || ((playerRight >= collidableObjectLeft) && (playerRight <= collidableObjectRight))) {
       if (((playerTop >= collidableObjectTop) && (playerTop <= collidableObjectBottom))
       || ((playerBottom >= collidableObjectTop) && (playerBottom <= collidableObjectBottom))) {
-        this.collisionAction(player);
+        collision = true;
       }
     }
+    return collision;
   }
 
 }
