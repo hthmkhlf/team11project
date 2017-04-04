@@ -1,6 +1,7 @@
 package main;
 
-import java.awt.event.KeyEvent;
+import java.awt.Font;
+import java.awt.Graphics2D;
 import state.*;
 
 
@@ -9,60 +10,75 @@ import state.*;
  * This class manages the state of the game, for now there is only one state.
  */
 public class Manager {
+	private enum State {MENU,PLAY} //Just add any other states into here
 	private PlayState play;
-//	private MenuState menu;
-	private int currentState;
-	private final int MENU = 0;
-	private final int PLAY = 1;
+	private MenuState menu;
+	private State currentState;
+
 
 	public Manager(){
-		currentState =PLAY;
+		currentState = State.MENU;
 		loadState(currentState);
 	}
 	
-	public void loadState(int state){
-		if(state == MENU){
-//			menu = new MenuState();
+	public State getPlayState(){
+		return State.PLAY;
+	}
+	
+	public void loadState(State state){
+		if(currentState.equals(State.MENU)){
+			menu = new MenuState(this);
 		}
-		if(state == PLAY){
-			play = new PlayState();
+		if(currentState.equals(State.PLAY)){
+			play = new PlayState(this);
 		}
 	}
 	
+	public void setState(State state){
+		currentState = state;
+		loadState(currentState);
+	}
 	
 	public void update(){
-		if(currentState == MENU){
-//			menu.update();
-		}
-		if(currentState == PLAY){
-			play.update();
-		}
+		try{
+			if(currentState.equals(State.MENU)){
+				menu.update();
+			}
+			if(currentState.equals(State.PLAY)){
+				play.update();
+			}
+		}catch (Exception e){}
 	}
 	
-	public void draw(java.awt.Graphics2D graphics){
-		if(currentState == MENU){
-//			menu.draw(graphics);
-		}
-		if(currentState == PLAY){
-			play.draw(graphics);
+	public void draw(Graphics2D graphics){
+		try{
+			if(currentState.equals(State.MENU)){
+				menu.draw(graphics);
+			}
+			if(currentState.equals(State.PLAY)){
+				play.draw(graphics);
+			}
+		}catch (Exception e){
+			graphics.setFont(new Font ("Garamond", Font.BOLD , 100));
+			graphics.drawString("LOADING", 600, 250);
 		}
 		
 	}
 	
 	public void keyPressed(int key){
-		if(currentState == MENU){
-//			menu.keyPressed(key);
+		if(currentState.equals(State.MENU)){
+			menu.keyPressed(key);
 		}
-		if(currentState == PLAY){
+		if(currentState.equals(State.PLAY)){
 			play.keyPressed(key);
 		}
 	}
 	
 	public void keyReleased(int key){
-		if(currentState == MENU){
+		if(currentState.equals(State.MENU)){
 //			menu.keyReleased(key);
 		}
-		if(currentState == PLAY){
+		if(currentState.equals(State.PLAY)){
 			play.keyReleased(key);
 		}
 	}
