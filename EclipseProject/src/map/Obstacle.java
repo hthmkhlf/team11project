@@ -3,7 +3,6 @@ import java.awt.Graphics2D;
 import java.io.File;
 import java.io.IOException;
 import javax.imageio.ImageIO;
-import java.awt.*;
 import java.util.Random;
 import java.awt.image.BufferedImage;
 
@@ -16,25 +15,13 @@ import java.awt.image.BufferedImage;
  * at a fixed value using the setX method from the parent class.
  */
 
-public class Obstacle extends MapObject {
-  private BufferedImage image;
-  private int obstacleSize;
+public class Obstacle extends Collidable {
+	private BufferedImage image;
+	private int obstacleSize;
 
-  //public Obstacle() {
-  //  this(1600, 0, 300, 150);
-  //}
-
-  //public Obstacle(int x, int y, int height, int width) {
-   // super(x, y, height, width);
-    //try {
-     // image = ImageIO.read(new File("src/images/obstacle2.png"));
-    //} catch(IOException e) {
-     // e.printStackTrace();  // This will print errors to the console
-    //}
-  //}
-  	public Obstacle(){
-		this(1700);
-	}
+  		public Obstacle(){
+  			this(1700);
+  		}
 	
 	/**
 	 * Creates an obstacle off screen, and loads one of the three images
@@ -65,33 +52,25 @@ public class Obstacle extends MapObject {
         }
 	}
 
-  public Obstacle(Obstacle other) {
-    super(other.getXCoord(), other.getYCoord(), other.getHeight(), other.getWidth());
-  }
+	public Obstacle(Obstacle other) {
+		super(other.getXCoord(), other.getYCoord(), other.getHeight(), other.getWidth());
+	}
 
-  @Override
-  public void draw(Graphics2D graphics) {
-  	graphics.drawImage(image, getXCoord(),getYCoord(),getWidth(),getHeight(),null);
-  }
+	@Override
+	public void draw(Graphics2D graphics) {
+		graphics.drawImage(image, getXCoord(),getYCoord(),getWidth(),getHeight(),null);
+	}
 
 
-  @Override
-  public void movement() {
-    setX((int)(getXCoord() - getScroll()));
-  }
-
-  /**
-   * This method generates the y-coordinate for a new obstacle.
-   * This coordinate will either be 0 or 100.
-   */
-  public void generateY() {
-    int chance = new Random().nextInt(2);
-    if (chance == 0) {
-      setY(0);
-    }
-    else if (chance == 1) {
-      setY(100);
-    }
-  }
-
+	@Override
+	public void movement() {
+		setX((int)(getXCoord() - getScroll()));
+	}
+	
+	public int getObstacleSize(){
+		return obstacleSize;
+	}
+	public void collisionAction(Player player){
+		//Do things, like sound etc maybe
+	}
 }
