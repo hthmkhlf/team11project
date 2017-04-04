@@ -18,9 +18,10 @@ public class PlayState {
 	private Ground ground;
 	private HighScoreGUI score;
 	private Obstacle obstacle;
+	private Boost boost;
 	
 	private int delay = 0;
-	private int spawnDelay = 50;
+	private int spawnDelay = 100;
 	private int difficulty = 1;
 	private boolean gameOver = false;
 
@@ -30,6 +31,7 @@ public class PlayState {
 	public PlayState(){
 		objects.add(background = new Background());
 		objects.add(ground = new Ground());
+		objects.add(boost = new Boost());
 		objects.add(player = new Player());
 		objects.add(score = new HighScoreGUI());
 		objects.add(obstacle = new Obstacle());
@@ -41,15 +43,14 @@ public class PlayState {
 			for(MapObject element : objects){
 				element.movement();
 				if(element.collisionCheck(player)){
-					if(element instanceof Collidable){
-						//have to figure out how to only select collidables
-						((Collidable) element).collisionAction();
+					((Collidable) element).collisionAction(player);
+					if(element instanceof Obstacle){
 						gameOver = true;
 					}
 				}
 			}
 		}
-		destroyObstacles();
+		destroyCollidables();
 		createObstacles();
 	}
 	
@@ -83,13 +84,12 @@ public class PlayState {
 	/**
 	 * Based off the difficulty will spawn that many objects within the screen
 	 */
-	private void destroyObstacles(){
+	private void destroyCollidables(){
 		ArrayList<MapObject> toRemove = new ArrayList<>();
 		for(MapObject element : objects){
-			if(element instanceof Obstacle){
+			if(element instanceof Collidable){
 				if((element.getXCoord()+element.getWidth())< -10){
 					toRemove.add(element);
-//					System.out.println("Removed obstacle and created a new one");
 				}
 			}
 		}
@@ -103,7 +103,6 @@ public class PlayState {
 	private void createObstacles(){
 		delay++;
 		if((delay % spawnDelay)==0 ){
-			System.out.println("Too Soon?");
 			objects.add(new Obstacle());
 		}
 	}
