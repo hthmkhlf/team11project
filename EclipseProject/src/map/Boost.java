@@ -1,4 +1,4 @@
-//call this class when obstacle3 is created
+//create boosts when obstacle3 is created
 
 package map;
 import java.awt.Graphics2D;
@@ -22,17 +22,17 @@ public class Boost extends Collidable{
   private final int GROUND = 349;
 
   public Boost(){
-    this(1600, 300, 60, 60);   //may need to change coordinates/size
+    this(1500, 200, 75, 75);
   }
 
   public Boost(Obstacle obstacle){
-    this(obstacle.getXCoord() - 300, 300, 60, 60);
+    this(obstacle.getXCoord() - 200, 200, 75, 75);
   }
 
   public Boost(int newX, int newY, int newHeight, int newWidth){
     super(newX, newY, newHeight, newWidth);
     try{
-      image = ImageIO.read(new File("src/image/boost.png"));
+      image = ImageIO.read(new File("src/images/boost.png"));
     }catch (IOException e){
       e.printStackTrace();  // This will print errors to the console
     }
@@ -45,11 +45,6 @@ public class Boost extends Collidable{
   @Override
   public void draw(Graphics2D graphics){
     graphics.drawImage(image, getXCoord(), getYCoord(), getWidth(), getHeight(), null);
-  }
-
-  @Override
-  public void update(){       //Get rid of this later, I just put it in for now
-    movement();
   }
 
   @Override
