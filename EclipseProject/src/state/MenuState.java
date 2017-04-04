@@ -5,17 +5,18 @@ import java.awt.Graphics2D;
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
+import main.Manager;
 
 import javax.imageio.ImageIO;
 
 public class MenuState {
 //	 BackGround image
 	private BufferedImage image,Start,Scores,Credits,Exit,KeyMap;
-	
+	private Manager manager;
 
 	//Initiate Game Status
 	
-	public MenuState(){		
+	public MenuState(Manager manager){		
 		try {
 			image = ImageIO.read(new File("src/images/background.png"));
 	
@@ -53,6 +54,8 @@ public class MenuState {
 		}catch (IOException e ) {
 			e.printStackTrace();
 		}
+		
+		this.manager = manager;
 	
 	
 	}
@@ -66,5 +69,11 @@ public class MenuState {
 	    graphics.drawImage(Exit, 600, 300, null);
 	    graphics.drawImage(KeyMap, 100, 250,null);
 
+	}
+	
+	public void keyPressed(int key){
+		if(key == KeyEvent.VK_P){
+			manager.setState(manager.getPlayState());
+		}
 	}
 }
