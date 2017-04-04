@@ -31,7 +31,7 @@ public abstract class Collidable extends MapObject{
     int playerLeft = 70; //I use this values instead of getting X because we dont care if his tail or beak run into stuff
     int playerRight = 125;
     int playerTop = player.getYCoord();
-    int playerBottom = player.getYCoord() + player.getHeight();
+    int playerBottom = player.getYCoord() + 80;
     int collidableObjectLeft = this.getXCoord();
     int collidableObjectRight = this.getXCoord() + this.getWidth();
     int collidableObjectTop = this.getYCoord();
