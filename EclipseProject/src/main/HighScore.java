@@ -14,6 +14,7 @@ public class HighScore{
   private int userScore = 0;
   private int currentHighScore = 0;
   private Timer score = new Timer();
+  private String userName = "John";
 
 /**
 * defines the event for Timer; adds 1 point to user score every second
@@ -28,7 +29,7 @@ public class HighScore{
 * Starts the timer
 */
   public void start() {
-    score.scheduleAtFixedRate(count, 0, 3000);
+    score.scheduleAtFixedRate(count, 0, 500);
   }
 
   public int getUserScore() {
@@ -38,7 +39,7 @@ public class HighScore{
 * Finds the previous high score from the file HighScores.txt
 */
   public int previousHighScore() {
-    String fileName = "HighScores.txt";
+    String fileName = "src/main/HighScores.txt";
     String line = null;
     String scoreInFile = "";
     try{
@@ -80,7 +81,7 @@ public class HighScore{
 * Changes score in HighScores.txt file to the new score, if applicable
 */
   public void writeInNewScore(){
-    String fileName = "HighScores.txt";
+    String fileName = "src/main/HighScores.txt";
     BufferedWriter bWriter = null;
     FileWriter fWriter = null;
 
@@ -103,19 +104,20 @@ public class HighScore{
 * records it in file for next game occurance.
 */
   public void gameHasEnded(){
-    gameInProgress = false;
-    score.cancel();
-    currentHighScore = this.previousHighScore();
-    boolean isHigher = this.compareScores();
-    if (isHigher){
-      System.out.println("You got the new high score!");
-      this.writeInNewScore();
+    if(gameInProgress){
+	    score.cancel();
+	    currentHighScore = this.previousHighScore();
+	    boolean isHigher = this.compareScores();
+	    if (isHigher){
+	      System.out.println("You got the new high score!");
+	      this.writeInNewScore();
+	    }else{
+	      System.out.println("You did not get a new high score.");
+	      System.out.println("The score to beat is " + currentHighScore);
+	    }
+	    this.updateHighScoreBoard(this.userName, this.userScore);
+	    gameInProgress = false;
     }
-    else{
-      System.out.println("You did not get a new high score.");
-      System.out.println("The score to beat is " + currentHighScore);
-    }
-    this.updateHighScoreBoard(this.userName, this.userScore);
   }
   /**
   * Reads all high scores in from the file HighScoreBoard.txt
@@ -124,7 +126,7 @@ public class HighScore{
 
   public void updateHighScoreBoard(String playerName, int userScore) {
     ArrayList<String> scores = new ArrayList<>();
-    String fileName = "HighScoreBoard.txt";
+    String fileName = "src/main/HighScoreBoard.txt";
     String line = null;
 
     try{
@@ -153,7 +155,7 @@ public class HighScore{
 }
 
 public void printBoardToScreen(ArrayList scores){
-  String fileName = "HighScoreBoard.txt";
+  String fileName = "src/main/HighScoreBoard.txt";
   try{
     FileWriter fWriter = new FileWriter(fileName);
     BufferedWriter bWriter = new BufferedWriter(fWriter);
