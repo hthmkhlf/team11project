@@ -72,7 +72,6 @@ public class Driver implements Runnable, KeyListener {
 	
 	public void gameUpdate(){
 		manager.update();
-		System.out.println(averageFPS);
 	}
 	
 	/**

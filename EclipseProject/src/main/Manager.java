@@ -47,7 +47,7 @@ public class Manager {
 			if(currentState.equals(State.PLAY)){
 				play.update();
 			}
-		}catch (Exception e){}
+		}catch (NullPointerException e){}
 	}
 	
 	public void draw(Graphics2D graphics){
@@ -58,7 +58,7 @@ public class Manager {
 			if(currentState.equals(State.PLAY)){
 				play.draw(graphics);
 			}
-		}catch (Exception e){
+		}catch (NullPointerException exception){
 			graphics.setFont(new Font ("Garamond", Font.BOLD , 100));
 			graphics.drawString("LOADING", 600, 250);
 		}
