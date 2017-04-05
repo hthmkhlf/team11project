@@ -115,6 +115,7 @@ public class HighScore{
       System.out.println("You did not get a new high score.");
       System.out.println("The score to beat is " + currentHighScore);
     }
+    this.updateHighScoreBoard(this.userName, this.userScore);
   }
   /**
   * Reads all high scores in from the file HighScoreBoard.txt
