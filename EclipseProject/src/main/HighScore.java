@@ -38,7 +38,7 @@ public class HighScore{
 /**
 *Called by highScoreGUI to set the userName of the player 
 */
-  public void getUserName(){
+  public void setUserName(){
     userName = JOptionPane.showInputDialog("Enter your initials:");
   }
 	
