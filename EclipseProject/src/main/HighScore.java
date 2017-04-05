@@ -36,6 +36,13 @@ public class HighScore{
     return userScore;
   }
 /**
+*Called by highScoreGUI to set the userName of the player 
+*/
+  public void getUserName(){
+    userName = JOptionPane.showInputDialog("Enter your initials:");
+  }
+	
+/**
 * Finds the previous high score from the file HighScores.txt
 */
   public int previousHighScore() {
