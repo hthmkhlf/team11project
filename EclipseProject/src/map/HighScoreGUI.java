@@ -18,7 +18,8 @@ public class HighScoreGUI extends MapObject {
 	public HighScoreGUI(){
 		super(1550,50);
 		highScore = new HighScore();
-		highScore.start();		
+		highScore.start();
+		highScore.setUserName();
 	}
 	
 	@Override
