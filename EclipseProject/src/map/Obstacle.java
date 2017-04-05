@@ -73,7 +73,7 @@ public class Obstacle extends Collidable {
 	@Override
 	public void collisionAction(Player player){
 		try {
-			String gameOver = "C:/Users/Katie/Downloads/gameover.wav";
+			String gameOver = "src/music/gameover.wav";
 			InputStream in = new FileInputStream(gameOver);
 			AudioStream audio = new AudioStream(in);
 			AudioPlayer.player.start(audio);
