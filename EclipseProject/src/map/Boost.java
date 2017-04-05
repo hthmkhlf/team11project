@@ -1,5 +1,3 @@
-//create boosts when obstacle3 is created
-
 package map;
 import java.awt.Graphics2D;
 import java.io.File;
@@ -16,17 +14,13 @@ import java.awt.*;
 
 public class Boost extends Collidable{
   private Image image;
-  private double boostedJumpSpeed = -15;      // Needs to be adjusted
-  private double fallSpeed = 1.5;
-  private double distance;
-  private final int GROUND = 349;
 
   public Boost(){
-    this(1500, 200, 75, 75);
+    this(1630, 200, 60, 60);   //may need to change coordinates/size
   }
 
   public Boost(Obstacle obstacle){
-    this(obstacle.getXCoord() - 200, 200, 75, 75);
+	  this(obstacle.getXCoord() - 70, 200, 60, 60);
   }
 
   public Boost(int newX, int newY, int newHeight, int newWidth){
@@ -52,16 +46,11 @@ public class Boost extends Collidable{
     setX((int)(getXCoord() - getScroll()));
   }
 
-  // Copied code from movement() in Player
-  // Takes player from boost upwards and then down to ground
-  // Should merge with Player.movement() at some point to make jumping boolean false
+  // created a method in player to add to the jump speed of the bird temporarily
   @Override
   public void collisionAction(Player player){
-    for(int timeChange = 0; player.getYCoord() > GROUND;){
-      distance = boostedJumpSpeed + (fallSpeed * timeChange);
-      player.setY((int)(getYCoord() + distance));
-      timeChange++;
-    }
+	  //maybe include a boost sound effect here
+	  player.boost();
   }
 
 }
