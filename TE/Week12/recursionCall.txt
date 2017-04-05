@@ -1,0 +1,14 @@
+Trace call of Numbers
+
+
+getMax()
+getMaxHelper(0); 5
+  getMaxHelper(1); 8
+    getMaxHelper(2); 1
+      getMaxHelper(3); 9
+        getMaxHelper(4); 4
+        return(4) max = 4
+      return(3) max = 9
+    return(2) max = 9
+  return (1) max = 9
+return(0) max = 9
