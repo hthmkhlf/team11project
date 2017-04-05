@@ -1,10 +1,13 @@
 package map;
+
 import java.awt.Graphics2D;
-import java.io.File;
-import java.io.IOException;
+//import java.io.File;
+//import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.Random;
 import java.awt.image.BufferedImage;
+import java.io.*;
+import sun.audio.*;
 
 /**
  * @author  Katie Tieu
@@ -24,15 +27,13 @@ public class Obstacle extends Collidable {
   		}
 	
 	/**
-	 * Creates an obstacle off screen, and loads one of the three images
+	 * Creates an obstacle off screen and loads the image.
+	 * Obstacle will be one of three varying heights randomly determined upon creation.
 	 * @param newX is the xCoordinate that it sets it to.
 	 */
 	public Obstacle(int newX){
 		this.setX(newX);
 		obstacleSize = (new Random().nextInt(3)) + 1;
-		// it randomly generates a number 
-		// that is associated with an image and sets the height of the image
-		// based on that with a switch statement
 		switch (obstacleSize){
 			case 1: setHeight(75);
 					this.setY(390);
@@ -61,16 +62,27 @@ public class Obstacle extends Collidable {
 		graphics.drawImage(image, getXCoord(),getYCoord(),getWidth(),getHeight(),null);
 	}
 
-
 	@Override
 	public void movement() {
 		setX((int)(getXCoord() - getScroll()));
 	}
+
 	
+	// Plays a sound effect when the player loses
+	@SuppressWarnings("restriction")
+	@Override
+	public void collisionAction(Player player){
+		try {
+			String gameOver = "C:/Users/Katie/Downloads/gameover.wav";
+			InputStream in = new FileInputStream(gameOver);
+			AudioStream audio = new AudioStream(in);
+			AudioPlayer.player.start(audio);
+		} catch(Exception e) {
+			e.printStackTrace();
+		}
+	}
+
 	public int getObstacleSize(){
 		return obstacleSize;
-	}
-	public void collisionAction(Player player){
-		//Do things, like sound etc maybe
 	}
 }
