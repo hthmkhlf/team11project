@@ -3,7 +3,11 @@ package state;
 import java.awt.event.KeyEvent;
 import java.awt.Graphics2D;
 import map.*;
+import music.MusicPlayer;
+
 import java.util.ArrayList;
+
+import main.Manager;
 /**
  * 
  * @author Josh Schijns Haithem Khelif
@@ -11,7 +15,6 @@ import java.util.ArrayList;
  *
  */
 public class PlayState {
-	
 	private ArrayList<MapObject> objects = new ArrayList<>();
 	private Player player;
 	private Background background;
@@ -19,6 +22,7 @@ public class PlayState {
 	private HighScoreGUI score;
 	private Obstacle obstacle;
 	private Boost boost;
+	private Manager manager;
 	
 	private int delay = 0;
 	private int spawnDelay = 100;
@@ -28,7 +32,8 @@ public class PlayState {
 	/**
 	 * Default constructor, initializes all the map objects and spawns the first set of obstacles
 	 */
-	public PlayState(){
+	public PlayState(Manager manager){
+		this.manager = manager;
 		objects.add(background = new Background());
 		objects.add(ground = new Ground());
 		objects.add(boost = new Boost());
@@ -49,10 +54,13 @@ public class PlayState {
 					}
 				}
 			}
+			destroyCollidables();
+			createObstacles();
+		}else if(gameOver){
+			score.gameOver();
 		}
-		destroyCollidables();
-		createObstacles();
 	}
+	
 	
 	public void draw(Graphics2D graphics){
 		for(MapObject element : objects){
@@ -103,7 +111,12 @@ public class PlayState {
 	private void createObstacles(){
 		delay++;
 		if((delay % spawnDelay)==0 ){
-			objects.add(new Obstacle());
+			Obstacle newObstacle;
+			objects.add(newObstacle = new Obstacle());
+			if(newObstacle.getObstacleSize() == 3){
+				Boost newBoost;
+				objects.add(newBoost = new Boost(newObstacle));
+			}
 		}
 	}
 }
