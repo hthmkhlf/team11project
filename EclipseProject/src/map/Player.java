@@ -91,6 +91,11 @@ public class Player extends MapObject {
 		}
 	}
 	
+	public void boost(){
+		//Thinking this is where the boost will come into play, make it like a double jump
+		jumpSpeed = jumpSpeed - 2;
+	}
+	
 	/**
 	 * Controls the movement of the player
 	 */
