@@ -1,8 +1,6 @@
 package map;
 
 import java.awt.Graphics2D;
-//import java.io.File;
-//import java.io.IOException;
 import javax.imageio.ImageIO;
 import java.util.Random;
 import java.awt.image.BufferedImage;
@@ -69,8 +67,8 @@ public class Obstacle extends Collidable {
 
 	
 	// Plays a sound effect when the player loses
-	@SuppressWarnings("restriction")
 	@Override
+	@SuppressWarnings("restriction")
 	public void collisionAction(Player player){
 		try {
 			String gameOver = "src/music/gameover.wav";
