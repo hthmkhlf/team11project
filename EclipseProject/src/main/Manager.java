@@ -19,7 +19,7 @@ public class Manager {
 
 
 	public Manager(){
-		currentState = State.MENU;
+		currentState = State.CREDITS;
 		loadState(currentState);
 	}
 	
