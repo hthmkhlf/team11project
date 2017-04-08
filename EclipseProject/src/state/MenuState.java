@@ -12,8 +12,13 @@ import javax.imageio.ImageIO;
 import main.Manager;
 
 public class MenuState {
+<<<<<<< HEAD
+	//	 BackGround image and Icons.
+	private BufferedImage image,Start,Scores,Credits,Exit,KeyMap;
+=======
 //	 BackGround image
 	private BufferedImage image,start,scores,credits,exit,keyMap;
+>>>>>>> origin/master
 	private Manager manager;
 
 	//Initiate Game Status
@@ -51,6 +56,13 @@ public class MenuState {
 	public void keyPressed(int key){
 		if(key == KeyEvent.VK_P){
 			manager.setState(manager.getPlayState());
+		}if(key == KeyEvent.VK_C) {
+			manager.setState(manager.getCreditsState());
+		}if(key == KeyEvent.VK_S) {
+			manager.setState(manager.getScoresState());
 		}
+//			if(key == KeyEvent.VK_E) {
+//			manager.setState(manager.getExitState());
+//		}
 	}
 }
