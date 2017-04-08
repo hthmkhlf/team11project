@@ -71,7 +71,7 @@ public class Obstacle extends Collidable {
 	@SuppressWarnings("restriction")
 	public void collisionAction(Player player){
 		try {
-			String gameOver = "src/music/gameover.wav";
+			String gameOver = "src/soundEffects/gameover.wav";
 			InputStream in = new FileInputStream(gameOver);
 			AudioStream audio = new AudioStream(in);
 			AudioPlayer.player.start(audio);

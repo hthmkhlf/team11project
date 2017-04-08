@@ -101,3 +101,4 @@ local.properties
 *.resources
 >>>>>>> Stashed changes
 EclipseProject/src/images/Thumbs.db
+*.db
