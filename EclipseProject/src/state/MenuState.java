@@ -12,13 +12,8 @@ import javax.imageio.ImageIO;
 import main.Manager;
 
 public class MenuState {
-<<<<<<< HEAD
 	//	 BackGround image and Icons.
-	private BufferedImage image,Start,Scores,Credits,Exit,KeyMap;
-=======
-//	 BackGround image
 	private BufferedImage image,start,scores,credits,exit,keyMap;
->>>>>>> origin/master
 	private Manager manager;
 
 	//Initiate Game Status
