@@ -25,11 +25,10 @@ public class CreditsState extends Main {
 
 
 	public CreditsState(Manager manager) {
-		//Names are sorted alphabetically
-		teamMembers = new String[] { "Dou, Zhi Chao", "Flanagan, Emily", "Haithem Khelif","Josh Schijns","Katie Tieu"};
-		//
+		//Arrays of multiple strings
+		teamMembers = new String[] { "Dou, Zhi Chao", "Flanagan, Emily", "Haithem Khelif","Josh Schijns","Katie Tieu"}; //Names are sorted alphabetically
 		titles = new String[] {"Team Members","About The Used Images"};
-		// Font Used and Images If required
+		// Set Font Used and Import Images If required
 		namesFont = new Font ("Courier New", 1, 20);
 		titlesFont = new Font ("Courier New", 2, 25);
 	}
