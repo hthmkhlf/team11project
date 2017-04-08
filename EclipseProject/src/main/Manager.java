@@ -10,9 +10,11 @@ import state.*;
  * This class manages the state of the game, for now there is only one state.
  */
 public class Manager {
-	private enum State {MENU,PLAY} //Just add any other states into here
+	private enum State {MENU,PLAY,SCORES,CREDITS,EXIT} //Just add any other states into here
 	private PlayState play;
 	private MenuState menu;
+	private CreditsState credits;
+	private Scores scoreBoard;
 	private State currentState;
 
 
@@ -21,9 +23,25 @@ public class Manager {
 		loadState(currentState);
 	}
 	
+	// Not sure if this is the right way to do it.
+	public State getMenuState() {
+	return State.MENU;
+	}
 	public State getPlayState(){
 		return State.PLAY;
 	}
+	
+	public State getCreditsState() {
+		return State.CREDITS;
+	}
+	
+	public State getScoresState() {
+		return State.SCORES;
+	}
+	
+//	public State getExitState() {
+//		return State.EXIT;
+//	}
 	
 	public void loadState(State state){
 		if(currentState.equals(State.MENU)){
@@ -31,6 +49,12 @@ public class Manager {
 		}
 		if(currentState.equals(State.PLAY)){
 			play = new PlayState(this);
+		}
+		if(currentState.equals(State.SCORES)){
+			scoreBoard = new Scores(this);
+		}
+		if(currentState.equals(State.CREDITS)){
+			credits = new CreditsState(this);
 		}
 	}
 	
@@ -47,6 +71,12 @@ public class Manager {
 			if(currentState.equals(State.PLAY)){
 				play.update();
 			}
+			if(currentState.equals(State.CREDITS)){
+//				credits.update();
+			}
+			if(currentState.equals(State.SCORES)){
+				scoreBoard.update();
+			}
 		}catch (NullPointerException e){}
 	}
 	
@@ -57,6 +87,12 @@ public class Manager {
 			}
 			if(currentState.equals(State.PLAY)){
 				play.draw(graphics);
+			}
+			if(currentState.equals(State.CREDITS)){
+				credits.draw(graphics);
+			}
+			if(currentState.equals(State.SCORES)){
+				scoreBoard.draw(graphics);
 			}
 		}catch (NullPointerException exception){
 			graphics.setFont(new Font ("Garamond", Font.BOLD , 100));
