@@ -18,7 +18,7 @@ public class Main {
         frame.setSize(1650, 550);
         frame.setLocationRelativeTo(null);
         frame.setResizable(false);
-        frame.setAlwaysOnTop(true);
+        frame.setAlwaysOnTop(false);
        
         frame.setVisible(true);
     	frame.setContentPane(gameWindow);
