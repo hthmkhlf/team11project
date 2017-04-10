@@ -12,19 +12,20 @@ public class Coin extends Collidable {
 	private BufferedImage[] coin = new BufferedImage[8];
 	private int frameNum = 0;
 	private int coinPosition;
+	private static int coinsCollected = 0;
 	private boolean collected = false;
 	private MusicPlayer music;
 	
 	
 	public Coin(){
-		super(900,200,45,48);
+		super(1800,200,45,48);
 		for(int frame = 0; frame < 8; frame++)
 			try {
 				coin[frame] = ImageIO.read(new File("src/images/coin" +(frame+1) + ".png"));
 			}catch (IOException e ) {
 					e.printStackTrace();
 			}
-		music = new MusicPlayer("src/soundEffects/coinSound.wav");
+		music = new MusicPlayer("src/soundEffects/coin.wav");
 	}
 	
 	// not sure if we need
@@ -38,6 +39,7 @@ public class Coin extends Collidable {
 			System.out.println("Got a Coin!");
 			music.play(false);
 			collected = true;
+			coinsCollected++;
 		}
 
 	}
@@ -58,6 +60,11 @@ public class Coin extends Collidable {
 	public void movement() {
 		setX((int)(getXCoord() - getScroll()));
 
+	}
+	
+	public int getCollectedcoins() {
+		return coinsCollected;
+		
 	}
 
 }
