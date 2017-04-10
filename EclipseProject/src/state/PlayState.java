@@ -14,7 +14,8 @@ import main.Manager;
  * This is the state of the game when the user is playing the actual Game
  *
  */
-public class PlayState {
+public class PlayState implements GameState {
+	
 	private ArrayList<MapObject> objects = new ArrayList<>();
 	private Player player;
 	private Background background;
@@ -22,7 +23,9 @@ public class PlayState {
 	private HighScoreGUI score;
 	private Obstacle obstacle;
 	private Boost boost;
+	private MusicPlayer music;
 	private Manager manager;
+	private Coin coin;
 	
 	private int delay = 0;
 	private int spawnDelay = 100;
@@ -36,10 +39,14 @@ public class PlayState {
 		this.manager = manager;
 		objects.add(background = new Background());
 		objects.add(ground = new Ground());
+		objects.add(ground = new Ground(1650));
 		objects.add(boost = new Boost());
 		objects.add(player = new Player());
-		objects.add(score = new HighScoreGUI());
 		objects.add(obstacle = new Obstacle());
+		objects.add(score = new HighScoreGUI());
+		objects.add(coin = new Coin());
+		music = new MusicPlayer("src/music/BirdRunPlaynew.wav");
+		music.play(true);
 	}
 	
 	
@@ -58,6 +65,7 @@ public class PlayState {
 			createObstacles();
 		}else if(gameOver){
 			score.gameOver();
+			Coin.resetCoin();
 		}
 	}
 	
@@ -77,6 +85,9 @@ public class PlayState {
 			player.toggleJump();
 			player.setSpeed(true);
 		}
+		if((key == KeyEvent.VK_R) && gameOver){
+			manager.setState(manager.getState("MENU"));
+		}
 	}
 	
 	/**
@@ -86,6 +97,8 @@ public class PlayState {
 	public void keyReleased(int key){
 		if (key == KeyEvent.VK_UP){
 			player.setSpeed(false);
+		}else if(key == KeyEvent.VK_S){
+			MapObject.setScroll(15);
 		}
 	}
 	
@@ -112,7 +125,9 @@ public class PlayState {
 		delay++;
 		if((delay % spawnDelay)==0 ){
 			Obstacle newObstacle;
+			Coin newCoin;
 			objects.add(newObstacle = new Obstacle());
+			objects.add(newCoin = new Coin());
 			if(newObstacle.getObstacleSize() == 3){
 				Boost newBoost;
 				objects.add(newBoost = new Boost(newObstacle));
