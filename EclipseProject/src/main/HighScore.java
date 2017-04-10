@@ -14,11 +14,11 @@ import javax.swing.JOptionPane;
 */
 
 public class HighScore{
-  private boolean gameInProgress = true;
   private int userScore = 0;
   private int currentHighScore = 0;
   private Timer score = new Timer();
   private String userName = "John";
+  private String errorMessage = "";
 
 /**
 * Defines the event for the Timer to preform every time it goes off
@@ -44,16 +44,16 @@ public class HighScore{
   public int getUserScore() {
     return userScore;
   }
-	
+
 /**
-* Called by HighScoreGUI to set the userName of the player 
+* Called by HighScoreGUI to set the userName of the player
 * Stores the player's name so that it can be recorded in the score board
 * at the end of the game.
 */
   public void setUserName(){
     userName = JOptionPane.showInputDialog("Enter your initials:");
   }
-	
+
 /**
 * Reads the previous highest score from the file HighScores.txt
 * Returns int currentHighScore that the player has to beat in order
@@ -63,6 +63,7 @@ public class HighScore{
     String fileName = "src/main/HighScores.txt";
     String line = null;
     String scoreInFile = "";
+
     try{
       FileReader fileReader = new FileReader(fileName);
       BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -73,10 +74,10 @@ public class HighScore{
       bufferedReader.close();
     }
     catch(FileNotFoundException ex){
-      System.out.println("Unable to open file");
+      errorMessage = "Unable to open file";
     }
     catch(IOException ex){
-      System.out.println("Error reading file");
+      errorMessage = "Error reading file";
     }
 
     currentHighScore = Integer.parseInt(scoreInFile);
@@ -86,12 +87,11 @@ public class HighScore{
 /**
 * When the game ends the score of the user is compared to the
 * previous highest score (currentHighScore)
-* returns boolean isHigher true if the user score is greater than the 
+* returns boolean isHigher true if the user score is greater than the
 * previous high score.
 */
   public boolean compareScores(){
     boolean isHigher = false;
-    System.out.println("Your score is " + this.userScore);
     if (this.userScore > this.currentHighScore){
       isHigher = true;
     }else{
@@ -119,7 +119,7 @@ public class HighScore{
       fWriter.close();
     }
     catch(IOException ex){
-      ex.printStackTrace();
+      errorMessage = "Can't find file to write scores to.";
       }
   }
 
@@ -130,22 +130,15 @@ public class HighScore{
 * Called in HighScoreGUI
 */
   public void gameHasEnded(){
-    if(gameInProgress){
 	    score.cancel();
 	    currentHighScore = this.previousHighScore();
 	    boolean isHigher = this.compareScores();
 	    if (isHigher){
-	      System.out.println("You got the new high score!");
 	      this.writeInNewScore();
-	    }else{
-	      System.out.println("You did not get a new high score.");
-	      System.out.println("The score to beat is " + currentHighScore);
 	    }
 	    this.updateHighScoreBoard(this.userName, this.userScore);
-	    gameInProgress = false;
-    }
   }
-	
+
   /**
   * Reads all high scores in from the file HighScoreBoard.txt
   * Prints each score on the line with the name of who got it
@@ -170,10 +163,10 @@ public class HighScore{
       bufferedReader.close();
     }
     catch(FileNotFoundException ex){
-      System.out.println("Unable to open file");
+      errorMessage = "Unable to open file for score board.";
     }
     catch(IOException ex){
-      System.out.println("Error reading file");
+      errorMessage = "Error reading file for score board";
     }
 
     String name = "     " + playerName;
@@ -206,10 +199,15 @@ public void printBoardToScreen(ArrayList scores){
     }
     bWriter.close();
     fWriter.close();
+  }catch(FileNotFoundException ex){
+    errorMessage = "Unable to open file for score board.";
+  }catch(IOException ex){
+    errorMessage = "Error reading file for score board";
   }
-  catch(IOException ex){
-    ex.printStackTrace();
-    }
 }
-	
+
+public String getErrorMessage(){
+  String errorMessageForGui = errorMessage;
+  return errorMessageForGui;
+}
 }
