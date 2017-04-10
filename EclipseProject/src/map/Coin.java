@@ -66,5 +66,9 @@ public class Coin extends Collidable {
 		return coinsCollected;
 		
 	}
+	
+	public static void resetCoin() {
+		coinsCollected = 0;
+	}
 
 }
