@@ -5,65 +5,58 @@ import java.util.*;
 
 import javax.swing.JOptionPane;
 
+import map.Coin;
+
 /**
 *@author Emily Flanagan
-*@since 2017-04-07
-* This is class keeps track of the players' information during the game
-* and writes it to the file to save the state of the game.
-* It is a called by HighScoreGUI.
+*@since 2017-03-20
+* This is a child class of Game class
 */
 
 public class HighScore{
+  private boolean gameInProgress = true;
   private int userScore = 0;
   private int currentHighScore = 0;
   private Timer score = new Timer();
   private String userName = "John";
-  private String errorMessage = "";
+  private static int playerNumber = 1;
+  private Coin coin = new Coin();
+  
 
 /**
-* Defines the event for the Timer to preform every time it goes off
-* It adds 1 point to user score every 500 miliseconds
+* defines the event for Timer; adds 1 point to user score every second
 */
   TimerTask count = new TimerTask() {
     public void run(){
       userScore++;
     }
   };
+  
+  public void setUserName(){
+	    userName = JOptionPane.showInputDialog("Enter your initials:");
+	    if(userName.equals("")) {
+	    	userName = "Unknown";
+	    }
+	  }
 
 /**
-* Starts the timer, calling it to go off every 500 miliseconds
+* Starts the timer
 */
   public void start() {
     score.scheduleAtFixedRate(count, 0, 500);
   }
-
-/**
-* Getter method for the current userScore calculated from the timer.
-* Called in HighScoreGUI to write the score in the JFrame.
-*/
+  
+  
   public int getUserScore() {
     return userScore;
   }
-
 /**
-* Called by HighScoreGUI to set the userName of the player
-* Stores the player's name so that it can be recorded in the score board
-* at the end of the game.
-*/
-  public void setUserName(){
-    userName = JOptionPane.showInputDialog("Enter your initials:");
-  }
-
-/**
-* Reads the previous highest score from the file HighScores.txt
-* Returns int currentHighScore that the player has to beat in order
-* to get the highest score.
+* Finds the previous high score from the file HighScores.txt
 */
   public int previousHighScore() {
     String fileName = "src/main/HighScores.txt";
     String line = null;
     String scoreInFile = "";
-
     try{
       FileReader fileReader = new FileReader(fileName);
       BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -74,10 +67,10 @@ public class HighScore{
       bufferedReader.close();
     }
     catch(FileNotFoundException ex){
-      errorMessage = "Unable to open file";
+      System.out.println("Unable to open file");
     }
     catch(IOException ex){
-      errorMessage = "Error reading file";
+      System.out.println("Error reading file");
     }
 
     currentHighScore = Integer.parseInt(scoreInFile);
@@ -85,13 +78,12 @@ public class HighScore{
   }
 
 /**
-* When the game ends the score of the user is compared to the
-* previous highest score (currentHighScore)
-* returns boolean isHigher true if the user score is greater than the
-* previous high score.
+* Takes the currentHighScore from the game class and compares it to the one
+* written in from the file. Called by runHighScore.
 */
   public boolean compareScores(){
     boolean isHigher = false;
+    System.out.println("Your score is " + this.userScore);
     if (this.userScore > this.currentHighScore){
       isHigher = true;
     }else{
@@ -101,9 +93,7 @@ public class HighScore{
   }
 
 /**
-* If the user has gotten a new high score then it is written into
-* the file recording the highest score (HighScores.txt), overwriting
-* the previously recorded score.
+* Changes score in HighScores.txt file to the new score, if applicable
 */
   public void writeInNewScore(){
     String fileName = "src/main/HighScores.txt";
@@ -119,32 +109,35 @@ public class HighScore{
       fWriter.close();
     }
     catch(IOException ex){
-      errorMessage = "Can't find file to write scores to.";
+      ex.printStackTrace();
       }
   }
 
 /**
-* Called by when the player collides with and object (game over);
-* Runs the sequence of events needed to stop the timer and compare
-* and record the new user score and the previous high score.
-* Called in HighScoreGUI
+* Called by Game class when collision occurs (game over);
+* Calls compareScores. Prints the high score to screen and
+* records it in file for next game occurance.
 */
   public void gameHasEnded(){
+    if(gameInProgress){
 	    score.cancel();
+	    userScore = userScore + coin.getCollectedcoins();
 	    currentHighScore = this.previousHighScore();
 	    boolean isHigher = this.compareScores();
 	    if (isHigher){
+	      System.out.println("You got the new high score!");
 	      this.writeInNewScore();
+	    }else{
+	      System.out.println("You did not get a new high score.");
+	      System.out.println("The score to beat is " + currentHighScore);
 	    }
 	    this.updateHighScoreBoard(this.userName, this.userScore);
+	    gameInProgress = false;
+    }
   }
-
   /**
   * Reads all high scores in from the file HighScoreBoard.txt
-  * Prints each score on the line with the name of who got it
-  * @param String playerName is a String of the current user name
-  * @param int userScore is an int with the score just accumulated
-  * by the player.
+  *Prints each score on the line with the name of who got it
   */
 
   public void updateHighScoreBoard(String playerName, int userScore) {
@@ -163,10 +156,10 @@ public class HighScore{
       bufferedReader.close();
     }
     catch(FileNotFoundException ex){
-      errorMessage = "Unable to open file for score board.";
+      System.out.println("Unable to open file");
     }
     catch(IOException ex){
-      errorMessage = "Error reading file for score board";
+      System.out.println("Error reading file");
     }
 
     String name = "     " + playerName;
@@ -177,12 +170,6 @@ public class HighScore{
     printBoardToScreen(scores);
 }
 
-/**
-* Writes the previous high scores from the array made from file to the
-* GUI for the player when they game over
-* @param Arraylist scores is the array made by updateHighScoreBoard()
-* that holds all the previously gotten high scores.
-*/
 public void printBoardToScreen(ArrayList scores){
   String fileName = "src/main/HighScoreBoard.txt";
   try{
@@ -199,15 +186,11 @@ public void printBoardToScreen(ArrayList scores){
     }
     bWriter.close();
     fWriter.close();
-  }catch(FileNotFoundException ex){
-    errorMessage = "Unable to open file for score board.";
-  }catch(IOException ex){
-    errorMessage = "Error reading file for score board";
   }
+  catch(IOException ex){
+    ex.printStackTrace();
+    }
 }
 
-public String getErrorMessage(){
-  String errorMessageForGui = errorMessage;
-  return errorMessageForGui;
-}
+
 }
