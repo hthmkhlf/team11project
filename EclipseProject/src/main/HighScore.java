@@ -188,7 +188,7 @@ public class HighScore{
 
     //get index of where new user score fits on the array
       int placement = sortingScores.indexOf(userScore);
-      String newScore = userScore + userName;
+      String newScore = userScore + " " + userName;
       scores.add(placement, newScore);
       printBoardToScreen(scores);
 }
