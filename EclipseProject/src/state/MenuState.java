@@ -1,6 +1,8 @@
 package state;
 
 
+import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -15,7 +17,7 @@ import music.MusicPlayer;
 
 public class MenuState implements GameState {
 //	 BackGround image
-	private BufferedImage image,start,scores,credits,exit,keyMap;
+	private BufferedImage image,start,scores,credits,exit,keyMap,keyArrow;
 	private Manager manager;
 	private MusicPlayer music;
 
@@ -28,7 +30,7 @@ public class MenuState implements GameState {
 			start = ImageIO.read(new File("src/images/startGameIcon.png"));
 			scores = ImageIO.read(new File("src/images/Scores.png"));
 			credits = ImageIO.read(new File("src/images/Credits.png"));
-			exit = ImageIO.read(new File("src/images/endGameIcon.png"));
+			exit = ImageIO.read(new File("src/images/title1.png"));
 			keyMap = ImageIO.read(new File("src/images/KeyMap.png"));
 		}catch (IOException e ) {
 			e.printStackTrace();
@@ -48,12 +50,13 @@ public class MenuState implements GameState {
 
 
 	public void draw(Graphics2D graphics) {
-	    graphics.drawImage(image, 0, 0,1650, 550, null);      
-	    graphics.drawImage(start, 600, 0, null);  
-	    graphics.drawImage(scores, 600, 100, null);
-	    graphics.drawImage(credits, 600, 200, null);
-	    graphics.drawImage(exit, 600, 300, null);
+		graphics.drawImage(image, 0, 0,1650, 550, null);      
+	    graphics.drawImage(start, 650, 100, null);  
+	    graphics.drawImage(scores, 650, 200, null);
+	    graphics.drawImage(credits, 650, 300, null);
+	    graphics.drawImage(exit, 540, 0, null);
 	    graphics.drawImage(keyMap, 100, 250,null);
+
 
 	}
 	
