@@ -48,7 +48,7 @@
         <li>MacOs 10.11.3 Mac Users may encounter some problems with the GUI)</li>
         <li>Windows 10</li>
         </ul>
-  </ul>
+    </ul>
 </div>
 <div2>
     <h2>Useful Links</h2>
