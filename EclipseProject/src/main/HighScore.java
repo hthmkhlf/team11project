@@ -15,7 +15,6 @@ import map.ErrorMessage;
 */
 
 public class HighScore{
-	private boolean gameInProgress = true;
 	private int userScore = 0;
 	private int currentHighScore = 0;
 	private Timer score = new Timer();
@@ -128,18 +127,14 @@ public class HighScore{
 	* Called in HighScoreGUI
 	*/
 	public void gameHasEnded(){
-		if(gameInProgress){
-			score.cancel();
-		    userScore = userScore + coin.getCollectedcoins();
-		    currentHighScore = this.previousHighScore();
-		    boolean isHigher = this.compareScores();
-		    if (isHigher){
-		    	this.writeInNewScore();
-		    }
-		    
-		    this.updateHighScoreBoard(this.userName, this.userScore);
-		    gameInProgress = false;
-		}
+	    score.cancel();
+	    userScore = userScore + coin.getCollectedcoins();
+	    currentHighScore = this.previousHighScore();
+	    boolean isHigher = this.compareScores();
+	    if (isHigher){
+	    	this.writeInNewScore();
+	    }
+	    this.updateHighScoreBoard(this.userName, this.userScore);
 	}
 	/**
 	 * * Reads all high scores in from the file HighScoreBoard.txt
