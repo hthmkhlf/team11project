@@ -47,8 +47,11 @@
         <li>Windows 10</li>
         </ul>
     </ul>
-    <h1>About The Used Images</h1>
-    <p1> All the images used in our game are from the <a href = "http://opengameart.org"> Open Game Art  </a> a website dedicated to            share free licence game components images </p1>
+    <h1>About The Used Images / Sounds</h1>
+    <p1> Images used in our game are from the <a href = "http://opengameart.org"> Open Game Art  </a> </p1>
+    <p1> Sounds used in our game are from the <a href = "http://www.freesound.org/"> freesound  </a> </p1>
+    <p1> Thanks to DJ Zach Blach for the custom background sound<a href = "https://www.facebook.com/djzachblach/"> DJ Zach Blach Facebook Fans Page  </a> </p1>
+    
     <h2>Useful Links</h2>
     <ul>
       <li><a href = "https://drive.google.com/file/d/0B-7YCfsgJak_X1NHQWMyWm1oWVE/view?usp=sharing" >Our UML Diagram
