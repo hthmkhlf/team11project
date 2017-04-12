@@ -26,7 +26,7 @@
                 <li>|---map</li>
                 <li>|---state</li>
                 <li>|---music</li>
-                <li>|---musicEccects</li>
+                <li>|---musicEffects</li>
                 <li>|---images</li>
                 </ul>
            <ul>
