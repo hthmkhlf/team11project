@@ -9,8 +9,8 @@
       <li>Flanagan, Emily</li>
       <li>Dou, Zhi Chao</li>
     </ul>
-      
-      <h2>Build Instructions</h2>
+</div>
+      <h1>Build Instructions</h1>
       
       <ul>
       <li>Install Java.</li>
@@ -49,7 +49,7 @@
         <li>Windows 10</li>
         </ul>
     </ul>
-</div>
+
 <div2>
     <h2>Useful Links</h2>
     <ul>
