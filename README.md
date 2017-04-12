@@ -9,7 +9,6 @@
       <li>Flanagan, Emily</li>
       <li>Dou, Zhi Chao</li>
     </ul>
-
       <h1>Build Instructions</h1>
       <ul>
       <li>Install Java.</li>
@@ -48,7 +47,6 @@
         <li>Windows 10</li>
         </ul>
     </ul>
-    
     <h1>About The Used Images</h1>
     <p1> All the images used in our game are from the <a href = "http://opengameart.org"> Open Game Art  </a> a website dedicated to            share free licence game components images </p1>
     <h2>Useful Links</h2>
@@ -56,7 +54,6 @@
       <li><a href = "https://drive.google.com/file/d/0B-7YCfsgJak_X1NHQWMyWm1oWVE/view?usp=sharing" >Our UML Diagram
       </a></li>
     </ul>
-
 </div>
 </body>
 </html>
