@@ -27,7 +27,7 @@ public class MenuState implements GameState {
 			scores = ImageIO.read(new File("src/images/Scores.png"));
 			credits = ImageIO.read(new File("src/images/Credits.png"));
 			exit = ImageIO.read(new File("src/images/title1.png"));
-			keyMap = ImageIO.read(new File("src/images/KeyMapNew.png"));
+			keyMap = ImageIO.read(new File("src/images/keyMapNew.png"));
 		} catch(IOException e ) {
 			e.printStackTrace();
 		}
