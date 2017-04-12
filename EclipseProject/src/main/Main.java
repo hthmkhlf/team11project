@@ -4,11 +4,12 @@ import javax.swing.JFrame;
 
 /*
  * @author : Haithem Khelif
- * This is the main class.
+ * This is the main class. The game is run from here.
  */
+
 public class Main {
 	public static void main(String[] args) {
-    	/* Create the instance variables needed to run the game */
+	    //Create the instance variables needed to run the game
 	    GameWindow gameWindow = new GameWindow();
 	
 	    // Setting the frame environment
@@ -20,8 +21,7 @@ public class Main {
 	    frame.setAlwaysOnTop(false);
 	   
 	    frame.setVisible(true);
-		frame.setContentPane(gameWindow);
-
-     
+	    frame.setContentPane(gameWindow);
 	}
+
 }
