@@ -69,12 +69,11 @@ public class Coin extends Collidable {
 	}
 	
 	/**
-	 * This method returns the number of coins the player collected during the game.
-	 * @return coinsCollected is the number of coins collected.
+	 * This method a getter for coinsCollected.
+	 * @return coinsCollected is the number of coins collected by the player during the game.
 	 */
 	public int getCollectedcoins() {
 		return coinsCollected;
-		
 	}
 	
 	/**
