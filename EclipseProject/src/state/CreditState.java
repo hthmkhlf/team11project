@@ -11,7 +11,7 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 /**
- * @author Josh Schijins Haithem Khelif
+ * @author Josh Schijins and Haithem Khelif
  * This class controls the displaying of credits, or the "credit state" of the game.
  * For more information about the used images please check the ReadMe.html file.
  */
