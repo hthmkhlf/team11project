@@ -1,16 +1,19 @@
 package state;
 
+import main.Manager;
+import map.ErrorMessage;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
 import java.io.*;
-
 import javax.imageio.ImageIO;
 
-import main.Manager;
-import map.ErrorMessage;
+/**
+ * @author Josh Schijins
+ * This class controls the displaying of credits, or the "credit state" of the game.
+ */
 
 public class CreditState implements GameState {
 	private Manager manager;
@@ -24,26 +27,25 @@ public class CreditState implements GameState {
 	
 	public CreditState(Manager manager){
 		this.manager = manager;
-		teamMembers = new String[] { "Dou, Zhi Chao", "Flanagan, Emily", "Haithem Khelif","Josh Schijns","Katie Tieu"}; //Names are sorted alphabetically
+		teamMembers = new String[] { "Dou, Zhi Chao", "Flanagan, Emily", "Khelif, Haithem","Schijins, Josh","Tieu, Katie"};
 		titles = new String[] {"Credits","Team Members","Art / Sounds"};
 		sources = new String[] {"freesound.org","opengameart.org","DJ Zach Blach"};
-		// Set Font Used and Import Images If required
 		textFont = new Font ("Courier New", 1, 20);
 		titlesFont = new Font ("SansSerif.bold", 1, 50);
 		
 		try {
 			creditsBackGround = ImageIO.read(new File("src/images/background.png"));
 			zachBlach = ImageIO.read(new File("src/images/DjZachBlach.png"));
-		}catch(IllegalArgumentException iae){
+		} catch(IllegalArgumentException iae) {
 			ErrorMessage.addError("Image is null in Credits");
-		}catch (IOException ioe) {
+		} catch (IOException ioe) {
 			ErrorMessage.addError("Error reading image for Credits");
 		}
 	}
 
 	@Override
 	public void update() {
-		// TODO Auto-generated method stub
+		// The credits do not need to change once displayed, so this method does not do anything.
 	}
 
 	@Override
