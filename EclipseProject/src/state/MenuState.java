@@ -8,13 +8,16 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+//import javax.swing.JTextField;
 
 import main.Manager;
+import music.MusicPlayer;
 
-public class MenuState {
-	//	 BackGround image and Icons.
+public class MenuState implements GameState {
+//	 BackGround image
 	private BufferedImage image,start,scores,credits,exit,keyMap;
 	private Manager manager;
+	private MusicPlayer music;
 
 	//Initiate Game Status
 	
@@ -31,11 +34,17 @@ public class MenuState {
 			e.printStackTrace();
 		}
 		this.manager = manager;
-	
-	
+		music = new MusicPlayer("src/music/BirdRunFullnew.wav");
+		music.play(true);
+		
 	}
 	
-	public void update(){}
+	
+	public void update(){
+		if(!(music.playing())){
+			music.play(true);
+		}
+	}
 
 
 	public void draw(Graphics2D graphics) {
@@ -50,14 +59,17 @@ public class MenuState {
 	
 	public void keyPressed(int key){
 		if(key == KeyEvent.VK_P){
-			manager.setState(manager.getPlayState());
-		}if(key == KeyEvent.VK_C) {
-			manager.setState(manager.getCreditsState());
-		}if(key == KeyEvent.VK_S) {
-			manager.setState(manager.getScoresState());
+			music.stop();
+			manager.setState(manager.getState("PLAY"));
+		}else if(key == KeyEvent.VK_C){
+			manager.setState(manager.getState("CREDIT"));
+		}else if(key == KeyEvent.VK_E){
+			manager.setState(manager.getState("EXIT"));
+		}else if(key == KeyEvent.VK_S){
+			manager.setState(manager.getState("SCORES"));
 		}
-//			if(key == KeyEvent.VK_E) {
-//			manager.setState(manager.getExitState());
-//		}
+		
 	}
+	
+
 }

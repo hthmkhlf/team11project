@@ -1,54 +1,55 @@
 package state;
 
 import java.awt.Color;
-import java.awt.Desktop;
 import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.net.URI;
-import java.net.URISyntaxException;
+import java.io.*;
 
 import javax.imageio.ImageIO;
-import javax.swing.JEditorPane;
-import javax.swing.JScrollPane;
 
 import main.Manager;
-import main.Main;
+import map.ErrorMessage;
 
-public class CreditsState extends Main {
+public class CreditState implements GameState {
 	private Manager manager;
-	private BufferedImage CreditsBackGround;
+	private BufferedImage creditsBackGround, zachBlach;
 	private String teamMembers[];
 	private String titles[];
 	private String sources[];
 	private Font textFont;
 	private Font titlesFont;
 	private Color aColor = Color.decode("#3A8EF2");
-
-
-
-	public CreditsState(Manager manager) {
-		//Arrays of multiple strings
+	
+	public CreditState(Manager manager){
+		this.manager = manager;
 		teamMembers = new String[] { "Dou, Zhi Chao", "Flanagan, Emily", "Haithem Khelif","Josh Schijns","Katie Tieu"}; //Names are sorted alphabetically
 		titles = new String[] {"Credits","Team Members","Art / Sounds"};
-		sources = new String[] {"freesound.org","opengameart.org"};
+		sources = new String[] {"freesound.org","opengameart.org","DJ Zach Blach"};
 		// Set Font Used and Import Images If required
 		textFont = new Font ("Courier New", 1, 20);
 		titlesFont = new Font ("SansSerif.bold", 1, 50);
 		
 		try {
-			CreditsBackGround = ImageIO.read(new File("src/images/background.png"));
-		}catch (IOException e ) {
-			e.printStackTrace();
+			creditsBackGround = ImageIO.read(new File("src/images/background.png"));
+			zachBlach = ImageIO.read(new File("src/images/DjZachBlach.png"));
+		}catch(IllegalArgumentException iae){
+			ErrorMessage.addError("Image is null in Credits");
+		}catch (IOException ioe) {
+			ErrorMessage.addError("Error reading image for Credits");
 		}
 	}
-	
+
+	@Override
+	public void update() {
+		// TODO Auto-generated method stub
+	}
+
+	@Override
 	public void draw(Graphics2D graphics) {
-//		graphics.setBackground(Color.BLACK);
-		graphics.drawImage(CreditsBackGround, 0,0,1650, 550, null);  
+		graphics.drawImage(creditsBackGround, 0,0,1650, 550, null);
+		graphics.drawImage(zachBlach, 1000, 200, 500,375,null);
 		graphics.setColor(aColor);
 		graphics.setFont(titlesFont);
 		graphics.drawString(titles[0],700, 50);
@@ -62,16 +63,18 @@ public class CreditsState extends Main {
 		graphics.setFont(titlesFont);
 		graphics.drawString(titles[2],650, 350);
 		graphics.setFont(textFont);
-		for (int i=0; i <= 1; i++) {
+		for (int i=0; i <= 2; i++) {
 			graphics.setColor(Color.BLACK);
 			graphics.drawString(sources[i],700, 400+ i*25);
 			}
+	}
+
+	@Override
+	public void keyPressed(int key) {
+		if(key == KeyEvent.VK_R){
+			manager.setState(manager.getState("MENU"));
+		}
 
 	}
-	public void keyPressed(int key){
-		if(key == KeyEvent.VK_R){
-			manager.setState(manager.getMenuState());
-		}
-	}
-	
+
 }

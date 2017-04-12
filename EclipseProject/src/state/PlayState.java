@@ -17,19 +17,23 @@ import main.Manager;
 public class PlayState implements GameState {
 	
 	private ArrayList<MapObject> objects = new ArrayList<>();
+	// MapObjects put into Array
+	private ErrorMessage errorMessage;
 	private Player player;
 	private Background background;
 	private Ground ground;
 	private HighScoreGUI score;
 	private Obstacle obstacle;
 	private Boost boost;
-	private MusicPlayer music;
-	private Manager manager;
 	private Coin coin;
 	
+	private MusicPlayer music;
+	private Manager manager;
+	
+	// Used for spawning collidable's
 	private int delay = 0;
 	private int spawnDelay = 100;
-	private int difficulty = 1;
+	
 	private boolean gameOver = false;
 
 	/**
@@ -41,6 +45,7 @@ public class PlayState implements GameState {
 		objects.add(ground = new Ground());
 		objects.add(ground = new Ground(1650));
 		objects.add(boost = new Boost());
+		objects.add(errorMessage = new ErrorMessage());
 		objects.add(player = new Player());
 		objects.add(obstacle = new Obstacle());
 		objects.add(score = new HighScoreGUI());
@@ -65,7 +70,6 @@ public class PlayState implements GameState {
 			createObstacles();
 		}else if(gameOver){
 			score.gameOver();
-			Coin.resetCoin();
 		}
 	}
 	
@@ -84,8 +88,8 @@ public class PlayState implements GameState {
 		if(key == KeyEvent.VK_UP){
 			player.toggleJump();
 			player.setSpeed(true);
-		}
-		if((key == KeyEvent.VK_R) && gameOver){
+		}else if((key == KeyEvent.VK_R) && (gameOver)){
+			music.stop();
 			manager.setState(manager.getState("MENU"));
 		}
 	}
@@ -98,7 +102,7 @@ public class PlayState implements GameState {
 		if (key == KeyEvent.VK_UP){
 			player.setSpeed(false);
 		}else if(key == KeyEvent.VK_S){
-			MapObject.setScroll(15);
+			MapObject.setScroll(15); // A developer cheat to speed the game up :)
 		}
 	}
 	
