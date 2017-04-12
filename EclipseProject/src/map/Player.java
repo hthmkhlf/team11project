@@ -118,9 +118,5 @@ public class Player extends MapObject {
 			}
 		}
 	}
-	@Override
-	public boolean collisionCheck(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
+
 }

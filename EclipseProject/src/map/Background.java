@@ -44,10 +44,4 @@ public class Background extends MapObject {
 		setX((int)(getXCoord() - rate));
 	}
 
-
-	@Override
-	public boolean collisionCheck(Player player) {
-		return false;
-	}
-
 }

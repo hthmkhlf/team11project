@@ -20,6 +20,7 @@ public abstract class Collidable extends MapObject{
    * Specific to each subclass.
    */
   public abstract void collisionAction(Player player);
+  public abstract boolean collisionCheck(Player player);
 
 
   /**

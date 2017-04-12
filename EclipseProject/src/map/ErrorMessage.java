@@ -28,9 +28,4 @@ public class ErrorMessage extends MapObject{
 
 	public void movement() {}
 
-
-	public boolean collisionCheck(Player player) {
-		return false;
-	}
-
 }

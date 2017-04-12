@@ -57,12 +57,6 @@ public class HighScoreGUI extends MapObject {
 		score = highScore.getUserScore();
 		coinScore = coin.getCollectedcoins();
 	}
-
-	@Override
-	public boolean collisionCheck(Player player) {
-		// TODO Auto-generated method stub
-		return false;
-	}
 	
 	public void gameOver(){
 		highScore.gameHasEnded();
