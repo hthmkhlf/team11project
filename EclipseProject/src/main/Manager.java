@@ -76,7 +76,7 @@ public class Manager {
 				score.update();
 			}
 		}catch (NullPointerException e){
-			ErrorMessage.addError("State is null");
+			// do nothing
 		}
 	}
 	
