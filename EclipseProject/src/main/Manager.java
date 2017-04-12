@@ -1,7 +1,12 @@
 package main;
 
-import java.awt.Font;
 import java.awt.Graphics2D;
+import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import javax.imageio.ImageIO;
+
+import map.ErrorMessage;
 import state.*;
 
 
@@ -10,55 +15,51 @@ import state.*;
  * This class manages the state of the game, for now there is only one state.
  */
 public class Manager {
-	private enum State {MENU,PLAY,SCORES,CREDITS,EXIT} //Just add any other states into here
+	private enum State {MENU,PLAY,CREDIT,SCORES} //Just add any other states into here
 	private PlayState play;
 	private MenuState menu;
-	private CreditsState credits;
-	private Scores scoreBoard;
 	private State currentState;
+	private CreditState credit;
+	private ScoreState score;
+	private BufferedImage image;
 
 
 	public Manager(){
-		currentState = State.CREDITS;
+		currentState = State.MENU;
 		loadState(currentState);
+		try {
+            image = ImageIO.read(new File("src/images/loadingScreen.png"));
+		}catch(IllegalArgumentException iae){
+			ErrorMessage.addError("Image is null in Manager");
+        }catch (IOException ioe) {
+        	ErrorMessage.addError("Error reading image for loadingScreen");
+        }
 	}
 	
-	// Not sure if this is the right way to do it.
-	public State getMenuState() {
-	return State.MENU;
+	public State getState(String aState){
+		return State.valueOf(aState);
 	}
-	public State getPlayState(){
-		return State.PLAY;
-	}
-	
-	public State getCreditsState() {
-		return State.CREDITS;
-	}
-	
-	public State getScoresState() {
-		return State.SCORES;
-	}
-	
-//	public State getExitState() {
-//		return State.EXIT;
-//	}
 	
 	public void loadState(State state){
 		if(currentState.equals(State.MENU)){
-			menu = new MenuState(this);
-		}
-		if(currentState.equals(State.PLAY)){
+			if(menu == null){
+				menu = new MenuState(this);
+			}
+		}else if(currentState.equals(State.PLAY)){
 			play = new PlayState(this);
-		}
-		if(currentState.equals(State.SCORES)){
-			scoreBoard = new Scores(this);
-		}
-		if(currentState.equals(State.CREDITS)){
-			credits = new CreditsState(this);
+		}else if(currentState.equals(State.CREDIT)){
+			credit = new CreditState(this);
+		}else if(currentState.equals(State.SCORES)){
+			score = new ScoreState(this);
 		}
 	}
 	
+	private void unloadState(State state){
+		currentState = null;
+	}
+	
 	public void setState(State state){
+		unloadState(currentState);
 		currentState = state;
 		loadState(currentState);
 	}
@@ -67,36 +68,31 @@ public class Manager {
 		try{
 			if(currentState.equals(State.MENU)){
 				menu.update();
-			}
-			if(currentState.equals(State.PLAY)){
+			}else if(currentState.equals(State.PLAY)){
 				play.update();
+			}else if(currentState.equals(State.CREDIT)){
+				credit.update();
+			}else if(currentState.equals(State.SCORES)){
+				score.update();
 			}
-			if(currentState.equals(State.CREDITS)){
-//				credits.update();
-			}
-			if(currentState.equals(State.SCORES)){
-				scoreBoard.update();
-			}
-		}catch (NullPointerException e){}
+		}catch (NullPointerException e){
+			ErrorMessage.addError("State is null");
+		}
 	}
 	
 	public void draw(Graphics2D graphics){
 		try{
 			if(currentState.equals(State.MENU)){
 				menu.draw(graphics);
-			}
-			if(currentState.equals(State.PLAY)){
+			}else if(currentState.equals(State.PLAY)){
 				play.draw(graphics);
-			}
-			if(currentState.equals(State.CREDITS)){
-				credits.draw(graphics);
-			}
-			if(currentState.equals(State.SCORES)){
-				scoreBoard.draw(graphics);
+			}else if(currentState.equals(State.CREDIT)){
+				credit.draw(graphics);
+			}else if(currentState.equals(State.SCORES)){
+				score.draw(graphics);
 			}
 		}catch (NullPointerException exception){
-			graphics.setFont(new Font ("Garamond", Font.BOLD , 100));
-			graphics.drawString("LOADING", 600, 250);
+			graphics.drawImage(image,0,0,1650,550,null);
 		}
 		
 	}
@@ -104,18 +100,24 @@ public class Manager {
 	public void keyPressed(int key){
 		if(currentState.equals(State.MENU)){
 			menu.keyPressed(key);
-		}
-		if(currentState.equals(State.PLAY)){
+		}else if(currentState.equals(State.PLAY)){
 			play.keyPressed(key);
+		}else if(currentState.equals(State.CREDIT)){
+			credit.keyPressed(key);
+		}else if(currentState.equals(State.SCORES)){
+			score.keyPressed(key);
 		}
 	}
 	
 	public void keyReleased(int key){
 		if(currentState.equals(State.MENU)){
 //			menu.keyReleased(key);
-		}
-		if(currentState.equals(State.PLAY)){
+		}else if(currentState.equals(State.PLAY)){
 			play.keyReleased(key);
+		}else if(currentState.equals(State.CREDIT)){
+//			credit.keyReleased(key);
+		}else if(currentState.equals(State.SCORES)){
+//			score.keyReleased(key);
 		}
 	}
 	

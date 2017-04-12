@@ -37,6 +37,7 @@ public class GameWindow extends JPanel{
 			driver.setThread();
 		}
 	}
+	
 	/**
 	 * This method is what is run by the thread. The loop within it is used to establish
 	 * a frames per second. If the amount of time that occurs is faster than we want, it

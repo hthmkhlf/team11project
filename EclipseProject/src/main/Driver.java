@@ -2,6 +2,9 @@ package main;
 
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
+import java.io.IOException;
+
+import map.ErrorMessage;
 
 public class Driver implements Runnable, KeyListener {
 	
@@ -53,13 +56,15 @@ public class Driver implements Runnable, KeyListener {
 			elapsedTime = (System.nanoTime() - startTime) / 1000000;
 			waitTime = targetTime - elapsedTime;
 			if(waitTime < 0){
-				waitTime = 0;
+				waitTime = 5;
 			}
 			try{
 				Thread.sleep(waitTime);
-			}catch(Exception e){
-				e.printStackTrace(); //Might want to make a more specific catch instead of general error
-			}
+			}catch(IllegalArgumentException iae){
+				ErrorMessage.addError("Sleep time is negative millis");
+	        }catch (InterruptedException ioe) {
+	        	ErrorMessage.addError("Thread Interrupted");
+	        }
 			totalTime += System.nanoTime() - startTime;
 			frameCount++;
 			if(frameCount == maxFrameCount){
