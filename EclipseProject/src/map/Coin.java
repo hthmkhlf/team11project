@@ -8,7 +8,7 @@ import javax.imageio.ImageIO;
 import music.MusicPlayer;
 
 /**
- * @author Haithem Khelif
+ * @author Haithem Khelif and Josh Schijins
  * This class is a child class to Collidable.
  * The methods in this class are used to create and manage collectable coins which are
  * counted as the player collects them. 
