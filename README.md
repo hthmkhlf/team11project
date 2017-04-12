@@ -11,7 +11,6 @@
     </ul>
 </div>
       <h1>Build Instructions</h1>
-      
       <ul>
       <li>Install Java.</li>
       <li>Create a new directory.</li>
