@@ -1,8 +1,5 @@
 package state;
 
-
-import java.awt.Color;
-import java.awt.Font;
 import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.image.BufferedImage;
@@ -31,7 +28,7 @@ public class MenuState implements GameState {
 			scores = ImageIO.read(new File("src/images/Scores.png"));
 			credits = ImageIO.read(new File("src/images/Credits.png"));
 			exit = ImageIO.read(new File("src/images/title1.png"));
-			keyMap = ImageIO.read(new File("src/images/KeyMap.png"));
+			keyMap = ImageIO.read(new File("src/images/keyMapNew.png"));
 		}catch (IOException e ) {
 			e.printStackTrace();
 		}
@@ -55,7 +52,7 @@ public class MenuState implements GameState {
 	    graphics.drawImage(scores, 650, 200, null);
 	    graphics.drawImage(credits, 650, 300, null);
 	    graphics.drawImage(exit, 540, 0, null);
-	    graphics.drawImage(keyMap, 100, 250,null);
+	    graphics.drawImage(keyMap, 600, 130,null);
 
 
 	}
