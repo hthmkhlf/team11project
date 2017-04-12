@@ -43,7 +43,6 @@ public class Coin extends Collidable {
 	public void collisionAction(Player player) {
 		if(!collected){
 			collected = true;
-			System.out.println("Got a Coin!");
 			music.play(false);
 			coinsCollected++;
 		}

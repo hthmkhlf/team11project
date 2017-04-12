@@ -152,7 +152,6 @@ public class HighScore{
 			FileReader fileReader = new FileReader(fileName);
 			BufferedReader bufferedReader = new BufferedReader(fileReader);
 			while((line = bufferedReader.readLine()) != null){
-				System.out.println(line);
 				scores.add(line);
 			}
 			bufferedReader.close();
