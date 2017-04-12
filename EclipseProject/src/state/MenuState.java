@@ -36,14 +36,12 @@ public class MenuState implements GameState {
 		music.play(true);
 	}
 	
-	@Override
 	public void update(){
 		if(!(music.playing())){
 			music.play(true);
 		}
 	}
 
-	@Override
 	public void draw(Graphics2D graphics) {
 	    graphics.drawImage(image, 0, 0,1650, 550, null);      
 	    graphics.drawImage(start, 600, 0, null);  
@@ -54,7 +52,6 @@ public class MenuState implements GameState {
 
 	}
 	
-	@Override
 	public void keyPressed(int key){
 		if(key == KeyEvent.VK_P){
 			music.stop();
