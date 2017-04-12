@@ -59,7 +59,7 @@ public class PlayState implements GameState {
 		if(!gameOver){
 			for(MapObject element : objects){
 				element.movement();
-				if(element.collisionCheck(player)){
+				if(((Collidable)element).collisionCheck(player)){
 					((Collidable) element).collisionAction(player);
 					if(element instanceof Obstacle){
 						gameOver = true;
