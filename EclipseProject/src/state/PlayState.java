@@ -1,23 +1,19 @@
 package state;
 
-import java.awt.event.KeyEvent;
-import java.awt.Graphics2D;
+import main.Manager;
 import map.*;
 import music.MusicPlayer;
-
+import java.awt.event.KeyEvent;
+import java.awt.Graphics2D;
 import java.util.ArrayList;
 
-import main.Manager;
 /**
- * 
- * @author Josh Schijns Haithem Khelif
- * This is the state of the game when the user is playing the actual Game
- *
+ * @author Josh Schijns and Haithem Khelif
+ * This class controls the state in which the player actually plays the game.
  */
 public class PlayState implements GameState {
-	
-	private ArrayList<MapObject> objects = new ArrayList<>();
-	// MapObjects put into Array
+	private ArrayList<MapObject> objects = new ArrayList<>();	// Placing MapObjects into Array
+
 	private ErrorMessage errorMessage;
 	private Player player;
 	private Background background;
@@ -30,7 +26,7 @@ public class PlayState implements GameState {
 	private MusicPlayer music;
 	private Manager manager;
 	
-	// Used for spawning collidable's
+	// Used for spawning collidables
 	private int delay = 0;
 	private int spawnDelay = 100;
 	
@@ -39,7 +35,7 @@ public class PlayState implements GameState {
 	/**
 	 * Default constructor, initializes all the map objects and spawns the first set of obstacles
 	 */
-	public PlayState(Manager manager){
+	public PlayState(Manager manager) {
 		this.manager = manager;
 		objects.add(background = new Background());
 		objects.add(ground = new Ground());
@@ -54,28 +50,26 @@ public class PlayState implements GameState {
 		music.play(true);
 	}
 	
-	
-	public void update(){
-		if(!gameOver){
-			for(MapObject element : objects){
+	public void update() {
+		if(!gameOver) {
+			for(MapObject element : objects) {
 				element.movement();
-				if(((Collidable)element).collisionCheck(player)){
+				if(((Collidable)element).collisionCheck(player)) {
 					((Collidable) element).collisionAction(player);
-					if(element instanceof Obstacle){
+					if(element instanceof Obstacle) {
 						gameOver = true;
 					}
 				}
 			}
 			destroyCollidables();
 			createObstacles();
-		}else if(gameOver){
+		} else if(gameOver) {
 			score.gameOver();
 		}
 	}
 	
-	
-	public void draw(Graphics2D graphics){
-		for(MapObject element : objects){
+	public void draw(Graphics2D graphics) {
+		for(MapObject element : objects) {
 			element.draw(graphics);
 		}	
 	}
@@ -84,11 +78,11 @@ public class PlayState implements GameState {
 	 * Makes the player jump
 	 * @param key is the key pressed, if UP then will make player jump.
 	 */
-	public void keyPressed(int key){
-		if(key == KeyEvent.VK_UP){
+	public void keyPressed(int key) {
+		if(key == KeyEvent.VK_UP) {
 			player.toggleJump();
 			player.setSpeed(true);
-		}else if((key == KeyEvent.VK_R) && (gameOver)){
+		} else if((key == KeyEvent.VK_R) && (gameOver)) {
 			music.stop();
 			manager.setState(manager.getState("MENU"));
 		}
@@ -98,22 +92,22 @@ public class PlayState implements GameState {
 	 * Toggles the speed variable so the player no longer gains jump speed
 	 * @param key is the key pressed, releasing UP will only do something.
 	 */
-	public void keyReleased(int key){
-		if (key == KeyEvent.VK_UP){
+	public void keyReleased(int key) {
+		if (key == KeyEvent.VK_UP) {
 			player.setSpeed(false);
-		}else if(key == KeyEvent.VK_S){
-			MapObject.setScroll(15); // A developer cheat to speed the game up :)
+		} else if(key == KeyEvent.VK_S) {
+			MapObject.setScroll(15);	// A developer cheat to speed the game up :)
 		}
 	}
 	
 	/**
 	 * Based off the difficulty will spawn that many objects within the screen
 	 */
-	private void destroyCollidables(){
+	private void destroyCollidables() {
 		ArrayList<MapObject> toRemove = new ArrayList<>();
-		for(MapObject element : objects){
+		for(MapObject element : objects) {
 			if(element instanceof Collidable){
-				if((element.getXCoord()+element.getWidth())< -10){
+				if((element.getXCoord()+element.getWidth())< -10) {
 					toRemove.add(element);
 				}
 			}
@@ -125,17 +119,18 @@ public class PlayState implements GameState {
 	 * Based off the difficulty it will keep track of each obstacle and 
 	 * re spawn it if it goes off the screen.
 	 */
-	private void createObstacles(){
+	private void createObstacles() {
 		delay++;
-		if((delay % spawnDelay)==0 ){
+		if((delay % spawnDelay)==0 ) {
 			Obstacle newObstacle;
 			Coin newCoin;
 			objects.add(newObstacle = new Obstacle());
 			objects.add(newCoin = new Coin());
-			if(newObstacle.getObstacleSize() == 3){
+			if (newObstacle.getObstacleSize() == 3) {
 				Boost newBoost;
 				objects.add(newBoost = new Boost(newObstacle));
 			}
 		}
 	}
+	
 }
