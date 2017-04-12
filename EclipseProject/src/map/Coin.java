@@ -9,7 +9,7 @@ import music.MusicPlayer;
 
 /**
  * @author Haithem Khelif
- * This class is a child class to MapObject.
+ * This class is a child class to Collidable.
  * The methods in this class are used to create and manage collectable coins which are
  * counted as the player collects them. 
  */
