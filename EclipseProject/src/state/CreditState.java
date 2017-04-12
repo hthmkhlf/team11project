@@ -43,12 +43,10 @@ public class CreditState implements GameState {
 		}
 	}
 
-	@Override
 	public void update() {
 		// The credits do not need to change once displayed, so this method does not do anything.
 	}
 
-	@Override
 	public void draw(Graphics2D graphics) {
 		graphics.drawImage(creditsBackGround, 0,0,1650, 550, null);
 		graphics.drawImage(zachBlach, 1000, 200, 500,375,null);
@@ -71,7 +69,6 @@ public class CreditState implements GameState {
 			}
 	}
 
-	@Override
 	public void keyPressed(int key) {
 		if(key == KeyEvent.VK_R){
 			manager.setState(manager.getState("MENU"));
