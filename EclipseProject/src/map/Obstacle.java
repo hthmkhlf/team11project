@@ -2,10 +2,12 @@ package map;
 
 import java.awt.Graphics2D;
 import javax.imageio.ImageIO;
+
+import music.MusicPlayer;
+
 import java.util.Random;
 import java.awt.image.BufferedImage;
 import java.io.*;
-import sun.audio.*;
 
 /**
  * @author  Katie Tieu
@@ -19,6 +21,7 @@ import sun.audio.*;
 public class Obstacle extends Collidable {
 	private BufferedImage image;
 	private int obstacleSize;
+	private MusicPlayer music;
 
   		public Obstacle(){
   			this(1700);
@@ -44,11 +47,16 @@ public class Obstacle extends Collidable {
 					break;
 		}
 		setWidth(75);
+		
 		try {
             image = ImageIO.read(new File("src/images/obstacle"+ obstacleSize +".png"));
-        }catch (IOException e ) {
-        	e.printStackTrace();
-        }
+		}catch(IllegalArgumentException iae){
+			ErrorMessage.addError("Image is null in Obstacle");
+		}catch (IOException ioe) {
+			ErrorMessage.addError("Error reading image for obstacles");
+		}
+		
+		music = new MusicPlayer("src/soundEffects/gameOver.wav");
 	}
 
 	public Obstacle(Obstacle other) {
@@ -68,16 +76,8 @@ public class Obstacle extends Collidable {
 	
 	// Plays a sound effect when the player loses
 	@Override
-	@SuppressWarnings("restriction")
 	public void collisionAction(Player player){
-		try {
-			String gameOver = "src/soundEffects/gameover.wav";
-			InputStream in = new FileInputStream(gameOver);
-			AudioStream audio = new AudioStream(in);
-			AudioPlayer.player.start(audio);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
+		music.play(false);
 	}
 
 	public int getObstacleSize(){

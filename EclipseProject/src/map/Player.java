@@ -44,8 +44,10 @@ public class Player extends MapObject {
 		for(int frame = 0; frame < 8; frame++)
 			try {
 				image[frame] = ImageIO.read(new File("src/images/player" +(frame+1) + ".png"));
-			}catch (IOException e ) {
-					e.printStackTrace();
+			}catch(IllegalArgumentException iae){
+    			ErrorMessage.addError("Image is null in Player");
+			}catch (IOException ioe) {
+				ErrorMessage.addError("Error reading image for player");
 			}		
 	}
 	
@@ -93,7 +95,7 @@ public class Player extends MapObject {
 	
 	public void boost(){
 		//Thinking this is where the boost will come into play, make it like a double jump
-		jumpSpeed = jumpSpeed - 2;
+		jumpSpeed = jumpSpeed - 10;
 	}
 	
 	/**

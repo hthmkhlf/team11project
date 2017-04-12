@@ -27,11 +27,11 @@ public abstract class Collidable extends MapObject{
    * @param player the player whose location is being checked
    */
   public boolean collisionCheck(Player player) {
-    boolean collision = false;
-    int playerLeft = 70; //I use this values instead of getting X because we dont care if his tail or beak run into stuff
+	boolean collision = false;
+  	int playerLeft = 70;
     int playerRight = 125;
     int playerTop = player.getYCoord();
-    int playerBottom = player.getYCoord() + 80;
+    int playerBottom = player.getYCoord() + player.getHeight();
     int collidableObjectLeft = this.getXCoord();
     int collidableObjectRight = this.getXCoord() + this.getWidth();
     int collidableObjectTop = this.getYCoord();
@@ -46,5 +46,4 @@ public abstract class Collidable extends MapObject{
     }
     return collision;
   }
-
 }

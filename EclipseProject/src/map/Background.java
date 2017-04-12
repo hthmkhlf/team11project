@@ -22,8 +22,10 @@ public class Background extends MapObject {
 		super(0,0,550,1700);
 		try {
             image = ImageIO.read(new File("src/images/layer1.png"));
-        }catch (IOException e ) {
-        	e.printStackTrace(); // this will print errors to the console
+		}catch(IllegalArgumentException iae){
+    			ErrorMessage.addError("Image is null in Background");
+        }catch (IOException ioe) {
+        	ErrorMessage.addError("Error reading image for layer1");
         }
 	}
 		
@@ -45,7 +47,6 @@ public class Background extends MapObject {
 
 	@Override
 	public boolean collisionCheck(Player player) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 

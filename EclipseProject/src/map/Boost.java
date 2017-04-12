@@ -14,26 +14,25 @@ import java.awt.*;
 
 public class Boost extends Collidable{
   private Image image;
-
+  private boolean boosted = false;
+  
   public Boost(){
-    this(1630, 200, 60, 60);   //may need to change coordinates/size
+    this(1630, 200, 60, 100);   //may need to change coordinates/size
   }
 
   public Boost(Obstacle obstacle){
-	  this(obstacle.getXCoord() - 70, 200, 60, 60);
+	  this(obstacle.getXCoord() - 100, 200, 60, 100);
   }
 
   public Boost(int newX, int newY, int newHeight, int newWidth){
-    super(newX, newY, newHeight, newWidth);
-    try{
-      image = ImageIO.read(new File("src/images/boost.png"));
-    }catch (IOException e){
-      e.printStackTrace();  // This will print errors to the console
-    }
-  }
-
-  public Boost(Boost other){
-    super(other.getXCoord(), other.getYCoord(), other.getHeight(), other.getWidth());
+	  super(newX, newY, newHeight, newWidth);
+	  try{
+		  image = ImageIO.read(new File("src/images/Boost.png"));
+	  }catch(IllegalArgumentException iae){
+		  ErrorMessage.addError("Image is null in Boost");
+	  }catch (IOException ioe) {
+		  ErrorMessage.addError("Error reading image for Boost");
+	  }
   }
 
   @Override
@@ -50,7 +49,10 @@ public class Boost extends Collidable{
   @Override
   public void collisionAction(Player player){
 	  //maybe include a boost sound effect here
-	  player.boost();
+	  if(!boosted){
+		  player.boost();
+		  boosted = true;
+	  }
   }
 
 }

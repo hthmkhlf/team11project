@@ -14,7 +14,7 @@ public abstract class MapObject {
     private int width = 0;
     private static final int MAX_Y = 550;
     private static final int MIN_Y = 0;
-    protected int scrollRate = 10;
+    protected static int scrollRate = 10;
 
     public MapObject(){
     	setX(0);
@@ -37,11 +37,14 @@ public abstract class MapObject {
     public abstract void movement();
     public abstract boolean collisionCheck(Player player);
     
+    public static void setScroll(int scroll){
+    	scrollRate = scroll;
+    }
     /**
      * Scroll rate is the rate at which the map moves each frame
      * @return scrollRate
      */
-    protected int getScroll(){
+    protected static int getScroll(){
     	return scrollRate;
     }
 

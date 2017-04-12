@@ -31,8 +31,10 @@ public class HighScoreGUI extends MapObject {
 		coin = new Coin();
 		try {
 			coinIcon = ImageIO.read(new File("src/images/coin1.png"));
-		}catch (IOException e ) {
-			e.printStackTrace();
+		}catch(IllegalArgumentException iae){
+			ErrorMessage.addError("Image is null in HighScoreGUI");
+		}catch (IOException ioe) {
+			ErrorMessage.addError("Error reading image for coin1");
 		}
 	}
 	
