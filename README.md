@@ -8,7 +8,7 @@
       <li>Katie Tieu</li>
       <li>Flanagan, Emily</li>
       <li>Dou, Zhi Chao</li>
-      </ul>
+    </ul>
       
       <h2>Build Instructions</h2>
       
