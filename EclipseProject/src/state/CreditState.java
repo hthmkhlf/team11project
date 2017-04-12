@@ -11,8 +11,9 @@ import java.io.*;
 import javax.imageio.ImageIO;
 
 /**
- * @author Josh Schijins
+ * @author Josh Schijins Haithem Khelif
  * This class controls the displaying of credits, or the "credit state" of the game.
+ * For more information about the used images please check the ReadMe.html file.
  */
 
 public class CreditState implements GameState {
@@ -43,10 +44,12 @@ public class CreditState implements GameState {
 		}
 	}
 
+	@Override
 	public void update() {
 		// The credits do not need to change once displayed, so this method does not do anything.
 	}
 
+	@Override
 	public void draw(Graphics2D graphics) {
 		graphics.drawImage(creditsBackGround, 0,0,1650, 550, null);
 		graphics.drawImage(zachBlach, 1000, 200, 500,375,null);
@@ -69,6 +72,7 @@ public class CreditState implements GameState {
 			}
 	}
 
+	@Override
 	public void keyPressed(int key) {
 		if(key == KeyEvent.VK_R){
 			manager.setState(manager.getState("MENU"));
